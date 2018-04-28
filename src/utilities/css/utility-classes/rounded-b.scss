@@ -1,0 +1,8 @@
+.rounded-b- {
+  @for $i from 0 through 10 {
+    &#{$i} {
+      border-bottom-right-radius: #{$i}px !important;
+      border-bottom-left-radius: #{$i}px !important;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.rounded-t- {
+  @for $i from 0 through 10 {
+    &#{$i} {
+      border-top-right-radius: #{$i}px !important;
+      border-top-left-radius: #{$i}px !important;
+    }
+  }
+}

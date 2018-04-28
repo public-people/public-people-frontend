@@ -1,0 +1,9 @@
+:local .root {
+  width: 16px;
+  height: 16px;
+  
+  &.isLarge {
+    width: 18px;
+    height: 18px;
+  }
+}
