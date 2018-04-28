@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 
 import 'normalize.css';
 import './../utilities/css/index.js';
@@ -9,16 +8,7 @@ import Loader from '../components/Loader/index.jsx';
 
 const Layout = ({ children, data }) => (
   <div>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
-    <div>
-      {children()}
-    </div>
+    {children()}
   </div>
 )
 

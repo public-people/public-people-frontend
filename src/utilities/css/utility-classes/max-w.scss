@@ -1,0 +1,7 @@
+.max-w- {
+  @for $i from 0 through 8 {
+    &#{$i} {
+      max-width: #{($i * 200) + (20 * ($i - 1))}px !important;
+    }
+  }
+}

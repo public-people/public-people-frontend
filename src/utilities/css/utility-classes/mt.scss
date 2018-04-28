@@ -16,4 +16,8 @@
       margin-top: #{($i * 100) + 100}px !important;
     }
   }
+
+  &auto {
+    margin-top: auto !important;
+  }
 }

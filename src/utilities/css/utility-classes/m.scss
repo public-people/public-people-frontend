@@ -16,4 +16,8 @@
       margin: #{($i * 100) + 100}px !important;
     }
   }
+
+  &-auto {
+    margin: auto !important;
+  }
 }
