@@ -1,9 +1,9 @@
 import React from 'react'
-import Loader from './../../components/Loader/index.jsx';
-import Button from './../../components/Button/index.jsx';
-import Icon from './../../components/Icon/index.jsx';
-import Input from './../../components/Input/index.jsx';
-import Header from './../../components/Header/index.jsx';
+import Loader from './../components/Loader/index.jsx';
+import Button from './../components/Button/index.jsx';
+import Icon from './../components/Icon/index.jsx';
+import Input from './../components/Input/index.jsx';
+import Header from './../components/Header/index.jsx';
 
 export default function PatternsPage() {
   return (

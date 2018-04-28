@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 import Button from './../Button/index.jsx';
 import Icon from './../Icon/index.jsx';
 import Input from './../Input/index.jsx';
