@@ -1,9 +1,9 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
-import Header from './../components/Header/index.jsx'
-import Grid from './../components/Grid/index.jsx'
-import Card from './../components/Card/index.jsx'
+import React from 'react';
+import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
+import Header from './../components/Header/index.jsx';
+import Grid from './../components/Grid/index.jsx';
+import Card from './../components/Card/index.jsx';
 
 
 export default function IndexPage({ data }) {

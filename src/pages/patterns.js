@@ -12,12 +12,6 @@ export default function PatternsPage() {
   return (
     <div>
       <div className="mt-20">
-        <Loader />
-      </div>
-      <div className="mt-20">
-        <Loader percentage={65} />
-      </div>
-      <div className="mt-20">
         <Button>Standard Button</Button>
       </div>
       <div className="mt-20">
@@ -48,9 +42,23 @@ export default function PatternsPage() {
       <div className="mt-20">
         <Header />
       </div>
+
+      <div className="mt-20">
+        <Card>asds</Card>
+      </div>
+
       <div className="mt-20">
         <Card title="Hello">asds</Card>
       </div>
+
+      <div className="mt-20">
+        <Card title="Hello" footer="Footer">asds</Card>
+      </div>
+
+      <div className="mt-20">
+        <Card title="Hello" footer="Footer" height="300">asds</Card>
+      </div>
+
       <div className="mt-20">
         <Grid
           start="tablet" 

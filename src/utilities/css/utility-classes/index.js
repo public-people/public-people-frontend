@@ -11,3 +11,5 @@ import './rounded-l.scss';
 import './rounded-r.scss';
 
 import './max-w.scss';
+import './display.scss';
+import './font.scss';

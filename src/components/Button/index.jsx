@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss';
 
-export default function Button({ link, clickFn, children, primary, inline, utils }) {
+export default function Button({ link, clickFn, children, primary, inline, submit, utils }) {
   if (link) {
     return <a href={link} className={styles.root}>{children}</a>;
   }
@@ -13,5 +13,13 @@ export default function Button({ link, clickFn, children, primary, inline, utils
     (utils ? utils : null),
   ].join(' ');
 
-  return <button className={rootCss} onClick={clickFn}>{children}</button>;
+  return (
+    <button 
+      className={rootCss}
+      onClick={clickFn}
+      type={submit ? 'submit': null}
+    >
+      {children}
+    </button>
+  );
 }

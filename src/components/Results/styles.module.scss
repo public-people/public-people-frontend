@@ -1,0 +1,46 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+:local .root {
+  @include clearfix;
+}
+
+:local .item {
+  @keyframes float-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(40px)
+    }
+  
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+    
+  animation-name: float-appear;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.17,.67,.43,1.53) ;
+  float: left;
+  width: 100%;
+  padding: 15px;
+  opacity: 0;
+
+  @media screen and (min-width: 800px) {
+    width: (100% / 2);
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: (100% / 3);
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: (100% / 4);
+  }
+}

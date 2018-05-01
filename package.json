@@ -11,6 +11,7 @@
     "gatsby-plugin-sass": "^1.0.26",
     "gatsby-transformer-remark": "^1.7.40",
     "normalize.css": "^8.0.0",
+    "query-string": "^6.0.0",
     "react-grid-system": "^3.2.3",
     "react-helmet": "^5.2.0"
   },
