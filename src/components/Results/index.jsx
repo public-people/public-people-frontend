@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import Markup from './partials/Markup.jsx';
-import { parse } from 'query-string';
+
+
+const getUrlParameter = (name) => {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 const fetchWrapper = (url) => {
   return new Promise((resolve, reject) => {
@@ -23,10 +30,6 @@ const fetchWrapper = (url) => {
 export default class extends Component {
   constructor(props) {
     super(props);
-    const { phrase = '' } = parse(location.search)
-    this.static = {
-      phrase,
-    }
 
     this.state = {
       loading: true,
@@ -36,7 +39,7 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    const { phrase } = this.static;
+    const phrase = getUrlParameter('phrase');
     const urlRoot = 'https://public-people.techforgood.org.za/api/persons/'
     const phraseQuery = `?search=${encodeURI(phrase)}`;
 
@@ -48,7 +51,7 @@ export default class extends Component {
 
   render() {
     const { loading, error, results } = this.state;
-    const { phrase } = this.static;
+    const phrase = '';
     return <Markup {...{ phrase, loading, error, results }} />;
   }
 }

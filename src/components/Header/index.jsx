@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import Markup from './partials/Markup.jsx';
-import { parse } from 'query-string';
+
+
+const getUrlParameter = (name) => {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 export default class extends Component {
   constructor(props) {
     super(props);
-    const { phrase: phraseQueryString } = parse(location.search)
 
     this.state = {
-      phrase: phraseQueryString || '',
+      phrase: '',
+      loading: true,
     }
 
     this.events = {
@@ -16,14 +23,23 @@ export default class extends Component {
     }
   }
 
+  componentDidMount() {
+    const phraseQueryString = getUrlParameter('phrase');
+
+    this.setState({ 
+      phrase: phraseQueryString || '',
+      loading: false 
+    });
+  }
+
   updatePhrase(phrase) {
     this.setState({ phrase });
   }
 
   render() {
-    const { phrase } = this.state;
+    const { phrase, loading } = this.state;
     const { updatePhrase } = this.events;
-    return <Markup {...{ phrase, updatePhrase }} />;
+    return <Markup {...{ phrase, updatePhrase, loading }} />;
   }
 }
 
