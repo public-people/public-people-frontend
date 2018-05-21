@@ -1,2 +1,2 @@
-import './utility-classes/index.js';
-import './global-styles/index.js';
+import './utility-classes';
+import './global-styles';

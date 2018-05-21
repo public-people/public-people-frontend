@@ -1,33 +1,40 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
+import addPropsToChildren from './../../utilities/js/addPropsToChildren';
 
 
-export default function Grid({ start, items, utils }) {
+export default function Grid(props) {
+  const {
+    start,
+    utils,
+    columns,
+    children,
+  } = props;
+
   const rootCss = [
     styles.root,
-    (start ? styles[`has-${start}Trigger`] : null),
-    (utils ? utils : null),
-  ].join(' ')
-
-
-  const itemsMarkup = Object.keys(items).map((id) => {
-    const itemCss = [
-      styles.item,
-      styles[`is-${items[id].size}`],
-    ].join(' ');
-
-    return (
-      <div className={itemCss} key={id}>
-        {items[id].markup}
-      </div>
-    )
-  })
+    utils,
+  ].join(' ');
 
   return (
     <div className={rootCss}>
       <div className={styles.inner}>
-        {itemsMarkup}
+        {addPropsToChildren(children, { columns, start })}
       </div>
     </div>
-  )
+  );
 }
+
+
+Grid.propTypes = {
+  start: PropTypes.number.isRequired,
+  utils: PropTypes.string,
+  columns: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+
+Grid.defaultProps = {
+  utils: null,
+};

@@ -2,10 +2,9 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 export default function Button({ type, size }) {
-
   const rootCss = [
     styles.root,
-    (size === 'large' ? styles.isLarge : null)
+    (size === 'large' ? styles.isLarge : null),
   ].join(' ');
 
   const search = (
@@ -16,13 +15,13 @@ export default function Button({ type, size }) {
 
   const home = (
     <svg version="1.2" width="0" height="0" className={rootCss} baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <path d="M98.7,48.8c1.8-2,1.6-5.1-0.4-6.8L53.7,2.9c-2-1.8-5.3-1.7-7.3,0.1L1.6,44.1c-2,1.8-2.1,4.9-0.2,6.8l1.1,1.2 	c1.9,1.9,4.9,2.2,6.7,0.5l3.4-3v43.9c0,2.7,2.2,4.9,4.9,4.9h17.5c2.7,0,4.9-2.2,4.9-4.9V62.8h22.3v30.7c0,2.7,1.9,4.9,4.6,4.9h18.5 	c2.7,0,4.9-2.2,4.9-4.9V50.2c0,0,0.9,0.8,2.1,1.8c1.1,1,3.5,0.2,5.3-1.8L98.7,48.8z" />
+      <path d="M98.7,48.8c1.8-2,1.6-5.1-0.4-6.8L53.7,2.9c-2-1.8-5.3-1.7-7.3,0.1L1.6,44.1c-2,1.8-2.1,4.9-0.2,6.8l1.1,1.2 c1.9,1.9,4.9,2.2,6.7,0.5l3.4-3v43.9c0,2.7,2.2,4.9,4.9,4.9h17.5c2.7,0,4.9-2.2,4.9-4.9V62.8h22.3v30.7c0,2.7,1.9,4.9,4.6,4.9h18.5 c2.7,0,4.9-2.2,4.9-4.9V50.2c0,0,0.9,0.8,2.1,1.8c1.1,1,3.5,0.2,5.3-1.8L98.7,48.8z" />
     </svg>
   );
 
   switch (type) {
     case 'search': return search;
     case 'home': return home;
-    default: return null;   
+    default: return null;
   }
 }

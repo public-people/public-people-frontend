@@ -1,6 +1,21 @@
 :local .root {
-  height: 5px;
-  background-color: #2185D0;
-  transform-origin: left;
-  transition: transform 2s;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg)
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 5px solid transparent;
+  border-top: 5px solid grey;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }

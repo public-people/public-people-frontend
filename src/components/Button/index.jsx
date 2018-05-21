@@ -1,8 +1,20 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
-export default function Button({ link, clickFn, children, primary, inline, submit, utils }) {
-  if (link) {
+
+export default function Button(props) {
+  const {
+    link,
+    clickFn,
+    children,
+    primary,
+    inline,
+    submit,
+    utils = null,
+  } = props;
+
+  if (link && !clickFn) {
     return <a href={link} className={styles.root}>{children}</a>;
   }
 
@@ -10,16 +22,38 @@ export default function Button({ link, clickFn, children, primary, inline, submi
     styles.root,
     (primary ? styles.isPrimary : null),
     (inline ? styles.isInline : null),
-    (utils ? utils : null),
+    utils,
   ].join(' ');
 
   return (
-    <button 
+    <button
       className={rootCss}
       onClick={clickFn}
-      type={submit ? 'submit': null}
+      type={submit ? 'submit' : null}
     >
       {children}
     </button>
   );
 }
+
+
+Button.propTypes = {
+  link: PropTypes.string,
+  clickFn: PropTypes.func,
+  children: PropTypes.node,
+  primary: PropTypes.bool,
+  inline: PropTypes.bool,
+  submit: PropTypes.bool,
+  utils: PropTypes.string,
+};
+
+
+Button.defaultProps = {
+  link: null,
+  clickFn: null,
+  children: null,
+  primary: false,
+  inline: false,
+  submit: false,
+  utils: null,
+};

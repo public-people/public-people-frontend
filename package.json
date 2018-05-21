@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "public-people-frontend",
+  "description": "Public People aims to give an overview of individuals holding public office or trying to do so, in a way that is easily understandable by the average person at a glance.",
+  "version": "0.1.0",
+  "author": "Schalk Venter <venterschalk@gmail.com>",
   "dependencies": {
+    "babel-eslint": "^8.2.3",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-google-fonts": "0.0.4",
@@ -11,22 +12,73 @@
     "gatsby-plugin-sass": "^1.0.26",
     "gatsby-transformer-remark": "^1.7.40",
     "normalize.css": "^8.0.0",
-    "query-string": "^6.0.0",
-    "react-grid-system": "^3.2.3",
-    "react-helmet": "^5.2.0"
+    "prop-types": "^15.6.1",
+    "query-string": "^6.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "keywords": [
-    "gatsby"
+    "gatsby redux"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
-    "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:jest": "jest src",
+    "test:lint": "eslint ./src/**/*.js*",
+    "test": "npm run test:lint & npm run test:jest",
+    "prepush": "npm test"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.3",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "front-matter": "^2.3.0",
-    "gatsby-source-filesystem": "^1.5.34"
+    "gatsby-source-filesystem": "^1.5.34",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true,
+      "node": true
+    },
+    "extends": "airbnb",
+    "rules": {
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "components": [
+            "Link"
+          ],
+          "specialLink": [
+            "to"
+          ]
+        }
+      ]
+    }
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "src"
+    ]
   }
 }

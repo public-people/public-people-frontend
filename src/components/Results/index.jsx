@@ -1,33 +1,11 @@
-import React, { Component } from 'react'
-import Markup from './partials/Markup.jsx';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Markup from './partials/Markup';
+import createPromiseToken from './../../utilities/js/createPromiseToken';
+import fetchWrapper from './../../utilities/js/fetchWrapper';
 
 
-const getUrlParameter = (name) => {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
-
-const fetchWrapper = (url) => {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          reject(response);
-        }
-
-        response.json()
-          .then((data) => {
-            resolve(data);
-         })
-      })
-    .catch(reject)
-  })
-}
-
-
-export default class extends Component {
+export default class Results extends Component {
   constructor(props) {
     super(props);
 
@@ -35,25 +13,42 @@ export default class extends Component {
       loading: true,
       results: null,
       error: null,
-    }
+    };
+
+    this.static = {
+      activeFetch: null,
+    };
   }
 
-  componentDidMount() {
-    const phrase = getUrlParameter('phrase');
-    const urlRoot = 'https://public-people.techforgood.org.za/api/persons/'
+  componentWillReceiveProps() {
+    this.setState({ loading: true });
+    const { phrase } = this.props;
+
+    if (this.static.activeFetch) {
+      this.static.activeFetch.cancel();
+    }
+
+    const urlRoot = 'https://public-people.techforgood.org.za/api/persons/';
     const phraseQuery = `?search=${encodeURI(phrase)}`;
 
-    fetchWrapper(urlRoot + phraseQuery)
-      .then((data) => {
-        this.setState({ results: data.results });
-      })
+    const request = fetchWrapper(urlRoot + phraseQuery);
+    this.static.activeFetch = createPromiseToken(request);
+
+    this.static.activeFetch.request.then((data) => {
+      this.setState({
+        results: data.results,
+        loading: false,
+      });
+    });
   }
 
   render() {
     const { loading, error, results } = this.state;
-    const phrase = '';
-    return <Markup {...{ phrase, loading, error, results }} />;
+    return <Markup {...{ loading, error, results }} />;
   }
 }
 
 
+Results.propTypes = {
+  phrase: PropTypes.string.isRequired,
+};

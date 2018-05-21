@@ -1,7 +1,19 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
-export default function Card({ title, children, level = 6, highlighted, link, footer, height }) {
+
+export default function Card(props) {
+  const {
+    title,
+    children,
+    level,
+    highlighted,
+    link,
+    footer,
+    height,
+  } = props;
+
   const rootCss = [
     styles.root,
     (highlighted ? styles.isHighlighted : null),
@@ -21,9 +33,14 @@ export default function Card({ title, children, level = 6, highlighted, link, fo
 
 
   const HeadingLevel = `h${level}`;
+  const ConditionalTag = typeof link === 'string' ? 'a' : 'div';
 
   return (
-    <div className={rootCss} style={{ height }}>
+    <ConditionalTag
+      className={rootCss}
+      style={{ height }}
+      href={typeof link === 'string' ? link : null}
+    >
       <div className={innerCss}>
         {title ? <HeadingLevel className={titleCss}>{title}</HeadingLevel> : null }
         <div className={styles.content}>
@@ -31,6 +48,31 @@ export default function Card({ title, children, level = 6, highlighted, link, fo
         </div>
       </div>
       { footer ? <div className={styles.footer}>{footer}</div> : null}
-    </div>
-  )
+    </ConditionalTag>
+  );
 }
+
+Card.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  highlighted: PropTypes.bool,
+  link: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  footer: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
+  height: PropTypes.number,
+};
+
+Card.defaultProps = {
+  title: null,
+  level: 6,
+  highlighted: false,
+  link: false,
+  footer: false,
+  height: null,
+};

@@ -6,14 +6,6 @@
   }
 }
 
-$breakpoint-list: (
-  (mobile, 0),
-  (tablet, 500),
-  (standard, 750),
-  (widescreen, 1050)
-);
-
-
 :local .root {
   @media screen and (min-width: 0) {
     border: 1px solid transparent;
@@ -24,37 +16,5 @@ $breakpoint-list: (
   @media screen and (min-width: 0) {
     margin: -15px;
     @include clearfix;
-  }
-}
-
-:local .item {
-  margin-bottom: 30px;
-
-  @media screen and (min-width: 0) {
-    float: left;
-    margin: 15px;
-    width: 100%;
-    width: calc(100% - 30px);
-  }
-
-  @each $name, $pixels in $breakpoint-list {
-    @media screen and (min-width: #{$pixels}px) {
-
-      .has-#{$name}Trigger &.is-1of3 {
-        width: calc((100% / 3) - 30px);
-      }
-
-      .has-#{$name}Trigger &.is-2of3 {
-        width: calc((100% / 3 * 2) - 30px);
-      }
-
-      .has-#{$name}Trigger &.is-1of2 {
-        width: calc(50% - 30px);
-      }
-
-      .has-#{$name}Trigger &.is-1of1 {
-        width: calc(100% - 30px);
-      }
-    }
   }
 }

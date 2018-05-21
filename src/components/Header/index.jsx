@@ -1,46 +1,89 @@
-import React, { Component } from 'react'
-import Markup from './partials/Markup.jsx';
+import React from 'react';
+import Link from 'gatsby-link';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import styles from './styles.module.scss';
+import Button from './../Button';
+import Icon from './../Icon';
+import Input from './../Input';
+import { updatePhrase as reduxUpdatePhrase } from './../../redux/modules/search';
 
 
-const getUrlParameter = (name) => {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
+const buildLoadingMarkup = () => (
+  <div className={styles.searchWrap}>
+    <div className={styles.search}>
+      <Input loading />
+    </div>
+  </div>
+);
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      phrase: '',
-      loading: true,
-    }
+const createForm = (phrase, updatePhraseWrap) => (
+  <form className={styles.searchWrap}>
+    <div className={styles.search}>
+      <div className={styles.input}>
+        <Input
+          placeholder="Search"
+          utils="rounded-r-0"
+          value={phrase}
+          onChange={updatePhraseWrap}
+        />
+      </div>
+      <div className={styles.button}>
+        <Link to={`/results?phrase=${encodeURI(phrase)}`}>
+          <Button inline submit utils="rounded-l-0">
+            <Icon type="search" />
+          </Button>
+        </Link>
+      </div>
+    </div>
+  </form>
+);
 
-    this.events = {
-      updatePhrase: this.updatePhrase.bind(this),
-    }
-  }
 
-  componentDidMount() {
-    const phraseQueryString = getUrlParameter('phrase');
+function Header({ loading, phrase, updatePhrase }) {
+  const updatePhraseWrap = event => updatePhrase(event.target.value);
 
-    this.setState({ 
-      phrase: phraseQueryString || '',
-      loading: false 
-    });
-  }
-
-  updatePhrase(phrase) {
-    this.setState({ phrase });
-  }
-
-  render() {
-    const { phrase, loading } = this.state;
-    const { updatePhrase } = this.events;
-    return <Markup {...{ phrase, updatePhrase, loading }} />;
-  }
+  return (
+    <div className={styles.root}>
+      <div className={styles.wrap}>
+        <div className={styles.home}>
+          <Link to="/">
+            <Button primary inline>
+              <Icon type="home" />
+            </Button>
+          </Link>
+        </div>
+        {!loading ? createForm(phrase, updatePhraseWrap) : buildLoadingMarkup()}
+      </div>
+    </div>
+  );
 }
 
 
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  phrase: state.search.phrase,
+});
+
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  ...ownProps,
+  updatePhrase: phrase => dispatch(reduxUpdatePhrase(phrase)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+
+Header.propTypes = {
+  loading: PropTypes.bool,
+  phrase: PropTypes.string,
+  updatePhrase: PropTypes.func.isRequired,
+};
+
+
+Header.defaultProps = {
+  loading: false,
+  phrase: '',
+};
