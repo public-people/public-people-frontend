@@ -1,6 +1,6 @@
-# Public People Front-end
+# Public People Frontend &middot; ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780456713-527b0cb8b85abf879df15c02.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
-This repo contains the user interface for the Public People project. 
+This repo contains the user interface for the Public People project.
 
 ## Stack
 
@@ -35,9 +35,12 @@ The following Gatsby plugins are used:
 ## Deployment
 
 1. [Husky](https://www.npmjs.com/package/husky) automatically executes an [ESLint](https://eslint.org/) test via `npm run test:lint` upon running a `git push` command.
-2. Code will only be pushed to git if `npm run test:lint` passes.*
-3. Once code is pushed/merged into master [Travis](https://travis-ci.org/) execute all [Jest](https://facebook.github.io/jest/) tests via `npm test`
+2. Code will only be pushed to git if `npm run test` passes.*
+3. Once code is pushed/merged into master [Travis](https://travis-ci.org/) execute all [Jest](https://facebook.github.io/jest/) tests via `npm run test:jest`
 4. If [Jest](https://facebook.github.io/jest/) tests pass, static site will be built via `npm run build`.
 5. If build is valid it will be deployed to `public-people.netlify.com`.
 
-* It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. In emergencies [Husky](https://www.npmjs.com/package/husky) can be overriden by running ``
+* It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. If this is not possible it is advised that you run `npm test` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`
+
+## Roadmap v0.1
+- 
