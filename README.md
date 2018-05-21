@@ -13,6 +13,10 @@ The following Gatsby plugins are used:
 - [gatsby-plugin-sass](https://www.npmjs.com/package/gatsby-plugin-sass)
 - [gatsby-transformer-remark](https://www.npmjs.com/package/gatsby-transformer-remark)
 
+The following Redux bindings/plugins are used:
+- [react-redux](https://www.npmjs.com/package/react-redux)
+- [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension)
+
 ## Conventions
 
 - Underlying architecture corresponds with [Gatsby documentation](https://www.gatsbyjs.org/).
