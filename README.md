@@ -24,23 +24,22 @@ The following Gatsby plugins are used:
 
 ## Development
 
-1. Clone this project by running with `git clone https://githubcom/public-people/public-people-frontend`.
+1. Clone this project by running `git clone https://githubcom/public-people/public-people-frontend`.
 2. Make sure you have [NodeJS](https://nodejs.org/en/) installed.
 3. Run `npm install` in the root folder of the repository.
 4. Run `npm start` to spin up the development server.*
 5. Open `localhost:8000` in your browser.
 
-\* _Development server uses hot-reloading. Changes will reflect immediately on `localhost:8000` without refreshing the browser_
+\* _Development server uses hot-reloading. Changes will reflect immediately on `localhost:8000` without refreshing the browser_.
 
 ## Deployment
 
-1. [Husky](https://www.npmjs.com/package/husky) automatically executes an [ESLint](https://eslint.org/) test via `npm run test:lint` upon running a `git push` command.
-2. Code will only be pushed to git if `npm run test` passes.*
-3. Once code is pushed/merged into master [Travis](https://travis-ci.org/) execute all [Jest](https://facebook.github.io/jest/) tests via `npm run test:jest`
-4. If [Jest](https://facebook.github.io/jest/) tests pass, static site will be built via `npm run build`.
-5. If build is valid it will be deployed to `public-people.netlify.com`.
+1. [Husky](https://www.npmjs.com/package/husky) automatically executes [ESLint](https://eslint.org/) and [Jest](https://facebook.github.io/jest/) tests via `npm run test` upon running a `git push` command.
+2. Code will only be pushed to remote repository if `npm run test` passes.*
+3. [Netlify](https://www.netlify.com/) builds a new static site instance of the repo via `npm run build`.
+4. If build is valid it will be deployed to [Netlify](https://www.netlify.com/) at `public-people.netlify.com`.
 
-\* It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. If this is not possible it is advised that you run `npm test` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`
+\* It is advised to integrate [ESLint](https://eslint.org/) into your IDE to receive linting errors as you work. If this is not possible it is advised that you run `npm test:lint` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`.
 
 ## Contribute
 See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/).
