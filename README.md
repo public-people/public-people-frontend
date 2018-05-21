@@ -30,7 +30,7 @@ The following Gatsby plugins are used:
 4. Run `npm start` to spin up the development server.*
 5. Open `localhost:8000` in your browser.
 
-* _Development server uses hot-reloading. Changes will reflect immediately on `localhost:8000` without refreshing the browser_
+\* _Development server uses hot-reloading. Changes will reflect immediately on `localhost:8000` without refreshing the browser_
 
 ## Deployment
 
@@ -40,7 +40,7 @@ The following Gatsby plugins are used:
 4. If [Jest](https://facebook.github.io/jest/) tests pass, static site will be built via `npm run build`.
 5. If build is valid it will be deployed to `public-people.netlify.com`.
 
-* It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. If this is not possible it is advised that you run `npm test` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`
+\* It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. If this is not possible it is advised that you run `npm test` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`
 
 ## Contribute
-See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/)
+See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/).
