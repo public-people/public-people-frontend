@@ -39,7 +39,7 @@ The following Gatsby plugins are used:
 3. [Netlify](https://www.netlify.com/) builds a new static site instance of the repo via `npm run build`.
 4. If build is valid it will be deployed to [Netlify](https://www.netlify.com/) at `public-people.netlify.com`.
 
-\* It is advised to integrate [ESLint](https://eslint.org/) into your IDE to receive linting errors as you work. If this is not possible it is advised that you run `npm test:lint` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`.
+\* It is advised to integrate [ESLint](https://eslint.org/) into your editor/IDE to receive linting errors as you work. Read the following [ESLInt documentation](https://eslint.org/docs/user-guide/integrations#editors) to integrate ESLint into your editor/IDE. If this is not possible it is advised that you run `npm test:lint` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`.
 
 ## Contribute
 See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/).
