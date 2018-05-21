@@ -1,4 +1,4 @@
-# Public People Frontend &middot; ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780456713-527b0cb8b85abf879df15c02.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+# Public People Frontend &middot; [![Build Status](https://travis-ci.org/public-people/public-people-frontend.svg?branch=master)](https://travis-ci.org/public-people/public-people-frontend) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780456713-527b0cb8b85abf879df15c02.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
 This repo contains the user interface for the Public People project.
 
