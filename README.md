@@ -42,5 +42,5 @@ The following Gatsby plugins are used:
 
 * It is advised to integrate [ESLint](https://eslint.org/) to into your IDE to receive real-time linting errors. If this is not possible it is advised that you run `npm test` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`
 
-## Roadmap v0.1
-- 
+## Contribute
+See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/)
