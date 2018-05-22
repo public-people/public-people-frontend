@@ -3,6 +3,19 @@
   "description": "Public People aims to give an overview of individuals holding public office or trying to do so, in a way that is easily understandable by the average person at a glance.",
   "version": "0.1.0",
   "author": "Schalk Venter <venterschalk@gmail.com>",
+  "keywords": [
+    "gatsby redux"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "start": "gatsby develop",
+    "test:jest": "jest src",
+    "test:eslint": "eslint ./src/**/*.js*",
+    "test:stylelint": "stylelint ./src/**/*.scss",
+    "test": "npm run test:eslint & npm run test:stylelint & npm run test:jest",
+    "prepush": "npm test"
+  },
   "dependencies": {
     "babel-eslint": "^8.2.3",
     "gatsby": "^1.9.247",
@@ -10,7 +23,6 @@
     "gatsby-plugin-google-fonts": "0.0.4",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "gatsby-plugin-sass": "^1.0.26",
-    "gatsby-transformer-remark": "^1.7.40",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
@@ -22,30 +34,43 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2"
   },
-  "keywords": [
-    "gatsby redux"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "start": "gatsby develop",
-    "test:jest": "jest src",
-    "test:lint": "eslint ./src/**/*.js*",
-    "test": "npm run test:lint & npm run test:jest",
-    "prepush": "npm test"
-  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "front-matter": "^2.3.0",
-    "gatsby-source-filesystem": "^1.5.34",
     "husky": "^0.14.3",
-    "jest": "^22.4.3"
+    "jest": "^22.4.3",
+    "nock": "^9.2.6",
+    "node-fetch": "^2.1.2",
+    "stylelint": "^9.2.1",
+    "stylelint-config-css-modules": "^1.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-no-unsupported-browser-features": "^3.0.0",
+    "stylelint-scss": "^3.1.0"
+  },
+  "browserslist": [
+    "last 12 chrome versions",
+    "last 12 firefox versions",
+    "last 6 safari versions",
+    "explorer >= 10",
+    "edge > 0"
+  ],
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "src"
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -56,6 +81,9 @@
       "node": true
     },
     "extends": "airbnb",
+    "plugins": [
+      "compat"
+    ],
     "rules": {
       "jsx-a11y/anchor-is-valid": [
         "error",
@@ -70,15 +98,35 @@
       ]
     }
   },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
-  },
-  "jest": {
-    "roots": [
-      "src"
-    ]
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-css-modules"
+    ],
+    "plugins": [
+      "stylelint-scss",
+      "stylelint-no-unsupported-browser-features"
+    ],
+    "rules": {
+      "plugin/no-unsupported-browser-features": [
+        true,
+        {
+          "severity": "warning"
+        }
+      ],
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "for",
+            "if",
+            "return",
+            "function",
+            "mixin",
+            "include"
+          ]
+        }
+      ]
+    }
   }
 }

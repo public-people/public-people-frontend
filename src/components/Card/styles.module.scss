@@ -1,19 +1,19 @@
 :local .root {
-  color: #5C5C5C;
+  color: #5c5c5c;
   border-radius: 4px;
   background: white;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   box-shadow:
     0 1px 5px 0 rgba(0, 0, 0, 0.2),
     0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &.isHighlighted {
     background: rgba(33, 133, 208, 0.1);
-    color: #2185D0;
+    color: #2185d0;
   }
 
   :local .inner {
@@ -38,7 +38,7 @@
   margin: 0 0 20px;
 
   &.isLink {
-    color: #2185D0;
+    color: #2185d0;
     text-decoration: underline;
   }
 }
@@ -47,10 +47,10 @@
   padding: 20px 25px;
   font-weight: bold;
   font-size: 14px;
-  background: #E0E1E2;
+  background: #e0e1e2;
 
   .root.isLink:hover & {
-    background: darken(#E0E1E2, 5%);
+    background: darken(#e0e1e2, 5%);
   }
 }
 

@@ -1,7 +1,6 @@
 :local .root {
-  margin-bottom: 30px;
   float: left;
-  margin: 15px;
+  margin: 15px 15px 30px;
 
   @for $i from 0 through 20 {
     &.hasBreakPoint#{$i * 100} {

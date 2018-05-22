@@ -1,10 +1,10 @@
 import React from 'react';
-import Loader from './../components/Loader/index';
-import Button from './../components/Button/index';
-import Icon from './../components/Icon/index';
-import Input from './../components/Input/index';
-import Header from './../components/Header/index';
-import Card from './../components/Card/index';
+import Loader from './../../components/Loader/index';
+import Button from './../../components/Button/index';
+import Icon from './../../components/Icon/index';
+import Input from './../../components/Input/index';
+import Header from './../../components/Header/index';
+import Card from './../../components/Card/index';
 
 
 export default function PatternsPage() {

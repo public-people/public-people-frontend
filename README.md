@@ -11,20 +11,35 @@ The following Gatsby plugins are used:
 - [gatsby-plugin-google-fonts](https://www.npmjs.com/package/gatsby-plugin-google-fonts)
 - [gatsby-plugin-react-helmet](https://www.npmjs.com/package/gatsby-plugin-react-helmet)
 - [gatsby-plugin-sass](https://www.npmjs.com/package/gatsby-plugin-sass)
-- [gatsby-transformer-remark](https://www.npmjs.com/package/gatsby-transformer-remark)
 
 The following Redux bindings/plugins are used:
 - [react-redux](https://www.npmjs.com/package/react-redux)
 - [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension)
+- [redux-thunk](https://www.npmjs.com/package/redux-thunk)
 
 ## Conventions
 
 - Underlying architecture corresponds with [Gatsby documentation](https://www.gatsbyjs.org/).
 - Redux file architecture corresponds to [Ducks](https://github.com/erikras/ducks-modular-redux) convention.
 - Redux action structure correspond to [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) convention.
-- JavaScript linting done in accordance with [AirBnb JavaScript styleguide](https://github.com/airbnb/javascript).
-- React linting done in accordance with [AirBnb React/JSX styleguide](https://github.com/airbnb/javascript/tree/master/react).
+- JavaScript linting done in accordance with the following ESLint configs:
+  - [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb).
+  - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
+  - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
+  - [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+- CSS linting done in accordance with the following Stylelint configs:
+  - [stylelint-config-standard](stylelint-config-standard)
+  - [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)
+  - [stylelint-config-css-modules](https://www.npmjs.com/package/stylelint-config-css-modules)
+  - [stylelint-no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features)
 - All unit tests are written in [Jest](https://facebook.github.io/jest/) and placed in a `__tests__` folder located inside a component folder.
+- Browser support should correspond with the following Browserslist rules:
+  - `last 12 chrome versions`
+  - `last 12 firefox versions`
+  - `last 6 safari versions`
+  - `explorer >= 9`
+  - `edge > 0`
+
 
 ## Development
 
@@ -38,12 +53,16 @@ The following Redux bindings/plugins are used:
 
 ## Deployment
 
-1. [Husky](https://www.npmjs.com/package/husky) automatically executes [ESLint](https://eslint.org/) and [Jest](https://facebook.github.io/jest/) tests via `npm run test` upon running a `git push` command.
-2. Code will only be pushed to remote repository if `npm run test` passes.*
+1. [Husky](https://www.npmjs.com/package/husky) automatically executes [ESLint](https://eslint.org/), [Stylelint](https://stylelint.io/) and [Jest](https://facebook.github.io/jest/) tests via `npm test` upon running a `git push` command.
+2. Code will only be pushed to remote repository if `npm test` passes. <sup>2</sup> <sup>3</sup>
 3. [Netlify](https://www.netlify.com/) builds a new static site instance of the repo via `npm run build`.
 4. If build is valid it will be deployed to [Netlify](https://www.netlify.com/) at `public-people.netlify.com`.
 
-\* It is advised to integrate [ESLint](https://eslint.org/) into your editor/IDE to receive linting errors as you work. Read the following [ESLInt documentation](https://eslint.org/docs/user-guide/integrations#editors) to integrate ESLint into your editor/IDE. If this is not possible it is advised that you run `npm test:lint` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`.
+<sup>2</sup> It is advised to integrate [ESLint](https://eslint.org/) into your editor/IDE to receive linting errors as you work. Read the following [ESLInt documentation](https://eslint.org/docs/user-guide/integrations#editors) to integrate ESLint into your editor/IDE. 
+
+<sup>3</sup> If this is not possible it is advised that you run `npm test:lint` as often as possible during development. In emergencies [Husky](https://www.npmjs.com/package/husky) can be bypassed by running `git push --no-verify`.
 
 ## Contribute
 See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/).
+
+## Footnotes
