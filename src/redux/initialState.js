@@ -1,5 +1,9 @@
 export default {
-  search: {
+  people: {
     phrase: '',
+    loading: true,
+    activeFetchToken: null,
+    results: [],
+    notification: null,
   },
 };

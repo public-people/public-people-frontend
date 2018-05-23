@@ -12,12 +12,14 @@ export default function Card(props) {
     link,
     footer,
     height,
+    loading,
   } = props;
 
   const rootCss = [
     styles.root,
     (highlighted ? styles.isHighlighted : null),
     (link ? styles.isLink : null),
+    (loading ? styles.isLoading : null),
   ].join(' ');
 
   const titleCss = [
@@ -54,7 +56,7 @@ export default function Card(props) {
 
 Card.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   highlighted: PropTypes.bool,
   link: PropTypes.oneOfType([
@@ -66,6 +68,7 @@ Card.propTypes = {
     PropTypes.node,
   ]),
   height: PropTypes.number,
+  loading: PropTypes.bool,
 };
 
 Card.defaultProps = {
@@ -75,4 +78,6 @@ Card.defaultProps = {
   link: false,
   footer: false,
   height: null,
+  children: null,
+  loading: false,
 };

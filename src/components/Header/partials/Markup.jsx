@@ -1,44 +1,46 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import PropTypes from 'prop-types';
 import styles from './../styles.module.scss';
 import Button from './../../Button';
 import Icon from './../../Icon';
 import Input from './../../Input';
 
 
-export default function Markup({ loading, phrase, updatePhrase }) {
-  const updatePhraseWrap = event => updatePhrase(event.target.value);
+const buildLoadingMarkup = () => (
+  <div className={styles.searchWrap}>
+    <div className={styles.search}>
+      <Input loading />
+    </div>
+  </div>
+);
 
-  const loadingMarkup = (
-    <div className={styles.searchWrap}>
-      <div className={styles.search}>
-        <Input loading />
+
+const createForm = (phrase, updatePhraseWrap) => (
+  <form className={styles.searchWrap}>
+    <div className={styles.search}>
+      <div className={styles.input}>
+        <Input
+          placeholder="Search"
+          utils="rounded-r-0"
+          value={phrase}
+          onChange={updatePhraseWrap}
+        />
+      </div>
+      <div className={styles.button}>
+        <Link to={`/results?phrase=${encodeURI(phrase)}`}>
+          <Button inline submit utils="rounded-l-0">
+            <Icon type="search" />
+          </Button>
+        </Link>
       </div>
     </div>
-  );
+  </form>
+);
 
-  const createForm = () => (
-    <form className={styles.searchWrap}>
-      <div className={styles.search}>
-        <div className={styles.input}>
-          <Input
-            placeholder="Search"
-            utils="rounded-r-0"
-            value={phrase}
-            onChange={updatePhraseWrap}
-          />
-        </div>
-        <div className={styles.button}>
-          <Link to={`/results?phrase=${encodeURI(phrase)}`}>
-            <Button inline submit utils="rounded-l-0">
-              <Icon type="search" />
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </form>
-  );
+
+export default function Markup({ loading, phrase, updatePhrase }) {
+  const updatePhraseWrap = event => updatePhrase(event.target.value);
 
   return (
     <div className={styles.root}>
@@ -50,7 +52,7 @@ export default function Markup({ loading, phrase, updatePhrase }) {
             </Button>
           </Link>
         </div>
-        {!loading ? createForm() : loadingMarkup}
+        {!loading ? createForm(phrase, updatePhraseWrap) : buildLoadingMarkup()}
       </div>
     </div>
   );

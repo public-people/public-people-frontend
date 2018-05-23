@@ -2,7 +2,7 @@ export default function createPromiseToken(cbPromise) {
   const token = {
     cancelled: false,
     cancel: (reason) => {
-      token.cancelled = `Cancelled: "${reason}"`;
+      token.cancelled = `Cancelled due to ${reason}`;
     },
   };
 

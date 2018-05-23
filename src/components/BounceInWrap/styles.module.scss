@@ -1,0 +1,19 @@
+:local .root {
+  @keyframes bounce {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  opacity: 0;
+  animation-name: bounce;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.43, 1.53);
+}

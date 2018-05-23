@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './../styles.module.scss';
 import Card from './../../Card';
-import Loader from './../../Loader';
-
+import BounceInWrap from './../../BounceInWrap';
+import Placeholder from './../../Placeholder';
 
 const buildResults = results => results.map((item, index) => (
   <div
@@ -38,7 +38,13 @@ export default function Markup({ loading, error, results }) {
   }
 
   if (loading) {
-    return <div className="text-center"><Loader /></div>;
+    return [0, 1, 2, 3].map(index => (
+      <div key={index} className={styles.item}>
+        <BounceInWrap delay={index * 0.2}>
+          <Placeholder utils="rounded-4" height={250} />
+        </BounceInWrap>
+      </div>
+    ));
   }
 
 

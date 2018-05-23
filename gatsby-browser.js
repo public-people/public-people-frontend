@@ -2,15 +2,15 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import { updatePhrase } from './src/redux/modules/search';
-import getUrlParameter from './src/utilities/js/getUrlParameter';
+import { setPhrase } from './src/redux/modules/people';
+import extractQueryString from './src/utilities/js/extractQueryString';
 
 
 exports.onClientEntry = () => {
-  const phrase = getUrlParameter('phrase');
+  const phrase = extractQueryString('phrase', window.location.search);
 
   if (phrase) {
-    store.dispatch(updatePhrase(phrase));
+    store.dispatch(setPhrase(phrase));
   }
 };
 

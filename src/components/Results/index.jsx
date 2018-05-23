@@ -1,54 +1,22 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Markup from './partials/Markup';
-import createPromiseToken from './../../utilities/js/createPromiseToken';
-import fetchWrapper from './../../utilities/js/fetchWrapper';
+import { connect } from 'react-redux';
+import { initUpdate as reduxInitUpdate } from './../../redux/modules/people';
+import Container from './partials/Container';
 
 
-export default class Results extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true,
-      results: null,
-      error: null,
-    };
-
-    this.static = {
-      activeFetch: null,
-    };
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ loading: true });
-    const { phrase } = this.props;
-
-    if (this.static.activeFetch) {
-      this.static.activeFetch.cancel();
-    }
-
-    const urlRoot = 'https://public-people.techforgood.org.za/api/persons/';
-    const phraseQuery = `?search=${encodeURI(phrase)}`;
-
-    const request = fetchWrapper(urlRoot + phraseQuery);
-    this.static.activeFetch = createPromiseToken(request);
-
-    this.static.activeFetch.request.then((data) => {
-      this.setState({
-        results: data.results,
-        loading: false,
-      });
-    });
-  }
-
-  render() {
-    const { loading, error, results } = this.state;
-    return <Markup {...{ loading, error, results }} />;
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  results: state.people.results,
+  message: state.people.text,
+  loading: state.people.loading,
+  phrase: state.people.phrase,
+});
 
 
-Results.propTypes = {
-  phrase: PropTypes.string.isRequired,
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  ...ownProps,
+  initUpdate: phrase => dispatch(reduxInitUpdate(phrase)),
+});
+
+
+const Results = connect(mapStateToProps, mapDispatchToProps)(Container);
+export default Results;
