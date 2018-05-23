@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from './src/redux/store';
 import { setPhrase } from './src/redux/modules/people';
 import extractQueryString from './src/utilities/js/extractQueryString';
@@ -24,6 +25,10 @@ exports.replaceRouterComponent = ({ history }) => {
     </Provider>
   );
   /* eslint-enable */
+
+  ConnectedRouterWrapper.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
 
   return ConnectedRouterWrapper;
 };

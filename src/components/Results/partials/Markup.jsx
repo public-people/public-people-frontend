@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './../styles.module.scss';
 import Card from './../../Card';
-import BounceInWrap from './../../BounceInWrap';
+import BounceWrap from './../../BounceWrap';
 import Placeholder from './../../Placeholder';
 
 const buildResults = results => results.map((item, index) => (
@@ -40,9 +40,9 @@ export default function Markup({ loading, error, results }) {
   if (loading) {
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
-        <BounceInWrap delay={index * 0.2}>
+        <BounceWrap delay={index * 0.2}>
           <Placeholder utils="rounded-4" height={250} />
-        </BounceInWrap>
+        </BounceWrap>
       </div>
     ));
   }

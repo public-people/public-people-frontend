@@ -5,8 +5,7 @@ import Grid from './../components/Grid';
 import GridItem from './../components/GridItem';
 import Card from './../components/Card';
 import Button from './../components/Button';
-import Loader from './../components/Loader';
-import BounceInWrap from './../components/BounceInWrap';
+import BounceWrap from './../components/BounceWrap';
 
 
 export default function IndexPage() {
@@ -18,31 +17,31 @@ export default function IndexPage() {
         <Grid start={800} columns={2} utils="max-w-4 ml-auto mr-auto">
 
           <GridItem span={2}>
-            <BounceInWrap delay={0}>
+            <BounceWrap delay={0}>
               <Card title="Hello" highlighted>
                 <p>afdgsfadsdhsgfdh</p>
                 <p>adfgafdgh</p>
               </Card>
-            </BounceInWrap>
+            </BounceWrap>
           </GridItem>
 
           <GridItem span={1}>
-            <BounceInWrap  delay={0.2}>
+            <BounceWrap delay={0.2}>
               <Card title="Hello">
                 <p>afdgsfadsdhsgfdh</p>
                 <p>adfgafdgh</p>
                 <Button link="http://techforgood.org.za/politician-data-project/">Contribute to this project</Button>
               </Card>
-            </BounceInWrap>
+            </BounceWrap>
           </GridItem>
 
           <GridItem span={1}>
-            <BounceInWrap  delay={0.4}>
+            <BounceWrap delay={0.4}>
               <Card title="Hello">
                 <p>afdgsfadsdhsgfdh</p>
                 <p>adfgafdgh</p>
               </Card>
-            </BounceInWrap>
+            </BounceWrap>
           </GridItem>
 
         </Grid>

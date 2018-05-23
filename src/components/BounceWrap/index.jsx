@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 
 export default function BounceWrap({ children, delay }) {
-  const style = delay ? { animationDelay: `${delay}s`} : null;
+  const style = delay ? { animationDelay: `${delay}s` } : null;
 
   return (
     <div className={styles.root} {...{ style }}>{children}</div>
