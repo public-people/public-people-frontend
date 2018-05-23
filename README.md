@@ -16,30 +16,40 @@ The following Redux bindings/plugins are used:
 - [react-redux](https://www.npmjs.com/package/react-redux)
 - [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension)
 - [redux-thunk](https://www.npmjs.com/package/redux-thunk)
+- [redux-batched-subscribe](redux-batched-subscribe)
 
 ## Conventions
 
-- Underlying architecture corresponds with [Gatsby documentation](https://www.gatsbyjs.org/).
+#### Files
+- Underlying file architecture corresponds to guidelines established in [Gatsby documentation](https://www.gatsbyjs.org/docs/).
+
+#### Redux
 - Redux file architecture corresponds to [Ducks](https://github.com/erikras/ducks-modular-redux) convention.
 - Redux action structure correspond to [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) convention.
-- JavaScript linting done in accordance with the following ESLint configs:
-  - [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb).
-  - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
-  - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
-  - [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+
+#### CSS
+- Utility classes follow naming conventions used by [Tailwind CSS](http://tailwindcss.com/)
 - CSS linting done in accordance with the following Stylelint configs:
   - [stylelint-config-standard](stylelint-config-standard)
   - [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)
   - [stylelint-config-css-modules](https://www.npmjs.com/package/stylelint-config-css-modules)
   - [stylelint-no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features)
+
+#### JavaScript
+- JavaScript linting done in accordance with the following ESLint configs:
+  - [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb).
+  - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
+  - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
+  - [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
 - All unit tests are written in [Jest](https://facebook.github.io/jest/) and placed in a `__tests__` folder located inside a component folder.
+
+#### Support
 - Browser support should correspond with the following Browserslist rules:
   - `last 12 chrome versions`
   - `last 12 firefox versions`
   - `last 6 safari versions`
   - `explorer >= 9`
   - `edge > 0`
-
 
 ## Development
 

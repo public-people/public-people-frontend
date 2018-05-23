@@ -8,7 +8,7 @@ export default function ResultsPage() {
   return (
     <div>
       <Helmet title="Search Results | Public People" />
-      <Header />
+      <Header targetSelf />
       <div className="mt-30 mr-20 ml-20">
         <Results />
       </div>

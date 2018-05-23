@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { initUpdate as reduxInitUpdate } from './../../redux/modules/people';
+import { initSearch } from './../../redux/modules/people';
 import Container from './partials/Container';
 
 
@@ -9,12 +9,13 @@ const mapStateToProps = (state, ownProps) => ({
   message: state.people.text,
   loading: state.people.loading,
   phrase: state.people.phrase,
+  error: state.people.error,
 });
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
-  initUpdate: phrase => dispatch(reduxInitUpdate(phrase)),
+  initSearch: phrase => dispatch(initSearch(phrase)),
 });
 
 

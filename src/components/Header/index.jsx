@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setPhrase as reduxSetPhrase } from './../../redux/modules/people';
+import { setPhrase, initSearch } from './../../redux/modules/people';
 import Markup from './partials/Markup';
 
 
@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
-  updatePhrase: phrase => dispatch(reduxSetPhrase(phrase)),
+  updatePhrase: phrase => dispatch(setPhrase(phrase)),
+  initSearch: phrase => dispatch(initSearch(phrase)),
 });
 
 

@@ -24,14 +24,13 @@ const buildResults = results => results.map((item, index) => (
 ));
 
 
-export default function Markup({ loading, error, results }) {
-  if (error === 'fail') {
-    return (
-      <div>
-        Something went wrong. Please try again and get in touch if the problem persists
-      </div>
-    );
-  }
+export default function Markup(props) {
+  const {
+    loading,
+    error,
+    results,
+    phrase,
+  } = props;
 
   if (error === 'no-resuls') {
     return <div>No results were found for this search. Please try another search term</div>;
@@ -47,6 +46,25 @@ export default function Markup({ loading, error, results }) {
     ));
   }
 
+  if (error) {
+    return (
+      <BounceWrap>
+        <div className="text-center">
+          <Card highlighted title="Error" utils="max-w-4 ml-auto mr-auto">Something went wrong. Please try again at a later stage</Card>
+        </div>
+      </BounceWrap>
+    );
+  }
+
+  if (results.length < 1) {
+    return (
+      <BounceWrap>
+        <div className="text-center">
+          <Card highlighted title="No people found" utils="max-w-4 ml-auto mr-auto">No result was found matching the query &ldquo;{phrase}&rdquo;, please try another phrase.</Card>
+        </div>
+      </BounceWrap>
+    );
+  }
 
   return (
     <div className={styles.root}>
@@ -60,9 +78,10 @@ Markup.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.string,
   results: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
   })),
+  phrase: PropTypes.string.isRequired,
 };
 
 

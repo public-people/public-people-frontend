@@ -1,5 +1,5 @@
-// import createPromiseToken from './../../utilities/js/createPromiseToken';
-// import fetchWrapper from '../../utilities/js/fetchWrapper';
+import createPromiseToken from './../../utilities/js/createPromiseToken';
+import fetchWrapper from '../../utilities/js/fetchWrapper';
 
 
 const SET_PHRASE = 'search/SET_PHRASE';
@@ -37,7 +37,8 @@ export default function reducer(state = {}, action = {}) {
     case RESOLVE_REQUEST: return {
       ...state,
       results: action.payload.results,
-      error: action.payload.error,
+      error: action.error,
+      loading: false,
     };
 
     default: return state;
@@ -68,63 +69,62 @@ export function clearRequest(reason) {
 }
 
 
-export function initUpdate() {
+export function initSearch(phrase) {
   return (dispatch) => {
-    dispatch(setPhrase('2222'));
+    dispatch({
+      type: SET_LOADING,
+      payload: true,
+    });
+
+    clearRequest();
+
+    dispatch({
+      type: CLEAR_REQUEST,
+      payload: 'new request being sent',
+    });
+
+    const url = `https://public-people.techforgood.org.za/api/persons/?search=${encodeURI(phrase)}`;
+    const request = fetchWrapper(url);
+    const token = createPromiseToken(request);
+
+    dispatch({
+      type: SEND_REQUEST,
+      payload: token,
+      meta: {
+        url,
+      },
+    });
+
+    token.request
+      .then(({ results }) => {
+        if (results.length > 0) {
+          return dispatch({
+            type: RESOLVE_REQUEST,
+            payload: {
+              results,
+            },
+          });
+        }
+
+        return dispatch({
+          type: RESOLVE_REQUEST,
+          payload: {
+            results: [],
+            text: 'No results were returned, please try another search phrase',
+          },
+        });
+      })
+      .catch((error) => {
+        console.warn(error);
+
+        return dispatch({
+          type: RESOLVE_REQUEST,
+          payload: {
+            results: [],
+            text: 'An error occured, please try searching again',
+          },
+          error: true,
+        });
+      });
   };
 }
-
-// return (dispatch) => { dispatch({
-//     type: SET_LOADING,
-//     payload: true,
-//   });
-
-//   console.log('sadasd');
-//   clearRequest('new request being sent');
-
-//   const url = `https://public-people.techforgood.org.za/api/persons/?search=${encodeURI(phrase)}`;
-//   const request = fetchWrapper(url);
-//   const token = createPromiseToken(request);
-
-//   dispatch({
-//     type: SEND_REQUEST,
-//     payload: token,
-//     meta: {
-//       url,
-//     },
-//   });
-
-//   token.request
-//     .then((results) => {
-//       if (results.length > 0) {
-//         return dispatch({
-//           type: RESOLVE_REQUEST,
-//           payload: {
-//             results,
-//           },
-//         });
-//       }
-
-//       return dispatch({
-//         type: RESOLVE_REQUEST,
-//         payload: {
-//           results: [],
-//           text: 'No results were returned, please try another search phrase',
-//         },
-//       });
-//     })
-//     .catch((error) => {
-//       console.warn(error);
-
-//       return dispatch({
-//         type: RESOLVE_REQUEST,
-//         payload: {
-//           results: [],
-//           text: 'An error occured, please try searching again',
-//         },
-//         error: true,
-//       });
-//     });
-// };
-//
-// }

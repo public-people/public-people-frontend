@@ -16,31 +16,41 @@ const buildLoadingMarkup = () => (
 );
 
 
-const createForm = (phrase, updatePhraseWrap) => (
-  <form className={styles.searchWrap}>
-    <div className={styles.search}>
-      <div className={styles.input}>
-        <Input
-          placeholder="Search"
-          utils="rounded-r-0"
-          value={phrase}
-          onChange={updatePhraseWrap}
-        />
+const createForm = (phrase, updatePhraseWrap, initSearchWrap) => {
+  return (
+    <form className={styles.searchWrap}>
+      <div className={styles.search}>
+        <div className={styles.input}>
+          <Input
+            placeholder="Search"
+            utils="rounded-r-0"
+            value={phrase}
+            onChange={updatePhraseWrap}
+          />
+        </div>
+        <div className={styles.button}>
+          <Link to={`/results?phrase=${encodeURI(phrase)}`} onClick={initSearchWrap}>
+            <Button inline submit utils="rounded-l-0">
+              <Icon type="search" />
+            </Button>
+          </Link>
+        </div>
       </div>
-      <div className={styles.button}>
-        <Link to={`/results?phrase=${encodeURI(phrase)}`}>
-          <Button inline submit utils="rounded-l-0">
-            <Icon type="search" />
-          </Button>
-        </Link>
-      </div>
-    </div>
-  </form>
-);
+    </form>
+  );
+};
 
 
-export default function Markup({ loading, phrase, updatePhrase }) {
+export default function Markup(props) {
+  const {
+    loading,
+    phrase,
+    updatePhrase,
+    initSearch,
+  } = props;
+
   const updatePhraseWrap = event => updatePhrase(event.target.value);
+  const initSearchWrap = () => initSearch(phrase);
 
   return (
     <div className={styles.root}>
@@ -52,7 +62,7 @@ export default function Markup({ loading, phrase, updatePhrase }) {
             </Button>
           </Link>
         </div>
-        {!loading ? createForm(phrase, updatePhraseWrap) : buildLoadingMarkup()}
+        {!loading ? createForm(phrase, updatePhraseWrap, initSearchWrap) : buildLoadingMarkup()}
       </div>
     </div>
   );
@@ -63,6 +73,7 @@ Markup.propTypes = {
   loading: PropTypes.bool,
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
+  initSearch: PropTypes.func.isRequired,
 };
 
 

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Markup from './Markup';
-import { initUpdate } from './../../../redux/modules/people';
 
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase } = this.props;
+    const { phrase, initSearch } = this.props;
 
     if (phrase) {
-      initUpdate(phrase);
+      initSearch(phrase);
     }
   }
 
@@ -21,6 +20,7 @@ export default class Container extends Component {
 
 Container.propTypes = {
   phrase: PropTypes.string,
+  initSearch: PropTypes.func.isRequired,
 };
 
 
