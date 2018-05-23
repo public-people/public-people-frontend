@@ -16,29 +16,27 @@ const buildLoadingMarkup = () => (
 );
 
 
-const createForm = (phrase, updatePhraseWrap, initSearchWrap) => {
-  return (
-    <form className={styles.searchWrap}>
-      <div className={styles.search}>
-        <div className={styles.input}>
-          <Input
-            placeholder="Search"
-            utils="rounded-r-0"
-            value={phrase}
-            onChange={updatePhraseWrap}
-          />
-        </div>
-        <div className={styles.button}>
-          <Link to={`/results?phrase=${encodeURI(phrase)}`} onClick={initSearchWrap}>
-            <Button inline submit utils="rounded-l-0">
-              <Icon type="search" />
-            </Button>
-          </Link>
-        </div>
+const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
+  <form className={styles.searchWrap}>
+    <div className={styles.search}>
+      <div className={styles.input}>
+        <Input
+          placeholder="Search"
+          utils="rounded-r-0"
+          value={phrase}
+          onChange={updatePhraseWrap}
+        />
       </div>
-    </form>
-  );
-};
+      <div className={styles.button}>
+        <Link to={`/results?phrase=${encodeURI(phrase)}`} onClick={initSearchWrap}>
+          <Button inline submit utils="rounded-l-0">
+            <Icon type="search" />
+          </Button>
+        </Link>
+      </div>
+    </div>
+  </form>
+);
 
 
 export default function Markup(props) {
