@@ -80,6 +80,6 @@ See [tasks for the current pre-release version](https://github.com/public-people
 
 ## Appreciation
 
-Thank you to Browserstack for providing free cross-browser testing services.
+Thank you to [Browserstack](https://www.browserstack.com/) for providing free cross-browser testing services.
 
 [![](tooling/documentation/browserstack.png)](https://www.browserstack.com)
