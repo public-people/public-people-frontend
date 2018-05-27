@@ -9,12 +9,14 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "start": "gatsby develop",
+    "start": "gatsby develop -o",
     "test:jest": "jest src",
     "test:eslint": "eslint ./src/**/*.js & eslint ./src/**/*.jsx",
     "test:stylelint": "stylelint ./src/**/*.scss",
+    "test:backstop": "gatsby build & node tooling/backstop/index",
+    "test:local": "npm run test:eslint & npm run test:stylelint & npm run test:jest & npm run test:backstop -- --cli",
     "test": "npm run test:eslint & npm run test:stylelint & npm run test:jest",
-    "prepush": "npm test"
+    "prepush": "npm run test:local"
   },
   "dependencies": {
     "babel-eslint": "^8.2.3",
@@ -39,6 +41,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^22.4.3",
+    "backstopjs": "^3.2.16",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-compat": "^2.2.0",
@@ -50,6 +53,7 @@
     "jest": "^22.4.3",
     "nock": "^9.2.6",
     "node-fetch": "^2.1.2",
+    "serve": "^6.5.8",
     "stylelint": "^9.2.1",
     "stylelint-config-css-modules": "^1.2.0",
     "stylelint-config-standard": "^18.2.0",

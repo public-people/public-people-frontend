@@ -28,7 +28,7 @@ The following Redux bindings/plugins are used:
 - Redux action structure correspond to [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) convention.
 
 #### CSS
-- Utility classes follow naming conventions used by [Tailwind CSS](http://tailwindcss.com/)
+- Utility classes follows naming conventions used by [Tailwind CSS](http://tailwindcss.com/)
 - CSS linting done in accordance with the following Stylelint configs:
   - [stylelint-config-standard](stylelint-config-standard)
   - [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)
@@ -41,7 +41,10 @@ The following Redux bindings/plugins are used:
   - [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react).
   - [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
   - [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-- All unit tests are written in [Jest](https://facebook.github.io/jest/) and placed in a `__tests__` folder located inside a component folder.
+
+#### Testing
+- Unit tests are written in [Jest](https://facebook.github.io/jest/) and placed in a `__tests__` folder located inside a component folder. Can be run with `npm run test:jest`.
+- Visual regressive testing is done with [BackstopJS](https://github.com/garris/BackstopJS), and configured in the `tooling/backstop` folder. Can be run with `npm run test:backstop`.
 
 #### Support
 - Browser support should correspond with the following Browserslist rules:
@@ -63,7 +66,7 @@ The following Redux bindings/plugins are used:
 
 ## Deployment
 
-1. [Husky](https://www.npmjs.com/package/husky) automatically executes [ESLint](https://eslint.org/), [Stylelint](https://stylelint.io/) and [Jest](https://facebook.github.io/jest/) tests via `npm test` upon running a `git push` command.
+1. [Husky](https://www.npmjs.com/package/husky) automatically executes [ESLint](https://eslint.org/), [Stylelint](https://stylelint.io/), [Jest](https://facebook.github.io/jest/) and [BrowserStack](https://github.com/garris/BackstopJS) tests via `npm run test:local` upon running a `git push` command.
 2. Code will only be pushed to remote repository if `npm test` passes. <sup>2</sup> <sup>3</sup>
 3. [Netlify](https://www.netlify.com/) builds a new static site instance of the repo via `npm run build`.
 4. If build is valid it will be deployed to [Netlify](https://www.netlify.com/) at `public-people.netlify.com`.
@@ -75,4 +78,8 @@ The following Redux bindings/plugins are used:
 ## Contribute
 See [tasks for the current pre-release version](https://github.com/public-people/public-people-frontend/releases/).
 
-## Footnotes
+## Appreciation
+
+Thank you to Browserstack for providing free cross-browser testing services.
+
+[![](tooling/documentation/browserstack.png)](https://www.browserstack.com)
