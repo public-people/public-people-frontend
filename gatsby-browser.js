@@ -1,20 +1,28 @@
-import React from 'react';
-import { Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import PropTypes from 'prop-types';
-import store from './src/redux/store';
-import { setPhrase } from './src/redux/modules/people';
-import extractQueryString from './src/utilities/js/extractQueryString';
-
+import React from "react";
+import { Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import PropTypes from "prop-types";
+import store from "./src/redux/store";
+import { setPhrase } from "./src/redux/modules/search/people/people";
+import {
+  setPerson,
+  setPersonToken
+} from "./src/redux/modules/search/person/person";
+import extractQueryString from "./src/utilities/js/extractQueryString";
 
 exports.onClientEntry = () => {
-  const phrase = extractQueryString('phrase', window.location.search);
+  // This function fires onloading the page.
+  const phrase = extractQueryString("phrase", window.location.search);
+  const person = extractQueryString("person", window.location.search);
 
   if (phrase) {
     store.dispatch(setPhrase(phrase));
   }
+  if (person) {
+    store.dispatch(setPerson(person));
+    store.dispatch(setPersonToken(person));
+  }
 };
-
 
 exports.replaceRouterComponent = ({ history }) => {
   /* eslint-disable react/jsx-filename-extension */
@@ -27,7 +35,7 @@ exports.replaceRouterComponent = ({ history }) => {
   /* eslint-enable */
 
   ConnectedRouterWrapper.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
   };
 
   return ConnectedRouterWrapper;

@@ -1,2 +1,3 @@
-import './universal-selector.scss';
-import './body.scss';
+import "./universal-selector.scss";
+import "./global.scss";
+import "./body.scss";

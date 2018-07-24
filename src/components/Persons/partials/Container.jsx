@@ -4,11 +4,11 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, initSearchPeople, initSearchPerson } = this.props;
+    const { person, initSearchPerson } = this.props;
     console.log("this.props", this.props);
 
-    if (phrase) {
-      initSearchPeople(phrase);
+    if (person) {
+      initSearchPerson(person);
     }
   }
 
@@ -18,7 +18,8 @@ export default class Container extends Component {
 }
 
 Container.propTypes = {
-  phrase: PropTypes.string,
+  person: PropTypes.string,
+  personToken: PropTypes.string,
   initSearchPeople: PropTypes.func.isRequired,
   initSearchPerson: PropTypes.func.isRequired
 };

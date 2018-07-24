@@ -1,5 +1,8 @@
+@import "./partials/colors";
+
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   background-color: #f2f2f2;
   overflow-y: scroll;
+  overflow-x: hidden;
 }

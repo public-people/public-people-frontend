@@ -5,38 +5,32 @@ import Card from "./../../Card";
 import BounceWrap from "./../../BounceWrap";
 import Placeholder from "./../../Placeholder";
 import Link from "gatsby-link";
-import extractFirstLastWords from "../../../utilities/js/extractFirstLastWords";
 
-const buildResults = (results, props) =>
-  results.map((item, index) => {
-    console.log("item, index", item, index);
-    return (
-      <Link
-        key={item.id}
-        to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
-        onClick={props.initSearchPerson(item.name)}
-      >
-        <div
-          className={styles.item}
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
-          <Card
-            title={item.name}
-            link
-            footer="Unknown amount of events"
-            height={250}
+const buildResults = (results, props) => {
+  return (
+    <div>
+      <h1>{props.person}</h1>
+      {results.map((item, index) => {
+        return (
+          <div
+            key={item.id}
+            className={styles.item}
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <span className="font-bold block">Position Unknown</span>
-            <span className="block italic">Organisation Unknown</span>
-          </Card>
-        </div>
-      </Link>
-    );
-  });
+            <article title={item.name}>
+              {item.published_at} – in <em>{item.collection.label}</em>:&nbsp;
+              <a href={item.source_url}>{item.title}</a>
+            </article>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default function Markup(props) {
-  const { loading, error, results, phrase, initSearchPerson } = props;
-  console.log("results props", props);
+  const { loading, error, results, person } = props;
+  console.log("persons props", props);
 
   if (error === "no-resuls") {
     return (
@@ -77,8 +71,7 @@ export default function Markup(props) {
             title="No people found"
             utils="max-w-4 ml-auto mr-auto"
           >
-            No result was found matching the query &ldquo;{phrase}&rdquo;,
-            please try another phrase.
+            No results were found for this &ldquo;{person}&rdquo;.
           </Card>
         </div>
       </BounceWrap>
@@ -97,11 +90,15 @@ Markup.propTypes = {
   error: PropTypes.string,
   results: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string
+      id: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+      source_url: PropTypes.string,
+      published_at: PropTypes.string
     })
   ),
-  phrase: PropTypes.string.isRequired
+  person: PropTypes.string.isRequired,
+  personToken: PropTypes.string.isRequired
 };
 
 Markup.defaultProps = {

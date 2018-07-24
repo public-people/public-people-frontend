@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './styles.module.scss';
-
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./styles.module.scss";
 
 export default function Card(props) {
   const {
@@ -12,44 +11,39 @@ export default function Card(props) {
     link,
     footer,
     height,
-    utils,
+    utils
   } = props;
 
   const rootCss = [
     styles.root,
-    (highlighted ? styles.isHighlighted : null),
-    (link ? styles.isLink : null),
-    utils,
-  ].join(' ');
+    highlighted ? styles.isHighlighted : null,
+    link ? styles.isLink : null,
+    utils
+  ].join(" ");
 
-  const titleCss = [
-    styles.title,
-    (link ? styles.isLink : null),
-  ].join(' ');
+  const titleCss = [styles.title, link ? styles.isLink : null].join(" ");
 
   const removePadding = footer && height;
-  const innerCss = [
-    styles.inner,
-    (removePadding ? styles.hasFooter : null),
-  ].join(' ');
-
+  const innerCss = [styles.inner, removePadding ? styles.hasFooter : null].join(
+    " "
+  );
 
   const HeadingLevel = `h${level}`;
-  const ConditionalTag = typeof link === 'string' ? 'a' : 'div';
+  const ConditionalTag = typeof link === "string" ? "a" : "div";
 
   return (
     <ConditionalTag
       className={rootCss}
       style={{ height }}
-      href={typeof link === 'string' ? link : null}
+      href={typeof link === "string" ? link : null}
     >
       <div className={innerCss}>
-        {title ? <HeadingLevel className={titleCss}>{title}</HeadingLevel> : null }
-        <div className={styles.content}>
-          {children}
-        </div>
+        {title ? (
+          <HeadingLevel className={titleCss}>{title}</HeadingLevel>
+        ) : null}
+        <div className={styles.content}>{children}</div>
       </div>
-      { footer ? <div className={styles.footer}>{footer}</div> : null}
+      {footer ? <div className={styles.footer}>{footer}</div> : null}
     </ConditionalTag>
   );
 }
@@ -59,16 +53,10 @@ Card.propTypes = {
   children: PropTypes.node.isRequired,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   highlighted: PropTypes.bool,
-  link: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
-  footer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
+  link: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  footer: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   height: PropTypes.number,
-  utils: PropTypes.string,
+  utils: PropTypes.string
 };
 
 Card.defaultProps = {
@@ -78,5 +66,5 @@ Card.defaultProps = {
   link: false,
   footer: false,
   height: null,
-  utils: null,
+  utils: null
 };

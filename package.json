@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "start": "gatsby develop -o",
+    "start": "gatsby develop -o -p 3000",
     "test:jest": "jest src",
     "test:eslint": "eslint ./src/**/*.js & eslint ./src/**/*.jsx",
     "test:stylelint": "stylelint ./src/**/*.scss",

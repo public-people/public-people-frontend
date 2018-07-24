@@ -1,15 +1,15 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Header from "./../components/Header/index";
-import Results from "./../components/Results/index";
+import Persons from "./../components/Persons/index";
 
-export default function ResultsPage() {
+export default function PersonsPage() {
   return (
     <div>
-      <Helmet title="Search Results | Public People" />
+      <Helmet title="Person | Public People" />
       <Header />
       <div className="mt-30 mr-20 ml-20">
-        <Results />
+        <Persons />
       </div>
     </div>
   );

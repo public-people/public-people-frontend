@@ -4,13 +4,14 @@ import { initSearch as initSearchPerson } from "./../../redux/modules/search/per
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, ownProps);
+  console.log("state, ownProps", state, ownProps);
   return {
     ...ownProps,
-    results: state.people.results,
-    message: state.people.text,
-    loading: state.people.loading,
-    phrase: state.people.phrase,
+    results: state.person.results,
+    message: state.person.text,
+    loading: state.person.loading,
+    person: state.person.person,
+    personToken: state.person.personToken,
     error: state.people.error
   };
 };
@@ -18,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
   initSearchPeople: phrase => dispatch(initSearchPeople(phrase)),
-  initSearchPerson: person => dispatch(initSearchPerson(person))
+  initSearchPerson: phrase => dispatch(initSearchPerson(phrase))
 });
 
 const Results = connect(
