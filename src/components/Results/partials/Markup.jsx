@@ -1,42 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Link from "gatsby-link";
 import styles from "./../styles.module.scss";
 import Card from "./../../Card";
 import BounceWrap from "./../../BounceWrap";
 import Placeholder from "./../../Placeholder";
-import Link from "gatsby-link";
 import extractFirstLastWords from "../../../utilities/js/extractFirstLastWords";
 
 const buildResults = (results, props) =>
-  results.map((item, index) => {
-    console.log("item, index", item, index);
-    return (
-      <Link
-        key={item.id}
-        to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
-        onClick={props.initSearchPerson(item.name)}
+  results.map((item, index) => (
+    <Link
+      key={item.id}
+      to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
+      onClick={props.initSearchPerson(item.name)}
+    >
+      <div
+        className={styles.item}
+        style={{ animationDelay: `${index * 0.1}s` }}
       >
-        <div
-          className={styles.item}
-          style={{ animationDelay: `${index * 0.1}s` }}
+        <Card
+          title={item.name}
+          link
+          footer="Unknown amount of events"
+          height={250}
         >
-          <Card
-            title={item.name}
-            link
-            footer="Unknown amount of events"
-            height={250}
-          >
-            <span className="font-bold block">Position Unknown</span>
-            <span className="block italic">Organisation Unknown</span>
-          </Card>
-        </div>
-      </Link>
-    );
-  });
+          <span className="font-bold block">Position Unknown</span>
+          <span className="block italic">Organisation Unknown</span>
+        </Card>
+      </div>
+    </Link>
+  ));
 
 export default function Markup(props) {
   const { loading, error, results, phrase, initSearchPerson } = props;
-  console.log("results props", props);
 
   if (error === "no-resuls") {
     return (
@@ -95,6 +91,7 @@ export default function Markup(props) {
 Markup.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.string,
+  initSearchPerson: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

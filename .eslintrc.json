@@ -1,0 +1,57 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["jest", "compat"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest/globals": true,
+    "node": true
+  },
+  "globals": {
+    "ENV": true
+  },
+  "extends": ["eslint:recommended", "airbnb", "prettier", "prettier/react"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to"]
+      }
+    ],
+    "linebreak-style": ["error", "windows"],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-unused-vars": 0,
+    "quotes": [
+      "error",
+      "double",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "react/no-unused-prop-types": false,
+    "react/prop-types": ["error", { "skipUndeclared": true }],
+    "semi": ["error", "always"]
+  }
+}

@@ -1,11 +1,10 @@
-import React from 'react';
-import Loader from './../../components/Loader/index';
-import Button from './../../components/Button/index';
-import Icon from './../../components/Icon/index';
-import Input from './../../components/Input/index';
-import Header from './../../components/Header/index';
-import Card from './../../components/Card/index';
-
+import React from "react";
+import Loader from "./../../components/Loader/index";
+import Button from "./../../components/Button/index";
+import Icon from "./../../components/Icon/index";
+import Input from "./../../components/Input/index";
+import Header from "./../../components/Header/index";
+import Card from "./../../components/Card/index";
 
 export default function PatternsPage() {
   return (
@@ -54,11 +53,15 @@ export default function PatternsPage() {
       </div>
 
       <div className="mt-20">
-        <Card title="Hello" footer="Footer">asds</Card>
+        <Card title="Hello" footer="Footer">
+          asds
+        </Card>
       </div>
 
       <div className="mt-20">
-        <Card title="Hello" footer="Footer" height="300">asds</Card>
+        <Card title="Hello" footer="Footer" height="300">
+          asds
+        </Card>
       </div>
     </div>
   );

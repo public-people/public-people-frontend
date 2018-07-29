@@ -11,7 +11,6 @@ import {
 import extractQueryString from "./src/utilities/js/extractQueryString";
 
 exports.onClientEntry = () => {
-  // This function fires onloading the page.
   const phrase = extractQueryString("phrase", window.location.search);
   const person = extractQueryString("person", window.location.search);
 

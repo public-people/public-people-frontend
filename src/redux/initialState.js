@@ -1,9 +1,9 @@
 export default {
   people: {
-    phrase: '',
+    phrase: "",
     loading: true,
     activeFetchToken: null,
     results: [],
-    notification: null,
-  },
+    notification: null
+  }
 };

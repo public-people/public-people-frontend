@@ -17,8 +17,8 @@ export default function IndexPage() {
           <GridItem span={2}>
             <BounceWrap delay={0}>
               <Card title="Hello" highlighted>
-                <p>afdgsfadsdasfdashsgfdh</p>
-                <p>adfgafdsfgdfgdgh</p>
+                <p>afdgsfa</p>
+                <p>adfgafdsh</p>
               </Card>
             </BounceWrap>
           </GridItem>
@@ -39,7 +39,7 @@ export default function IndexPage() {
             <BounceWrap delay={0.4}>
               <Card title="Hello">
                 <p>afdgsfadsdhsgfdh</p>
-                <p>adfasdasdgafdgh</p>
+                <p>adfgafdgh</p>
               </Card>
             </BounceWrap>
           </GridItem>

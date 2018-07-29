@@ -1,15 +1,16 @@
 export default function fetchWrapper(url) {
   return new Promise((resolve, reject) => {
     fetch(url)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           reject(response);
         }
 
-        response.json()
-          .then((data) => {
-            if (data.success === 'false') {
-              reject(new Error('Requested failed inside CKAN'));
+        response
+          .json()
+          .then(data => {
+            if (data.success === "false") {
+              reject(new Error("Requested failed inside CKAN"));
             }
 
             resolve(data);

@@ -5,7 +5,6 @@ import Markup from "./Markup";
 export default class Container extends Component {
   componentDidMount() {
     const { person, initSearchPerson } = this.props;
-    console.log("this.props", this.props);
 
     if (person) {
       initSearchPerson(person);
@@ -25,5 +24,6 @@ Container.propTypes = {
 };
 
 Container.defaultProps = {
-  phrase: ""
+  person: "",
+  personToken: ""
 };
