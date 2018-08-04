@@ -1,12 +1,14 @@
 :local .root {
-  border-radius: 4px;
+  @import "../../utilities/css/abstracts";
+  border-radius: 0.25rem;
   background-color: #e0e1e2;
-  color: #5c5c5c;
-  fill: #5c5c5c;
-  padding: 16px;
-  border: 1px solid #e0e1e2;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  color: $primary-gray;
+  fill: $primary-gray;
+  padding: 1rem;
+  border: 0.0625rem solid #e0e1e2;
+  box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.2),
+    0 0.0625rem 0.0625rem 0 rgba(0, 0, 0, 0.14),
+    0 0.125rem 0.0625rem -0.0625rem rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   text-decoration: none;
@@ -17,7 +19,7 @@
 
   &:hover {
     background-color: darken(#e0e1e2, 10%);
-    border: 1px solid darken(#e0e1e2, 10%);
+    border: 0.0625rem solid darken(#e0e1e2, 10%);
   }
 
   &.isInline {
@@ -30,14 +32,14 @@
   }
 
   &.isPrimary {
-    background-color: #2185d0;
-    color: white;
-    fill: white;
-    border: 1px solid #2185d0;
+    background-color: $primary-blue;
+    color: $white;
+    fill: $white;
+    border: 0.0625rem solid $primary-blue;
 
     &:hover {
-      background-color: darken(#2185d0, 10%);
-      border: 1px solid darken(#2185d0, 10%);
+      background-color: darken($primary-blue, 10%);
+      border: 0.0625rem solid darken($primary-blue, 10%);
     }
   }
 }

@@ -11,8 +11,8 @@ const buildResults = (results, props) =>
   results.map((item, index) => (
     <Link
       key={item.id}
+      onClick={() => props.resetToken(item.name)}
       to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
-      onClick={props.initSearchPerson(item.name)}
     >
       <div
         className={styles.item}
@@ -32,9 +32,9 @@ const buildResults = (results, props) =>
   ));
 
 export default function Markup(props) {
-  const { loading, error, results, phrase, initSearchPerson } = props;
+  const { loading, error, results, phrase, person } = props;
 
-  if (error === "no-resuls") {
+  if (error === "no-results") {
     return (
       <div>
         No results were found for this search. Please try another search term
@@ -91,7 +91,6 @@ export default function Markup(props) {
 Markup.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.string,
-  initSearchPerson: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

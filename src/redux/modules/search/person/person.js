@@ -10,6 +10,8 @@ const CLEAR_REQUEST = "search/person/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/person/RESOLVE_REQUEST";
 
 export default function reducer(state = {}, action = {}) {
+  console.log("state", state);
+  console.log("action", action);
   switch (action.type) {
     case SET_PERSON:
       return { ...state, person: action.payload };
@@ -70,6 +72,7 @@ export function clearRequest(reason) {
 }
 
 export function initSearch(person) {
+  console.log("person", person);
   return dispatch => {
     dispatch({
       type: SET_LOADING,

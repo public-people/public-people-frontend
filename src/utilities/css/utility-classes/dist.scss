@@ -1,0 +1,97 @@
+.dist-size300- {
+  @include breakpoint($size300) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size400- {
+  @include breakpoint($size400) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size500- {
+  @include breakpoint($size500) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size800- {
+  @include breakpoint($size800) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size1000- {
+  @include breakpoint($size1000) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size1200- {
+  @include breakpoint($size1200) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}
+
+.dist-size1600- {
+  @include breakpoint($size1600) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          width: #{(100% / $i)};
+        }
+      }
+    }
+  }
+}

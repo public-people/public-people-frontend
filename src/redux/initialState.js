@@ -5,5 +5,8 @@ export default {
     activeFetchToken: null,
     results: [],
     notification: null
+  },
+  person: {
+    personToken: ""
   }
 };

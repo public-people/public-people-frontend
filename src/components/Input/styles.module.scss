@@ -1,9 +1,10 @@
 :local .root {
-  background: white;
-  padding: 15px;
-  border: 1px solid #e0e1e2;
+  @import "../../utilities/css/abstracts";
+  background: $white;
+  padding: 1rem;
+  border: 0.0625rem solid #e0e1e2;
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }

@@ -1,5 +1,5 @@
 export default function extractFirstLastWords(fullString) {
-  if (fullString === null) {
+  if (fullString === null || fullString === undefined) {
     return null;
   }
   // Trim the string to account for accidental whitespaces on either side then split the string into an array on the spaces.

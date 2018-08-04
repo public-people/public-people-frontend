@@ -1,0 +1,593 @@
+// Mixins ======================================================================================== /
+
+/// Given the location of a webfont, will generate a font-face declaration with multiple file formats.
+/// @access public
+/// @param {String} $font-name - Font family name
+/// @param {String} $file-name - File name (no extension)
+/// @param {String | Number} $weight [normal] - Font weight
+/// @param {String} $style [normal] - Font style
+/// @example scss - Usage
+///   @include font-face('gotham', '/fonts/gotham');
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url($file-name+".eot");
+    src: url($file-name+".eot?#iefix") format("embedded-opentype"),
+      url($file-name+".woff") format("woff"),
+      url($file-name+".ttf") format("truetype"),
+      url($file-name+".svg##{$font-name}") format("svg");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// micro clearfix hack
+
+%clearfix {
+  zoom: 1;
+
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// border-box mixin
+
+@mixin border-box {
+  box-sizing: border-box;
+}
+
+// Hide text
+
+%hide-text {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+
+// Border-radius
+
+//  @include border-radius(5px);
+
+@mixin border-radius($radius) {
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+  border-radius: $radius;
+}
+
+//Flexbox
+@mixin flexAlign($pack, $align) {
+  display: -ms-flexbox;
+  -ms-flex-pack: center;
+  -ms-flex-align: center;
+
+  display: -webkit-box;
+  -webkit-box-pack: $pack;
+  -webkit-box-align: $align;
+
+  display: -moz-box;
+  -moz-box-pack: $pack;
+  -moz-box-align: $align;
+
+  display: box;
+  box-pack: $pack;
+  box-align: $align;
+}
+
+/// Breakpoints
+
+// @example scss - Usage
+// @include breakpoint('40em');
+
+@mixin breakpoint($size) {
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+/// Breakpoints max-width
+
+// @example scss - Usage
+// @include breakpoint('40em');
+
+@mixin max-breakpoint($size) {
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}
+
+// Grid clearing mixin
+
+@mixin grid-clear($nth) {
+  &:nth-of-type(#{$nth}) {
+    clear: both;
+    margin-left: 0;
+  }
+}
+
+// Hide things
+
+// .visually-hidden {
+//   @extend %visuallyhidden;
+// }
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+//Transitions
+
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+/// Forces browsers to use hardware acceleration for transforms
+/// @access public
+/// @example scss - Usage
+///   .foo {
+///     @include ha;
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-transform: translate3d(0, 0, 0);
+///     -moz-transform: translate3d(0, 0, 0);
+///     transform: translate3d(0, 0, 0);
+///   }
+@mixin ha {
+  @include prefix(transform, translate3d(0, 0, 0), "webkit" "ms");
+}
+
+/// Shorthandizes position declarations.
+/// @access public
+/// @param {String} $type - Either `relative`, `absolute` or `fixed`
+/// @param {Length} $left [null] - Left offset
+/// @param {Length} $right [null] - Right offset
+/// @param {Length} $top [null] - Top offset
+/// @param {Length} $bottom [null] - Bottom offset
+/// @example scss - Usage
+///   .foo {
+///     @include position(absolute, $top: 10px, $left: 10px);
+///   }
+/// @example css - Result
+///   .foo {
+///     position: absolute;
+///     left: 10px;
+///     top: 10px;
+///   }
+@mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $type;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+/// Sizing helper
+/// @access public
+/// @param {Length} $width - Width
+/// @param {Length} $height [$width] - Height
+/// @example scss - Usage
+///   .foo {
+///     @include size(350px);
+///   }
+/// @example css - Result
+///   .foo {
+///     width: 350px;
+///     height: 350px;
+///   }
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// REM fallbacks
+//Set up a variable for calculation
+
+$doc-font-size: 16;
+
+// the font-size mixin
+
+@mixin font-size($size) {
+  font-size: 0px + $size;
+  font-size: 0rem + $size / $doc-font-size;
+}
+
+// Baseline, measured in pixels
+
+$baseline-px: 16px;
+@mixin rem($property, $px-values) {
+  // Convert the baseline into rems
+  $baseline-rem: $baseline-px / 1rem;
+
+  // Print the first line in pixel values
+  #{$property}: $px-values;
+
+  // If there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == "number" {
+    #{$property}: $px-values / $baseline-rem;
+  } @else {
+    // Create an empty list that we can dump values into
+    $rem-values: unquote("");
+    @each $value in $px-values {
+      // If the value is zero or a string or a color, return unchanged input
+      @if $value ==
+        0 or
+        type-of($value) ==
+        "string" or
+        type-of($value) ==
+        "color"
+      {
+        $rem-values: append($rem-values, $value);
+      } @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+
+    // Return the property and its list of converted values
+    #{$property}: $rem-values;
+  }
+}
+// useage @include rem('padding', 16px 0 0 0);
+
+//Counters
+
+@mixin listCounter {
+  counter-reset: item;
+  list-style: none;
+
+  & > li {
+    position: relative;
+    padding-left: 2em;
+
+    &::before {
+      content: counter(item) ".";
+      counter-increment: item;
+      font-weight: 700;
+      margin-right: 20px;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+@mixin paragraphCounter {
+  counter-reset: items;
+
+  h3 {
+    &:before {
+      counter-increment: items;
+      content: "Item " counter(items) ": ";
+      font-weight: bold;
+    }
+  }
+}
+
+// Centering
+
+@mixin centerBlock {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//Responsive video
+
+@mixin maintain-ratio($ratio: 1 1) {
+  @if length($ratio) < 2 or length($ratio) > 2 {
+    @warn "$ratio must be a list with two values.";
+  }
+
+  $width: 100%;
+  $height: percentage(nth($ratio, 2) / nth($ratio, 1));
+  width: $width;
+  height: 0;
+  padding-bottom: $height;
+  position: relative;
+}
+
+///////Backgrounds
+
+/// Background gradient helper
+/// @access public
+/// @param {Color} $start-color - Start color
+/// @param {Color} $end-color - End color
+/// @param {String} $orientation - Type of gradient, either `vertical`, `horizontal` or `radial`
+/// @example scss - Usage
+///   .foo {
+///     @include background-gradient(red, black, 'vertical');
+///   }
+/// @example css - Result
+///   .foo {
+///     background: -webkit-linear-gradient(top, red, black);
+///     background: linear-gradient(to bottom, red, black);
+///   }
+@mixin background-gradient($start-color, $end-color, $orientation) {
+  background: $start-color;
+
+  @if $orientation == "vertical" {
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == "horizontal" {
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: -webkit-radial-gradient(
+      center,
+      ellipse cover,
+      $start-color,
+      $end-color
+    );
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
+}
+
+//////Animations
+
+/// Embossing text shadow
+/// @access public
+/// @param {Float} $value - Opacity value
+/// @example scss - Usage
+///   .foo {
+///     @include text-shadow(0.5);
+///   }
+/// @example css - Result
+///   .foo {
+///     text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+///   }
+@mixin text-shadow($value) {
+  text-shadow: rgba(255, 255, 255, $value) 0 1px 0;
+}
+
+/// Automatically prefix any transform
+/// @access public
+/// @param {String} $transformation - The transform to apply
+/// @example scss - Usage
+///   .foo {
+///     @include transform(translateX(10px));
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-transform: translateX(10px);
+///     -ms-transform: translateX(10px);
+///     transform: translateX(10px);
+///   }
+@mixin transform($transformation) {
+  @include prefix(transform, $transformation, "webkit" "ms");
+}
+
+//Keyframe animations
+
+// @include keyframes(slide-down) {
+//   0% { opacity: 1; }
+//   90% { opacity: 0; }
+// }
+
+// .element {
+//   width: 100px;
+//   height: 100px;
+//   background: black;
+//   @include animation('slide-down 5s 3');
+// }
+
+// @mixin keyframes($animation-name) {
+//   @-webkit-keyframes $animation-name {
+//     @content;
+//   }
+//   @-moz-keyframes $animation-name {
+//     @content;
+//   }
+//   @-ms-keyframes $animation-name {
+//     @content;
+//   }
+//   @-o-keyframes $animation-name {
+//     @content;
+//   }
+//   @keyframes $animation-name {
+//     @content;
+//   }
+// }
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+/// Generates a grow-then-shrink (or shrink-then-grow) animation using transform(scale).
+/// @access public
+/// @param {Number} $scale-change [1.1] - The amount to scale by.
+/// @param {List} $animation-properties - Animation properties to apply.
+/// @example scss - Usage
+///   .foo {
+///     @include scale(0.5, 3s ease infinite alternate);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: "scale-0-5" 3s ease infinite alternate;
+///     animation: "scale-0-5" 3s ease infinite alternate;
+///   }
+///  // -webkit- prefixed @keyframes are also generated
+///  @keyframes scale-0-5 {
+///    from, to {
+///      -webkit-transform: scale(1);
+///      -ms-transform: scale(1);
+///      transform: scale(1);
+///    }
+///    50% {
+///      -webkit-transform: scale(0.5);
+///      -ms-transform: scale(0.5);
+///      transform: scale(0.5);
+///    }
+///  }
+@mixin scale($scale-change: 1.1, $animation-properties: 1s ease-in-out) {
+  $alias: "scale-" + str-replace($scale-change + "", ".", "-");
+
+  @include keyframes($alias) {
+    0%,
+    100% {
+      @include transform(scale(1));
+    }
+    50% {
+      @include transform(scale($scale-change));
+    }
+  }
+
+  @include prefix(animation, $alias $animation-properties, "webkit");
+}
+
+/// Given two opacity values, animates an element between those opacity values.
+/// @access public
+/// @param {Number} $fade-from [0] - The beginning opacity value.
+/// @param {Number} $fade-to [1] - The final opacity value.
+/// @param {List} $animation-properties [1s ease] - The animation properties to apply.
+/// @example scss - Usage
+///   .foo {
+///     @include fade(.8, .2, 3s linear);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: fade-0-8-0-2 3s linear;
+///     animation: fade-0-8-0-2 3s linear;
+///   }
+/// // (the @keyframes are also generated with a -webkit- vendor prefix)
+///   @keyframes fade-0-8-0-2 {
+///     from {
+///       opacity: 0.8;
+///       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+///     }
+///     to {
+///       opacity: 0.2;
+///       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+///     }
+///   }
+@mixin fade($fade-from: 0, $fade-to: 1, $animation-properties: 1s ease) {
+  $alias: fade- + str-replace($fade-from + "", ".", "-") + "-" +
+    str-replace($fade-to + "", ".", "-");
+  @include keyframes($alias) {
+    from {
+      @include opacity($fade-from);
+    }
+    to {
+      @include opacity($fade-to);
+    }
+  }
+  @include prefix(animation, $alias $animation-properties, "webkit");
+}
+
+/// Slide-in-from creates and calls an animation that slides an element on a given axis for a given amount of space. The offset is measured in the distance from the location the element would naturally fall in, were transforms not applied to it.
+/// @access public
+/// @param {String} $slide-axis [x] - The axis on which to slide; 'x' or 'y'.
+/// @param {Length} $slide-offset [-100px] - The offset from the natural element position from which to begin the animation.
+/// @param {List} $animation-properties [3s ease-out] - Any animation properties to be included.
+/// @example scss - Usage
+///   .foo {
+///     @include slide-in-from(y, -200px, 3s ease alternate infinite);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-animation: slide-in-y--200px 3s linear infinite alternate;
+///     animation: slide-in-y--200px 3s linear infinite alternate;
+///   }
+///
+/// // (the @keyframes are also generated with a -webkit- vendor prefix)
+///   @keyframes slide-in-y--200px {
+///     0% {
+///       opacity: 0;
+///       -webkit-transform: translateY(-200px);
+///       -ms-transform: translateY(-200px);
+///       transform: translateY(-200px);
+///     }
+///     75% {
+///       -webkit-transform: translateY(0);
+///       -ms-transform: translateY(0);
+///       transform: translateY(0);
+///     }
+///     100% {
+///       opacity: 1;
+///     }
+///   }
+@mixin slide-in-from(
+  $slide-axis: x,
+  $slide-offset: -100px,
+  $animation-properties: 3s ease-out
+) {
+  $slide-start: if(
+    $slide-axis == x,
+    translateX($slide-offset),
+    translateY($slide-offset)
+  );
+  $slide-end: if($slide-axis == x, translateX(0), translateY(0));
+
+  @include keyframes(slide-in-#{$slide-axis}-#{$slide-offset}) {
+    0% {
+      @include opacity(0);
+      @include transform($slide-start);
+    }
+    75% {
+      @include transform($slide-end);
+    }
+    100% {
+      @include opacity(1);
+    }
+  }
+
+  @include prefix(
+    animation,
+    slide-in-#{$slide-axis}-#{$slide-offset} $animation-properties,
+    "webkit"
+  );
+}
+
+// ----------------------------------------------------------------------------
+// Font Feature Settings mixin
+// ----------------------------------------------------------------------------
+// Usage
+// Pass a Sass list of features into the mixin to enable those features
+// table {
+//    @include font-feature-settings(lnum tnum);
+//}
+
+// See http://www.microsoft.com/typography/otspec/featurelist.htm for list of open type features
+
+@mixin font-feature-settings($feature-list: false) {
+  // Only proceed if a list of arguments was passed
+  @if $feature-list {
+    // Create an empty list for the standard syntax
+    $standard: ();
+
+    // Create an empty list for the old Mozilla syntax
+    $old-moz: ();
+
+    // Add each listed feature to the standard and old Mozilla values
+    @each $feature in $feature-list {
+      $standard: append($standard, "#{$feature}"1, comma);
+      $old-moz: append($old-moz, "#{$feature}=1", comma);
+    }
+
+    // Finally, print out the prefixed and non-prefixed code for all of the listed features
+    -moz-font-feature-settings: $old-moz;
+    -moz-font-feature-settings: $standard;
+    -ms-font-feature-settings: $standard;
+    -o-font-feature-settings: $standard;
+    -webkit-font-feature-settings: $standard;
+    font-feature-settings: $standard;
+  }
+}

@@ -65,7 +65,7 @@ export default function Markup(props) {
             title="No people found"
             utils="max-w-4 ml-auto mr-auto"
           >
-            No results were found for &ldquo;{props.person};.
+            No results were found for &ldquo;{props.person}&ldquo;.
           </Card>
         </div>
       </BounceWrap>

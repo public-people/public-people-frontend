@@ -1,23 +1,23 @@
 .ml- {
   @for $i from 0 through 6 {
     &#{$i * 5} {
-      margin-left: #{$i * 5}px !important;
+      margin-left: #{$i * 0.3125}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 10) + 30} {
-      margin-left: #{($i * 10) + 30}px !important;
+      margin-left: #{($i * 0.625) + 1.875}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 100) + 100} {
-      margin-left: #{($i * 100) + 100}px !important;
+      margin-left: #{($i * 6.25) + 6.25}rem;
     }
   }
 
   &auto {
-    margin-left: auto !important;
+    margin-left: auto;
   }
 }

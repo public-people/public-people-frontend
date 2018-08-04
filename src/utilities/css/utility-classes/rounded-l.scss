@@ -1,8 +1,8 @@
 .rounded-l- {
   @for $i from 0 through 10 {
     &#{$i} {
-      border-top-left-radius: #{$i}px !important;
-      border-bottom-left-radius: #{$i}px !important;
+      border-top-left-radius: #{$i * 0.0625}rem;
+      border-bottom-left-radius: #{$i * 0.0625}rem;
     }
   }
 }

@@ -8,13 +8,13 @@
 
 :local .root {
   @media screen and (min-width: 0) {
-    border: 1px solid transparent;
+    border: 0.0625rem solid transparent;
   }
 }
 
 :local .inner {
   @media screen and (min-width: 0) {
-    margin: -15px;
+    margin: 0.9375rem;
 
     @include clearfix;
   }

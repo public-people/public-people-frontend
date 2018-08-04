@@ -1,23 +1,23 @@
 .mb- {
   @for $i from 0 through 6 {
     &#{$i * 5} {
-      margin-bottom: #{$i * 5}px !important;
+      margin-bottom: #{$i * 0.3125}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 10) + 30} {
-      margin-bottom: #{($i * 10) + 30}px !important;
+      margin-bottom: #{($i * 0.625) + 1.875}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 100) + 100} {
-      margin-bottom: #{($i * 100) + 100}px !important;
+      margin-bottom: #{($i * 6.25) + 6.25}rem;
     }
   }
 
   &auto {
-    margin-bottom: auto !important;
+    margin-bottom: auto;
   }
 }

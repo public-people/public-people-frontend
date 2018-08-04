@@ -25,6 +25,7 @@ module.exports = {
         ignoreAtRules: ["for", "if", "return", "function", "mixin", "include"]
       }
     ],
+    "unit-whitelist": ["rem", "em", "deg", "%", "vh", "vw"],
     "block-no-empty": null,
     "color-no-invalid-hex": true,
     "declaration-colon-newline-after": null,

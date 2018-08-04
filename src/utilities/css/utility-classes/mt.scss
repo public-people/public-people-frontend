@@ -1,23 +1,23 @@
 .mt- {
   @for $i from 0 through 6 {
     &#{$i * 5} {
-      margin-top: #{$i * 5}px !important;
+      margin-top: #{$i * 0.3125}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 10) + 30} {
-      margin-top: #{($i * 10) + 30}px !important;
+      margin-top: #{($i * 0.625) + 1.875}rem;
     }
   }
 
   @for $i from 0 through 3 {
     &#{($i * 100) + 100} {
-      margin-top: #{($i * 100) + 100}px !important;
+      margin-top: #{($i * 6.25) + 6.25}rem;
     }
   }
 
   &auto {
-    margin-top: auto !important;
+    margin-top: auto;
   }
 }

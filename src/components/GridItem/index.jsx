@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 export default function GridItem(props) {
+  console.log("GridItem(props)", props);
   const { children, span, columns, start, utils } = props;
 
   const rootCss = [
@@ -14,7 +15,7 @@ export default function GridItem(props) {
   return (
     <div
       className={rootCss}
-      style={{ width: `calc(${(span / columns) * 100}% - 30px)` }}
+      style={{ width: `calc(${(span / columns) * 100}% - 1.875rem)` }}
     >
       {children}
     </div>

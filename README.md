@@ -33,6 +33,8 @@ We use these Gatsby plugins:
 - Google fonts – [gatsby-plugin-google-fonts](https://www.npmjs.com/package/gatsby-plugin-google-fonts)
 - Site meta – [gatsby-plugin-react-helmet](https://www.npmjs.com/package/gatsby-plugin-react-helmet)
 - SASS/SCSS – [gatsby-plugin-sass](https://www.npmjs.com/package/gatsby-plugin-sass)
+  - Known issues: [file imports need to be relative to the entry scss file](https://github.com/gatsbyjs/gatsby/issues/6438)
+- React 16 [gatsby-plugin-react-next](https://www.npmjs.com/package/gatsby-plugin-react-next)
 
 And these Redux bindings/plugins:
 

@@ -1,12 +1,13 @@
 import React from "react";
-import Loader from "./../../components/Loader/index";
-import Button from "./../../components/Button/index";
-import Icon from "./../../components/Icon/index";
-import Input from "./../../components/Input/index";
-import Header from "./../../components/Header/index";
-import Card from "./../../components/Card/index";
+import Loader from "./../components/Loader/index";
+import Button from "./../components/Button/index";
+import Icon from "./../components/Icon/index";
+import Input from "./../components/Input/index";
+import Header from "./../components/Header/index";
+import Card from "./../components/Card/index";
 
-export default function PatternsPage() {
+export default function PatternsPage({ data }) {
+  const ql = data;
   return (
     <div>
       <div className="mt-20">
@@ -41,7 +42,7 @@ export default function PatternsPage() {
         <Input placeholder="Placeholder" />
       </div>
       <div className="mt-20">
-        <Header />
+        <Header ql={ql} title={"Pattern Library | Public People"} />
       </div>
 
       <div className="mt-20">
@@ -66,3 +67,11 @@ export default function PatternsPage() {
     </div>
   );
 }
+
+export const SiteMetaQuery = graphql`
+  query PatternLibrary {
+    site {
+      ...aboutQueryFragment
+    }
+  }
+`;

@@ -1,11 +1,11 @@
 :local .root {
   float: left;
-  margin: 15px 15px 30px;
+  margin: 0.9375rem 0.9375rem 1.875rem;
 
   @for $i from 0 through 20 {
     &.hasBreakPoint#{$i * 100} {
-      @media screen and (max-width: #{$i * 100}px) {
-        width: calc(100% - 30px) !important;
+      @media screen and (max-width: #{$i *  6.25}rem) {
+        width: calc(100% - 1.875rem) !important;
       }
     }
   }

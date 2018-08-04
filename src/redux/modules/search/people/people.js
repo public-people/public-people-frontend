@@ -8,6 +8,7 @@ const CLEAR_REQUEST = "search/people/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/people/RESOLVE_REQUEST";
 
 export default function reducer(state = {}, action = {}) {
+  console.log("state1", state);
   switch (action.type) {
     case SET_PHRASE:
       return {
