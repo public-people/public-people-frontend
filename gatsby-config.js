@@ -5,13 +5,6 @@ const loadFont = {
   }
 };
 
-const loadPurgeCss = {
-  resolve: "gatsby-plugin-purgecss",
-  options: {
-    rejected: true
-  }
-};
-
 module.exports = {
   siteMetadata: {
     language: "en"
@@ -20,7 +13,6 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     "gatsby-plugin-react-next",
-    loadFont,
-    loadPurgeCss
+    loadFont
   ]
 };

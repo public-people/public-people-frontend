@@ -1,0 +1,23 @@
+// At the moment these are just the properties for removing list adornment.
+// They're just here to remind me/you what might needs be put back.
+
+.restore-list {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul li {
+    list-style-type: none;
+  }
+}
+
+ul.restore-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.restore-list li {
+  list-style-type: none;
+}

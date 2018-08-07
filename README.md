@@ -60,7 +60,7 @@ And these Redux bindings/plugins:
 
 #### CSS
 
-- We use conventions found in [Tailwind CSS](http://tailwindcss.com/) for naming utility classes.
+- We've decided on a mixed approach here, with some global CSS, some component-scoped CSS, and some utility class CSS. [Tailwind CSS](http://tailwindcss.com/) has been an inpiration here in the use of @for statements to generate optionality. Please familiarise yourself with our utility classes before adding to the global or scoped rulesets.
 - Our CSS linting is done with the following stylelint configs:
   - [stylelint-config-standard](stylelint-config-standard)
   - [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)

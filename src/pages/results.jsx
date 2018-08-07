@@ -11,9 +11,7 @@ export default function ResultsPage({ data }) {
     <Fragment>
       <Header ql={ql} title={"Search Results | Public People"} />
       <Main>
-        <div className="mt-30 mr-20 ml-20">
-          <Results />
-        </div>
+        <Results />
       </Main>
     </Fragment>
   );

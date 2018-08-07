@@ -11,9 +11,7 @@ export default function PersonsPage({ data }) {
     <Fragment>
       <Header ql={ql} title={"Person | Public People"} />
       <Main>
-        <div className="mt-30 mr-20 ml-20">
-          <Persons />
-        </div>
+        <Persons />
       </Main>
     </Fragment>
   );

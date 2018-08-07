@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
+import { default as Header } from "./components/basic/basic-header";
 
 export default function Card(props) {
   const {
@@ -42,6 +43,7 @@ export default function Card(props) {
           <HeadingLevel className={titleCss}>{title}</HeadingLevel>
         ) : null}
         <div className={styles.content}>{children}</div>
+        <Header title={"foo"} headerLevel={1} />
       </div>
       {footer ? <div className={styles.footer}>{footer}</div> : null}
     </ConditionalTag>

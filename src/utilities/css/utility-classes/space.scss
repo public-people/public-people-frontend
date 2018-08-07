@@ -1,0 +1,15 @@
+.space- {
+  @for $i from 0 through 2 {
+    &#{$i} {
+      margin-bottom: #{$i * 0.25}rem;
+    }
+  }
+}
+
+.dbl-space- {
+  @for $i from 0 through 10 {
+    &#{$i} {
+      margin-bottom: #{$i * 0.5}rem;
+    }
+  }
+}

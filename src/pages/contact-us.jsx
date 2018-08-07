@@ -13,10 +13,10 @@ export default function ContactUsPage({ data }) {
   const ql = data;
   return (
     <Fragment>
-      <Header ql={ql} title={"About Us | Public People"} />
-      <Main>
-        <ReadingContext lang={"gr"} content={content} />
-        <ReadingContext lang={"fr"} content={content} />
+      <Header ql={ql} title={"Contact Us | Public People"} />
+      <Main utils={"dist-size300-3"}>
+        <ReadingContext utils={"component"} lang={"gr"} content={content} />
+        <ReadingContext utils={"component"} lang={"fr"} content={content} />
       </Main>
     </Fragment>
   );

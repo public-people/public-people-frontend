@@ -1,34 +1,35 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Link from "gatsby-link";
 import styles from "./../styles.module.scss";
 import Card from "./../../Card";
-import BounceWrap from "./../../BounceWrap";
+import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 import extractFirstLastWords from "../../../utilities/js/extractFirstLastWords";
 
 const buildResults = (results, props) =>
   results.map((item, index) => (
-    <Link
-      key={item.id}
-      onClick={() => props.resetToken(item.name)}
-      to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
-    >
-      <div
-        className={styles.item}
-        style={{ animationDelay: `${index * 0.1}s` }}
+    <li className={"component dbl-space-2"} key={item.id}>
+      <Link
+        onClick={() => props.resetToken(item.name)}
+        to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
       >
-        <Card
-          title={item.name}
-          link
-          footer="Unknown amount of events"
-          height={250}
+        <div
+          className={styles.item}
+          style={{ animationDelay: `${index * 0.1}s` }}
         >
-          <span className="font-bold block">Position Unknown</span>
-          <span className="block italic">Organisation Unknown</span>
-        </Card>
-      </div>
-    </Link>
+          <Card
+            title={item.name}
+            link
+            footer="Unknown amount of events"
+            height={250}
+          >
+            <span className="font-bold block">Position Unknown</span>
+            <span className="block italic">Organisation Unknown</span>
+          </Card>
+        </div>
+      </Link>
+    </li>
   ));
 
 export default function Markup(props) {
@@ -45,28 +46,28 @@ export default function Markup(props) {
   if (loading) {
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
-        <BounceWrap delay={index * 0.2}>
+        <FadeInWrap delay={index * 0.2}>
           <Placeholder utils="rounded-4" height={250} />
-        </BounceWrap>
+        </FadeInWrap>
       </div>
     ));
   }
 
   if (error) {
     return (
-      <BounceWrap>
+      <FadeInWrap>
         <div className="text-center">
           <Card highlighted title="Error" utils="max-w-4 ml-auto mr-auto">
             Something went wrong. Please try again at a later stage
           </Card>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
 
   if (results.length < 1) {
     return (
-      <BounceWrap>
+      <FadeInWrap>
         <div className="text-center">
           <Card
             highlighted
@@ -77,14 +78,14 @@ export default function Markup(props) {
             please try another phrase.
           </Card>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
 
   return (
-    <div className={styles.root}>
+    <ul className="dist-size300-3">
       {results ? buildResults(results, props) : null}
-    </div>
+    </ul>
   );
 }
 

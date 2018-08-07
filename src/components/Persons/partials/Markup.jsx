@@ -1,26 +1,26 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import styles from "./../styles.module.scss";
 import Card from "./../../Card";
-import BounceWrap from "./../../BounceWrap";
+import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 
 const buildResults = (results, props) => (
-  <div>
+  <Fragment>
     <h1>{props.person}</h1>
-    {results.map((item, index) => (
-      <div
-        key={item.id}
-        className={styles.item}
-        style={{ animationDelay: `${index * 0.1}s` }}
-      >
-        <article title={item.name}>
+    <ul>
+      {results.map((item, index) => (
+        <li
+          className={"space-1"}
+          key={item.id}
+          style={{ animationDelay: `${index * 0.1}s` }}
+        >
           {item.published_at} – in <em>{item.collection.label}</em>:&nbsp;
           <a href={item.source_url}>{item.title}</a>
-        </article>
-      </div>
-    ))}
-  </div>
+        </li>
+      ))}
+    </ul>
+  </Fragment>
 );
 
 export default function Markup(props) {
@@ -37,28 +37,28 @@ export default function Markup(props) {
   if (loading) {
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
-        <BounceWrap delay={index * 0.2}>
+        <FadeInWrap delay={index * 0.2}>
           <Placeholder utils="rounded-4" height={250} />
-        </BounceWrap>
+        </FadeInWrap>
       </div>
     ));
   }
 
   if (error) {
     return (
-      <BounceWrap>
+      <FadeInWrap>
         <div className="text-center">
           <Card highlighted title="Error" utils="max-w-4 ml-auto mr-auto">
             Something went wrong. Please try again at a later stage
           </Card>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
 
   if (results.length < 1) {
     return (
-      <BounceWrap>
+      <FadeInWrap>
         <div className="text-center">
           <Card
             highlighted
@@ -68,7 +68,7 @@ export default function Markup(props) {
             No results were found for &ldquo;{props.person}&ldquo;.
           </Card>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
 

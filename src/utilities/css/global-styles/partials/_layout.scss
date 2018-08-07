@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  // scroll-behavior is a progressive enhancement.
+  scroll-behavior: smooth;
+}
+
+html {
+  // Because all units are defined in rem, the whole site will scale with this font-size value.
+  // The value set here allows algorithmic scaling as it adds width as the screen gets wider.
+  font-size: calc(0.8em + 0.2vw);
+  min-height: 100%;
+}
+
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  background-color: $white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// T  // Maybe trivially, but since the <main> tag is restricted in size, something has to keep it in the center.
+// This creates an orderly central column.
+#___gatsby {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// This creates a basic guttering and alignment system. Containers will have the left
+// and right edges pulled out but components dropped into containers will keep space from
+// one another.
+
+$layout-offset: 0.75rem;
+
+main {
+  // This value defines the outermost padding of the site when the screen width is small than the max width.
+  padding: 0 $layout-offset;
+  max-width: calc(66rem + (2 * #{$layout-offset}));
+  width: 100%;
+}
+
+main,
+.component-container {
+  margin-left: -$layout-offset;
+  margin-right: -$layout-offset;
+}
+
+.component {
+  padding-left: $layout-offset;
+  padding-right: $layout-offset;
+}

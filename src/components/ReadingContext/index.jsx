@@ -3,10 +3,13 @@ import styles from "./styles.module.scss";
 import PropTypes from "prop-types";
 
 export default function ReadingContext(props) {
+  const { utils } = props;
+
+  const rootCss = [styles.root, utils].join(" ");
   return (
     <div
       lang={props.lang}
-      className={styles.root}
+      className={rootCss}
       dangerouslySetInnerHTML={{ __html: props.content }}
     />
   );
