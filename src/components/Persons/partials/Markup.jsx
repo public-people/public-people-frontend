@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import styles from "./../styles.module.scss";
+import React, { Fragment } from "react";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
+import styles from "./../styles.module.scss";
 
 const buildResults = (results, props) => (
   <Fragment>

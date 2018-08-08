@@ -6,6 +6,9 @@ import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 import extractFirstLastWords from "../../../utilities/js/extractFirstLastWords";
+import { default as CardHeader } from "./../../Card/components/results/Header/index";
+import { default as CardBody } from "./../../Card/components/results/Body/index";
+import { default as CardFooter } from "./../../Card/components/results/Footer/index";
 
 const buildResults = (results, props) =>
   results.map((item, index) => (
@@ -33,7 +36,9 @@ const buildResults = (results, props) =>
   ));
 
 export default function Markup(props) {
-  const { loading, error, results, phrase, person } = props;
+  const { loading, error, results, phrase, person, utils } = props;
+
+  const rootCss = [styles.root, utils].join(" ");
 
   if (error === "no-results") {
     return (
@@ -83,9 +88,7 @@ export default function Markup(props) {
   }
 
   return (
-    <ul className="dist-size300-3">
-      {results ? buildResults(results, props) : null}
-    </ul>
+    <ul className={rootCss}>{results ? buildResults(results, props) : null}</ul>
   );
 }
 

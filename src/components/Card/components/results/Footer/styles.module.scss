@@ -1,9 +1,5 @@
 :local .root {
-  > :not(:first-child) {
-    margin-top: 1em;
-  }
-  padding: 1rem;
-  @import "../../utilities/css/abstracts";
+  @import "../../../../../utilities/css/abstracts";
   color: $primary-gray;
   border-radius: 0.25rem;
   background: $white;
@@ -39,7 +35,7 @@
 }
 
 :local .title {
-  @import "../../utilities/css/abstracts";
+  @import "../../../../../utilities/css/abstracts";
   font-size: 1.25rem;
   margin: 0 0 1.25rem;
 

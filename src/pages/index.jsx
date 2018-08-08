@@ -5,6 +5,8 @@ import Button from "./../components/Button";
 import FadeInWrap from "./../components/FadeInWrap";
 import { Fragment } from "react";
 import Main from "./../components/Main/index";
+import { default as CardHeader } from "../components/Card/components/basic/Header/index";
+import { default as CardBody } from "../components/Card/components/basic/Body/index";
 
 export default function IndexPage({ data }) {
   const ql = data;
@@ -14,14 +16,22 @@ export default function IndexPage({ data }) {
       <Header ql={ql} title={"Homepage | Public People"} />
       <Main utils={"dist-size300-3"}>
         <FadeInWrap utils={"component"} delay={0}>
-          <Card title="Hello" highlighted>
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
             <p>afdgsfa</p>
             <p>adfgafdsh</p>
           </Card>
         </FadeInWrap>
 
         <FadeInWrap utils={"component"} delay={0.2}>
-          <Card title="Hello">
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
             <p>afdgsfadsdhsgfdh</p>
             <p>adfgafdgh</p>
             <Button link="http://techforgood.org.za/politician-data-project/">
@@ -31,7 +41,11 @@ export default function IndexPage({ data }) {
         </FadeInWrap>
 
         <FadeInWrap utils={"component"} delay={0.4}>
-          <Card title="Hello">
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
             <p>afdgsfadsdhsgfdh</p>
             <p>adfgafdgh</p>
           </Card>

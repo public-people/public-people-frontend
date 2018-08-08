@@ -39,6 +39,12 @@ main {
   width: 100%;
 }
 
+// This preserves space around all components directly in the flow under main
+// but doesn't add to the bottom margin
+main > * {
+  margin-top: 1em;
+}
+
 main,
 .component-container {
   margin-left: -$layout-offset;

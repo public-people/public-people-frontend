@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
 import Link from "gatsby-link";
 import PropTypes from "prop-types";
-import styles from "./../styles.module.scss";
+import React, { Fragment } from "react";
+import Helmet from "react-helmet";
 import Button from "./../../Button";
 import Icon from "./../../Icon";
 import Input from "./../../Input";
-import Helmet from "react-helmet";
+import styles from "./../styles.module.scss";
 
 const buildLoadingMarkup = () => (
   <div className={styles.searchWrap}>

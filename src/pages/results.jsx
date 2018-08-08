@@ -11,7 +11,7 @@ export default function ResultsPage({ data }) {
     <Fragment>
       <Header ql={ql} title={"Search Results | Public People"} />
       <Main>
-        <Results />
+        <Results utils={"dist-size300-3"} />
       </Main>
     </Fragment>
   );

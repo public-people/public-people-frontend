@@ -1,10 +1,16 @@
-import PropTypes from "prop-types";
 import React from "react";
 import styles from "./styles.module.scss";
+import PropTypes from "prop-types";
 
-export default function ReadingContext(props) {
+export default function ResultsContext(props) {
   const { utils } = props;
-
+  {
+    data.map(datum => {
+      const Component = this.props.bar;
+      return <Component anyProps={here} />;
+    });
+  }
+  <Blah renderBar={dataFromBlah => <Bar data={dataFromBlah} />} />;
   const rootCss = [styles.root, utils].join(" ");
   return (
     <div
@@ -14,10 +20,10 @@ export default function ReadingContext(props) {
     />
   );
 }
-ReadingContext.propTypes = {
+ResultsContext.propTypes = {
   language: PropTypes.string
 };
 
-ReadingContext.defaultProps = {
+ResultsContext.defaultProps = {
   language: null
 };

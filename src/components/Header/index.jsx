@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import {
-  setPhrase,
-  initSearch
+  initSearch,
+  setPhrase
 } from "./../../redux/modules/search/people/people";
 import Markup from "./partials/Markup";
 
