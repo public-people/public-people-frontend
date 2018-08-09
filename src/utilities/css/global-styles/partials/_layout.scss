@@ -37,10 +37,12 @@ main {
   padding: 0 $layout-offset;
   max-width: calc(66rem + (2 * #{$layout-offset}));
   width: 100%;
+  // Until there is a footer, this gives the site guaranteed bottom space.
+  margin-bottom: 5rem;
 }
 
 // This preserves space around all components directly in the flow under main
-// but doesn't add to the bottom margin
+// but doesn't add to the bottom margin.
 main > * {
   margin-top: 1em;
 }

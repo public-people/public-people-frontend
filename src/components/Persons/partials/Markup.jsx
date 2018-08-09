@@ -1,30 +1,21 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
-import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
 
-const buildResults = (results, props) => (
-  <Fragment>
-    <h1>{props.person}</h1>
-    <ul>
+const buildResults = (results, props) => {
+  const List = props.list;
+  return (
+    <Fragment>
       {results.map((item, index) => (
-        <li
-          className={"space-1"}
-          key={item.id}
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
-          {item.published_at} – in <em>{item.collection.label}</em>:&nbsp;
-          <a href={item.source_url}>{item.title}</a>
-        </li>
+        <List utils={"component"} key={item.id} item={item} />
       ))}
-    </ul>
-  </Fragment>
-);
+    </Fragment>
+  );
+};
 
 export default function Markup(props) {
-  const { loading, error, results, person } = props;
+  const { loading, error, results, list } = props;
 
   if (error === "no-results") {
     return (
@@ -38,7 +29,7 @@ export default function Markup(props) {
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
-          <Placeholder utils="rounded-4" height={250} />
+          <div className="text-center">Loading</div>
         </FadeInWrap>
       </div>
     ));
@@ -47,11 +38,7 @@ export default function Markup(props) {
   if (error) {
     return (
       <FadeInWrap>
-        <div className="text-center">
-          <Card highlighted title="Error" utils="max-w-4 ml-auto mr-auto">
-            Something went wrong. Please try again at a later stage
-          </Card>
-        </div>
+        <div className="text-center">Error</div>
       </FadeInWrap>
     );
   }
@@ -59,27 +46,21 @@ export default function Markup(props) {
   if (results.length < 1) {
     return (
       <FadeInWrap>
-        <div className="text-center">
-          <Card
-            highlighted
-            title="No people found"
-            utils="max-w-4 ml-auto mr-auto"
-          >
-            No results were found for &ldquo;{props.person}&ldquo;.
-          </Card>
-        </div>
+        <div className="text-center">No results</div>
       </FadeInWrap>
     );
   }
 
   return (
-    <div className={styles.root}>
-      {results ? buildResults(results, props) : null}
-    </div>
+    <Fragment>
+      <h1 className={"component"}>{props.person}</h1>
+      <Fragment>{results ? buildResults(results, props) : null}</Fragment>
+    </Fragment>
   );
 }
 
 Markup.propTypes = {
+  list: PropTypes.object.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.string,
   person: PropTypes.string,

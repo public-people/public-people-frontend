@@ -17,7 +17,3 @@ export default function ReadingContext(props) {
 ReadingContext.propTypes = {
   language: PropTypes.string
 };
-
-ReadingContext.defaultProps = {
-  language: null
-};

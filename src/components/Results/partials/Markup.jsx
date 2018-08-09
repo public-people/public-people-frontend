@@ -1,37 +1,29 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
-import Link from "gatsby-link";
-import styles from "./../styles.module.scss";
+import { default as CardHeader } from "../../Card/components/results/Header/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
-import extractFirstLastWords from "../../../utilities/js/extractFirstLastWords";
-import { default as CardHeader } from "./../../Card/components/results/Header/index";
-import { default as CardBody } from "./../../Card/components/results/Body/index";
-import { default as CardFooter } from "./../../Card/components/results/Footer/index";
+import styles from "./../styles.module.scss";
+import PropTypes from "prop-types";
 
 const buildResults = (results, props) =>
   results.map((item, index) => (
-    <li className={"component dbl-space-2"} key={item.id}>
-      <Link
-        onClick={() => props.resetToken(item.name)}
-        to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
-      >
-        <div
-          className={styles.item}
-          style={{ animationDelay: `${index * 0.1}s` }}
-        >
-          <Card
+    <li className={"component flex"} key={item.id}>
+      <Card
+        header={
+          <CardHeader
+            resetToken={props.resetToken}
             title={item.name}
-            link
-            footer="Unknown amount of events"
-            height={250}
-          >
-            <span className="font-bold block">Position Unknown</span>
-            <span className="block italic">Organisation Unknown</span>
-          </Card>
-        </div>
-      </Link>
+            item={item}
+            headerLevel={2}
+          />
+        }
+        footer="Unknown amount of events"
+        title={item.name}
+        link
+        footer="Unknown amount of events"
+        height={250}
+      />
     </li>
   ));
 
@@ -87,9 +79,7 @@ export default function Markup(props) {
     );
   }
 
-  return (
-    <ul className={rootCss}>{results ? buildResults(results, props) : null}</ul>
-  );
+  return <Fragment>{results ? buildResults(results, props) : null}</Fragment>;
 }
 
 Markup.propTypes = {

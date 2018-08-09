@@ -1,9 +1,8 @@
-import React from "react";
-import Helmet from "react-helmet";
+import React, { Fragment } from "react";
 import Header from "./../components/Header/index";
-import Results from "./../components/Results/index";
-import { Fragment } from "react";
 import Main from "./../components/Main/index";
+import Results from "./../components/Results/index";
+import ResultsContext from "./../components/ResultsContext/index";
 
 export default function ResultsPage({ data }) {
   const ql = data;
@@ -11,7 +10,7 @@ export default function ResultsPage({ data }) {
     <Fragment>
       <Header ql={ql} title={"Search Results | Public People"} />
       <Main>
-        <Results utils={"dist-size300-3"} />
+        <ResultsContext utils={"dist-size300-3 component"} list={<Results />} />
       </Main>
     </Fragment>
   );
