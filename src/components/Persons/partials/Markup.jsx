@@ -15,9 +15,10 @@ const buildResults = (results, props) => {
 };
 
 export default function Markup(props) {
+  console.log("props", props);
   const { loading, error, results, list } = props;
 
-  if (error === "no-results") {
+  if (error === false) {
     return (
       <div>
         No results were found for this search. Please try another search term

@@ -111,7 +111,8 @@ export function initSearch(person) {
             type: RESOLVE_REQUEST,
             payload: {
               results
-            }
+            },
+            error: null
           });
         }
 
@@ -120,7 +121,8 @@ export function initSearch(person) {
           payload: {
             results: [],
             text: "No results were returned, please try another search phrase"
-          }
+          },
+          error: false
         });
       })
       .catch(error => {
