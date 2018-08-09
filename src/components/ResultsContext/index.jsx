@@ -16,7 +16,8 @@ ResultsContext.propTypes = {
   utils: PropTypes.string,
   language: PropTypes.string,
   list: PropTypes.oneOfType([
-    PropTypes.element.isRequired,
-    PropTypes.object.isRequired
+    PropTypes.element,
+    PropTypes.object,
+    PropTypes.func
   ])
 };
