@@ -2,12 +2,18 @@ import React from "react";
 import Header from "./../components/Header/index";
 import { Fragment } from "react";
 import Main from "./../components/Main/index";
+import { NavConfig } from "./../components/Nav/config";
+import Nav from "./../components/Nav/index";
 
 export default function PersonsPage({ data }) {
   const ql = data;
   return (
     <Fragment>
-      <Header ql={ql} title={"Credits & Attributions | Public People"} />
+      <Header
+        ql={ql}
+        title={"Credits & Attributions | Public People"}
+        navigation={<Nav links={NavConfig.standard} />}
+      />
       <Main>
         <div className="mt-30 mr-20 ml-20">
           <p>

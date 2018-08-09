@@ -1,7 +1,8 @@
 :local .root {
+  @import "../../utilities/css/abstracts";
   display: flex;
   position: relative;
   > * {
-    margin-top: 1em;
+    margin-top: $base-vertical-spacing;
   }
 }

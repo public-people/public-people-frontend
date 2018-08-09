@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import ReadingContext from "../components/ReadingContext/index";
 import Main from "./../components/Main/index";
 import Header from "./../components/Header/index";
+import { NavConfig } from "./../components/Nav/config";
+import Nav from "./../components/Nav/index";
 
 const content = `<h2>Contact us</h2>
 
@@ -13,7 +15,11 @@ export default function ContactUsPage({ data }) {
   const ql = data;
   return (
     <Fragment>
-      <Header ql={ql} title={"Contact Us | Public People"} />
+      <Header
+        ql={ql}
+        title={"Contact Us | Public People"}
+        navigation={<Nav links={NavConfig.standard} />}
+      />
       <Main utils={"dist-size300-3"}>
         <ReadingContext utils={"component"} lang={"gr"} content={content} />
         <ReadingContext utils={"component"} lang={"fr"} content={content} />

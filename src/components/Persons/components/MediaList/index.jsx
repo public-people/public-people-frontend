@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styles from "./styles.module.scss";
 
-export default function PersonList(props) {
+export default function MediaList(props) {
   const { utils, item } = props;
   const rootCss = [styles.root, utils].join(" ");
 
@@ -14,7 +14,7 @@ export default function PersonList(props) {
   );
 }
 
-PersonList.propTypes = {
+MediaList.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     published_at: PropTypes.string,

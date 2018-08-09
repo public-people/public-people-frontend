@@ -1,9 +1,10 @@
 import React from "react";
 import ReadingContext from "../components/ReadingContext/index";
 import Main from "./../components/Main/index";
-import Helmet from "react-helmet";
 import { Fragment } from "react";
 import Header from "./../components/Header/index";
+import { NavConfig } from "./../components/Nav/config";
+import Nav from "./../components/Nav/index";
 
 const content = `<h2>About Public People</h2>
 
@@ -90,7 +91,11 @@ export default function AboutUsPage({ data }) {
   const ql = data;
   return (
     <Fragment>
-      <Header ql={ql} title={"Contact Us | Public People"} />
+      <Header
+        ql={ql}
+        title={"Contact Us | Public People"}
+        navigation={<Nav links={NavConfig.standard} />}
+      />
       <Main>
         <ReadingContext content={content} />
       </Main>

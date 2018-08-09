@@ -1,6 +1,7 @@
 :local .root {
+  @import "../../utilities/css/abstracts";
   > :not(:first-child) {
-    margin-top: 1em;
+    margin-top: $base-vertical-spacing;
   }
 
   padding: 1rem;

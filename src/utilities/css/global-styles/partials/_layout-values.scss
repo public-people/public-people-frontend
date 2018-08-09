@@ -1,0 +1,19 @@
+// The best place to look to understand the roles of these values is in _layout.scss. They would be
+// in that file, but for the fact that they need to be exported into modules, and exporting anything other
+// than abstract values and mixins causes trouble.
+
+// This is for creating creates a basic guttering and alignment system. Containers will have the left
+// and right edges pulled out but components dropped into containers will keep space from
+// one another.
+
+$layout-offset: 0.75rem;
+
+// $base-vertical-spacing is an em value so that as the font size of textual elements to which it is attached changes, it shrinks.
+$base-vertical-spacing: 1em;
+$header-height: 5rem;
+
+// ------------------ Coupled values
+// The header is fixed, so the main needs to be offset at the top by the height
+// of the header as well so some additional aesthetically pleasing value.
+$main-offset-top: $header-height + 2rem;
+// ---------------------------------

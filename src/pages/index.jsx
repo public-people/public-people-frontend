@@ -5,6 +5,7 @@ import Button from "./../components/Button";
 import FadeInWrap from "./../components/FadeInWrap";
 import { Fragment } from "react";
 import Main from "./../components/Main/index";
+import Nav from "./../components/Nav/index";
 import { default as CardHeader } from "../components/Card/components/basic/Header/index";
 import { default as CardBody } from "../components/Card/components/basic/Body/index";
 
@@ -13,7 +14,11 @@ export default function IndexPage({ data }) {
   console.log("ql", ql);
   return (
     <Fragment>
-      <Header ql={ql} title={"Homepage | Public People"} />
+      <Header
+        ql={ql}
+        title={"Homepage | Public People"}
+        navigation={<Nav links={NavConfig.standard} />}
+      />
       <Main utils={"dist-size300-3"}>
         <FadeInWrap utils={"component"} delay={0}>
           <Card

@@ -26,19 +26,32 @@ body {
   align-items: center;
 }
 
-// This creates a basic guttering and alignment system. Containers will have the left
-// and right edges pulled out but components dropped into containers will keep space from
-// one another.
+header {
+  max-height: $header-height;
+  position: fixed;
+  z-index: 1;
+  padding: $base-vertical-spacing calc((100% - 50rem) / 2);
+  flex-wrap: wrap;
+}
 
-$layout-offset: 0.75rem;
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 1rem;
+}
 
 main {
+  // The header is fixed, so the main needs to be offset at the top by the height
+  // of the header as well so some additional aesthetically pleasing value.
+  margin-top: $main-offset-top;
   // This value defines the outermost padding of the site when the screen width is small than the max width.
   padding: 0 $layout-offset;
   max-width: calc(66rem + (2 * #{$layout-offset}));
   width: 100%;
-  // Until there is a footer, this gives the site guaranteed bottom space.
-  margin-bottom: 5rem;
+  // Until there is a footer, this gives the site guaranteed bottom space. It seems
+  // symmetrical to have it match the header height, but this is merely a design opinion.
+  margin-bottom: $header-height;
   // See here: https://stackoverflow.com/questions/35820429/main-element-not-working-in-internet-explorer-11
   display: block;
 }
@@ -46,7 +59,7 @@ main {
 // This preserves space around all components directly in the flow under main
 // but doesn't add to the bottom margin.
 main > * {
-  margin-top: 1em;
+  margin-top: $base-vertical-spacing;
 }
 
 main,

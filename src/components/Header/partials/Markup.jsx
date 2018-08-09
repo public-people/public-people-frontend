@@ -69,6 +69,7 @@ export default function Markup(props) {
             ? createForm(phrase, updatePhraseWrap, initSearchWrap)
             : buildLoadingMarkup()}
         </div>
+        {props.navigation ? props.navigation : null}
       </header>
     </Fragment>
   );
@@ -79,7 +80,8 @@ Markup.propTypes = {
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
   initSearch: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  navigation: PropTypes.element
 };
 
 Markup.defaultProps = {
