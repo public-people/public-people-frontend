@@ -1,5 +1,6 @@
 :local .root {
   display: flex;
+  position: relative;
   > * {
     margin-top: 1em;
   }

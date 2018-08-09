@@ -10,9 +10,6 @@ export default function ResultsHeader(props) {
   const rootCss = [styles.root, utils].join(" ");
   return (
     <Fragment>
-      <a className="skiplink" href={"#" + props.title}>
-        {props.title}
-      </a>
       <Link
         className={rootCss + "title"}
         onClick={() => props.resetToken(item.name)}
@@ -25,7 +22,6 @@ export default function ResultsHeader(props) {
 }
 
 ResultsHeader.propTypes = {
-  title: PropTypes.string.isRequired,
   headerLevel: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   resetToken: PropTypes.func.isRequired,
   utils: PropTypes.string,

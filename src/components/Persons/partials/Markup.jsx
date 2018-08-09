@@ -60,9 +60,13 @@ export default function Markup(props) {
 }
 
 Markup.propTypes = {
-  list: PropTypes.object.isRequired,
+  list: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.object,
+    PropTypes.func
+  ]),
   loading: PropTypes.bool,
-  error: PropTypes.boolean,
+  error: PropTypes.bool,
   person: PropTypes.string,
   results: PropTypes.arrayOf(
     PropTypes.shape({

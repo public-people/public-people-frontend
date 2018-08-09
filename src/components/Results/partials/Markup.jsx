@@ -13,7 +13,6 @@ const buildResults = (results, props) =>
         header={
           <CardHeader
             resetToken={props.resetToken}
-            title={item.name}
             item={item}
             headerLevel={2}
           />
@@ -84,7 +83,7 @@ export default function Markup(props) {
 
 Markup.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.bool,
   results: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
