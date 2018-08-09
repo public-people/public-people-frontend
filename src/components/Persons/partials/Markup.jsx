@@ -62,7 +62,7 @@ export default function Markup(props) {
 Markup.propTypes = {
   list: PropTypes.object.isRequired,
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.boolean,
   person: PropTypes.string,
   results: PropTypes.arrayOf(
     PropTypes.shape({

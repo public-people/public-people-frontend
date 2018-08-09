@@ -6,6 +6,7 @@ const loadFont = {
 };
 
 module.exports = {
+  polyfill: false,
   siteMetadata: {
     language: "en"
   },

@@ -40,6 +40,48 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
+        <FadeInWrap utils={"component"} delay={0.2}>
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
+            <p>afdgsfadsdhsgfdh</p>
+            <p>adfgafdgh</p>
+            <Button link="http://techforgood.org.za/politician-data-project/">
+              Contribute to this project
+            </Button>
+          </Card>
+        </FadeInWrap>
+
+        <FadeInWrap utils={"component"} delay={0.2}>
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
+            <p>afdgsfadsdhsgfdh</p>
+            <p>adfgafdgh</p>
+            <Button link="http://techforgood.org.za/politician-data-project/">
+              Contribute to this project
+            </Button>
+          </Card>
+        </FadeInWrap>
+
+        <FadeInWrap utils={"component"} delay={0.2}>
+          <Card
+            header={<CardHeader title={"foo"} headerLevel={2} />}
+            body={<CardBody />}
+            title="Hello"
+          >
+            <p>afdgsfadsdhsgfdh</p>
+            <p>adfgafdgh</p>
+            <Button link="http://techforgood.org.za/politician-data-project/">
+              Contribute to this project
+            </Button>
+          </Card>
+        </FadeInWrap>
+
         <FadeInWrap utils={"component"} delay={0.4}>
           <Card
             header={<CardHeader title={"foo"} headerLevel={2} />}

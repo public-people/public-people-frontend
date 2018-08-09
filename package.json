@@ -18,6 +18,7 @@
     "prepush": "npm run test:local"
   },
   "dependencies": {
+    "core-js": "^2.5.7",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-google-fonts": "0.0.4",
@@ -35,7 +36,8 @@
     "redux": "^4.0.0",
     "redux-batched-subscribe": "^0.1.6",
     "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -68,7 +70,7 @@
     "last 12 chrome versions",
     "last 12 firefox versions",
     "last 6 safari versions",
-    "explorer >= 10",
+    "IE 11",
     "edge > 0"
   ],
   "babel": {

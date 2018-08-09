@@ -9,6 +9,9 @@ import {
   setPersonToken
 } from "./src/redux/modules/search/person/person";
 import extractQueryString from "./src/utilities/js/extractQueryString";
+// The two plugins below are polyfills for IE 11.
+import "whatwg-fetch";
+import "core-js/es6/promise";
 
 exports.onClientEntry = () => {
   const phrase = extractQueryString("phrase", window.location.search);
