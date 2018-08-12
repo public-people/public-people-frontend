@@ -1,4 +1,5 @@
 :local .root {
+  @import "../../utilities/css/abstracts";
   display: block;
-  max-width: 60rem;
+  max-width: $typographic-maxwidth;
 }

@@ -6,6 +6,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -22,6 +23,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -38,6 +40,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -54,6 +57,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -70,6 +74,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -86,6 +91,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }
@@ -102,6 +108,7 @@
         flex-wrap: wrap;
         > * {
           flex-basis: auto;
+          max-width: #{(100% / $i)};
           width: #{(100% / $i)};
           flex-grow: 1;
         }

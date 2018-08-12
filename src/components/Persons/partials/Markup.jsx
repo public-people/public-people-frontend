@@ -5,6 +5,7 @@ import styles from "./../styles.module.scss";
 
 const buildResults = (results, props) => {
   const List = props.list;
+
   return (
     <Fragment>
       {results.map((item, index) => (
@@ -15,8 +16,8 @@ const buildResults = (results, props) => {
 };
 
 export default function Markup(props) {
-  console.log("props", props);
-  const { loading, error, results, list } = props;
+  const { loading, error, results, list, utils } = props;
+  const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {
     return (
@@ -54,7 +55,7 @@ export default function Markup(props) {
 
   return (
     <Fragment>
-      <h1 className={"component"}>{props.person}</h1>
+      <h1 className={`${rootCss} component`}>{props.person}</h1>
       <Fragment>{results ? buildResults(results, props) : null}</Fragment>
     </Fragment>
   );

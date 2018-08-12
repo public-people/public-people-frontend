@@ -24,9 +24,9 @@ export default function Card(props) {
 
   return (
     <article className={rootCss}>
-      {props.header ? props.header : null}
-      {props.body ? props.body : null}
-      {props.footer ? props.footer : null}
+      {props.header && props.header}
+      {props.body && props.body}
+      {props.footer && props.footer}
     </article>
   );
 }

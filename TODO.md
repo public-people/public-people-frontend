@@ -1,7 +1,3 @@
-# Bugs
-
-- Search term not changing on resubmit.
-
 # Page load
 
 - Font loading strategy
@@ -10,6 +6,8 @@
 
 - Pagination
 
-# Important
+# Important - high priority.
 
+- Ensure the client does retries for connection problems
 - Set base URLs and config for various API calls
+- Autoprefixer?

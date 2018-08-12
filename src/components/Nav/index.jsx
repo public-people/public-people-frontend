@@ -1,29 +1,24 @@
-import PropTypes from "prop-types";
-import React from "react";
-import styles from "./styles.module.scss";
-import Link from "gatsby-link";
+import { connect } from "react-redux";
+import {
+  initSearch,
+  setPhrase,
+  cancelPromises as cancelPromisesPeople
+} from "./../../redux/modules/search/people/people";
+import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
+import Markup from "./partials/Markup";
 
-export default function Nav(props) {
-  const { utils, links } = props;
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  phrase: state.people.phrase
+});
 
-  const rootCss = [styles.root, utils].join(" ");
+const mapDispatchToProps = dispatch => ({
+  cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
+  cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason))
+});
 
-  return (
-    <nav className={rootCss}>
-      {links.map((link, index) => (
-        <Link key={`key-${index}-${link.text}`} to={link.url}>
-          {link.text}
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
-Nav.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired
-    })
-  ).isRequired
-};
+const Nav = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Markup);
+export default Nav;

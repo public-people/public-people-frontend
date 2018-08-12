@@ -7,7 +7,7 @@ export default function ResultsContext(props) {
 
   const rootCss = [styles.root, utils].join(" ");
   return (
-    <ul utils={"component-container"} className={rootCss}>
+    <ul className={rootCss}>
       {props.list}
     </ul>
   );

@@ -1,6 +1,7 @@
 import createPromiseToken from "../../../../utilities/js/createPromiseToken";
 import fetchWrapper from "../../../../utilities/js/fetchWrapper";
 import extractFirstLastWords from "../../../../utilities/js/extractFirstLastWords";
+import { config } from "../../../../runtime.config";
 
 const SET_PERSON = "search/person/SET_PERSON";
 const SET_PERSON_TOKEN = "search/person/SET_PERSON_TOKEN";
@@ -8,10 +9,10 @@ const SET_LOADING = "search/person/SET_LOADING";
 const SEND_REQUEST = "search/person/SEND_REQUEST";
 const CLEAR_REQUEST = "search/person/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/person/RESOLVE_REQUEST";
+const CANCEL_PROMISES = "search/person/CANCEL_PROMISES";
 
 export default function reducer(state = {}, action = {}) {
-  console.log("state", state);
-  console.log("action", action);
+  console.log("person state", state);
   switch (action.type) {
     case SET_PERSON:
       return { ...state, person: action.payload };
@@ -71,8 +72,28 @@ export function clearRequest(reason) {
   };
 }
 
+export function cancelPromises(reason) {
+  // See "How to dispatch a Redux action with a timeout?"
+  // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
+  // for help with this code.
+  return (dispatch, getState) => {
+    if (getState().person.fetchToken !== undefined) {
+      getState().person.fetchToken.token.cancel(reason);
+      dispatch({
+        type: CANCEL_PROMISES,
+        payload: reason
+      });
+    } else {
+      dispatch({
+        type: CANCEL_PROMISES,
+        payload: "Not cancelled"
+      });
+    }
+  };
+}
+
 export function initSearch(person) {
-  console.log("person", person);
+  console.log("person1", person);
   return dispatch => {
     dispatch({
       type: SET_LOADING,
@@ -90,7 +111,7 @@ export function initSearch(person) {
 
     dispatch({ type: SET_PERSON_TOKEN, payload: person });
 
-    const url = `https://alephapi.public-people.techforgood.org.za/api/2/search?q="${encodeURI(
+    const url = `${config.api.alephi}?q="${encodeURI(
       extractFirstLastWords(person)
     )}"`;
     const request = fetchWrapper(url);

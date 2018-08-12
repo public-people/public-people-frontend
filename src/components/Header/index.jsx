@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 import {
   initSearch,
-  setPhrase
+  setPhrase,
+  cancelPromises as cancelPromisesPeople
 } from "./../../redux/modules/search/people/people";
+import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
 import Markup from "./partials/Markup";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -10,8 +12,9 @@ const mapStateToProps = (state, ownProps) => ({
   phrase: state.people.phrase
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  ...ownProps,
+const mapDispatchToProps = dispatch => ({
+  cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
+  cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason)),
   updatePhrase: phrase => dispatch(setPhrase(phrase)),
   initSearch: phrase => dispatch(initSearch(phrase))
 });

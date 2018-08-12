@@ -16,7 +16,7 @@ export default function ResultsPage({ data }) {
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
-        <ResultsContext utils={"dist-size300-3 component"} list={<Results />} />
+        <ResultsContext utils={"dist-size300-3"} list={<Results />} />
       </Main>
     </Fragment>
   );

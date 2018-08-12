@@ -12,6 +12,8 @@ $layout-offset: 0.75rem;
 $base-vertical-spacing: 1em;
 $header-height: 5rem;
 
+$typographic-maxwidth: 60rem;
+
 // ------------------ Coupled values
 // The header is fixed, so the main needs to be offset at the top by the height
 // of the header as well so some additional aesthetically pleasing value.

@@ -26,7 +26,7 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
           onChange={updatePhraseWrap}
         />
       </div>
-      <div className={styles.button}>
+      <div className={"foo " + styles.button}>
         <Link
           to={`/results?phrase=${encodeURI(phrase)}`}
           onClick={initSearchWrap}
@@ -41,11 +41,26 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
 );
 
 export default function Markup(props) {
-  const { loading, phrase, updatePhrase, initSearch, ql } = props;
-  console.log("markup props", props);
+  const {
+    loading,
+    phrase,
+    updatePhrase,
+    initSearch,
+    cancelPromisesPeople,
+    cancelPromisesPerson,
+    ql
+  } = props;
 
   const updatePhraseWrap = event => updatePhrase(event.target.value);
-  const initSearchWrap = () => initSearch(phrase);
+  const initSearchWrap = () => {
+    // The ordering of these three functions is crucial.
+    // The first cancels any previous unresolved request and the second initates a new one.
+    // Because the search button can be pressed from anywhere, all promises must be cancelled here.
+    // This will also be true of navigation
+    cancelPromisesPerson("initiated a new search");
+    cancelPromisesPeople("initiated a new search");
+    initSearch(phrase);
+  };
 
   return (
     <Fragment>

@@ -16,6 +16,9 @@ import "core-js/es6/promise";
 exports.onClientEntry = () => {
   const phrase = extractQueryString("phrase", window.location.search);
   const person = extractQueryString("person", window.location.search);
+  const limit = extractQueryString("limit", window.location.search);
+  const offset = extractQueryString("offset", window.location.search);
+  console.log("foo");
 
   if (phrase) {
     store.dispatch(setPhrase(phrase));

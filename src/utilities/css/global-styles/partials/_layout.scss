@@ -44,6 +44,8 @@ nav {
 main {
   // The header is fixed, so the main needs to be offset at the top by the height
   // of the header as well so some additional aesthetically pleasing value.
+  // (See here for why <main> will appear as an error in IE11:
+  // https://stackoverflow.com/questions/35820429/main-element-not-working-in-internet-explorer-11)
   margin-top: $main-offset-top;
   // This value defines the outermost padding of the site when the screen width is small than the max width.
   padding: 0 $layout-offset;
@@ -52,10 +54,10 @@ main {
   // Until there is a footer, this gives the site guaranteed bottom space. It seems
   // symmetrical to have it match the header height, but this is merely a design opinion.
   margin-bottom: $header-height;
-  // See here: https://stackoverflow.com/questions/35820429/main-element-not-working-in-internet-explorer-11
-  display: block;
+  // This keeps children central.
+  display: flex;
+  justify-content: center;
 }
-
 // This preserves space around all components directly in the flow under main
 // but doesn't add to the bottom margin.
 main > * {

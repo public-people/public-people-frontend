@@ -3,65 +3,17 @@
   > :not(:first-child) {
     margin-top: $base-vertical-spacing;
   }
-
   padding: 1rem;
   @import "../../utilities/css/abstracts";
   color: $primary-gray;
-  border-radius: 0.25rem;
+  border-radius: 0.05rem;
   background: $white;
   width: 100%;
   box-shadow: 0 0.0625rem 0.3125rem 0 rgba(0, 0, 0, 0.2),
     0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.14),
     0 0.1875rem 0.0625rem -0.125rem rgba(0, 0, 0, 0.12);
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
-
-  &.isHighlighted {
-    background: rgba(33, 133, 208, 0.1);
-    color: $primary-blue;
-  }
-
-  :local .inner {
-    padding: 1.563rem;
-
-    &.hasFooter {
-      padding: 1.563rem 1.563rem 0;
-    }
-  }
-
-  &.isLink {
-    cursor: pointer;
-
-    &:hover {
-      background: darken($white, 5%);
-    }
-  }
-}
-
-:local .title {
-  @import "../../utilities/css/abstracts";
-  font-size: 1.25rem;
-  margin: 0 0 1.25rem;
-
-  &.isLink {
-    color: $primary-blue;
-    text-decoration: underline;
-  }
-}
-
-:local .footer {
-  padding: 1.25rem 1.25rem;
-  font-weight: bold;
-  font-size: 0.75rem;
-  background: #e0e1e2;
-
-  .root.isLink:hover & {
-    background: darken(#e0e1e2, 5%);
-  }
-}
-
-:local .content {
-  font-size: 1rem;
 }
