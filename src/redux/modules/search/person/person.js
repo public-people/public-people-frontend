@@ -119,11 +119,12 @@ export function initSearch1(personID) {
 
     const url = `${config.api.publicpeople}/persons/${personID}`;
     console.log("foo1");
-    const foo = personFetchWrapper(url);
-    console.log("foo", foo);
-    const request = fetchWrapper(url);
-    const token = createPromiseToken(request);
+    const request = personFetchWrapper(url);
 
+    const token = createPromiseToken(request);
+    // const request = fetchWrapper(url);
+    // const token = createPromiseToken(request);
+    console.log(request, token);
     dispatch({
       type: SEND_REQUEST,
       payload: token,
@@ -133,7 +134,8 @@ export function initSearch1(personID) {
     });
 
     token.request
-      .then(({ results }) => {
+      .then(results => {
+        console.log(" results", results);
         if (results.length > 0) {
           return dispatch({
             type: RESOLVE_REQUEST,
