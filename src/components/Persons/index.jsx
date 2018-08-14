@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { initSearch as initSearchPerson } from "./../../redux/modules/search/person/person";
+import { initSearch1 as initSearchPerson } from "./../../redux/modules/search/person/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     results: state.person.results,
     message: state.person.text,
     loading: state.person.loading,
-    person: state.person.person,
+    personID: state.person.personID,
     error: state.people.error
   };
 };

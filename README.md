@@ -8,7 +8,7 @@ Welcome to the Public People frontend repo. We like it here and hope you will to
 
 We want to make it easy for South Africans to know who their politicians are and what they have done in the past. We think that accountability in politics is important, and one thing that makes that possible is easy access to information.
 
-This README is where you'll find information and links for all the decisions we've taken so far. All we ask of aspiring new contributors is that you take the time to understand what we've done before issuing that pull request (see the [React "How to Contribute" docs](https://reactjs.org/docs/how-to-contribute.html#sending-a-pull-request) if you, like I did, come to this not knowing how).
+This README is where you'll find information and links for all the decisions we've taken so far. All we ask of aspiring new contributors is that you take the time to understand what we've done before issuing that pull request (see the [React "How to Contribute" docs](https://reactjs.org/docs/how-to-contribute.html#sending-a-pull-request) if you, like me, come to this not knowing how).
 
 Most importantly, please feel free to get in touch if you have any questions. The following questions, or questions like them, are very welcome:
 

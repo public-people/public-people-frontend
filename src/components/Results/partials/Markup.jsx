@@ -70,8 +70,9 @@ export default function Markup(props) {
             title="No people found"
             utils="max-w-4 ml-auto mr-auto"
           >
-            No result was found matching the query &ldquo;{phrase}&rdquo;,
-            please try another phrase.
+            No result was found matching the query &ldquo;
+            {phrase}
+            &rdquo;, please try another phrase.
           </Card>
         </div>
       </FadeInWrap>

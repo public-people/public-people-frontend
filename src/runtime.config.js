@@ -1,6 +1,10 @@
 export const config = {
   api: {
-    alephi: `https://alephapi.public-people.techforgood.org.za/api/2/search`,
+    alephapi: `https://alephapi.public-people.techforgood.org.za/api/2`,
     publicpeople: `https://public-people.techforgood.org.za/api`
+  },
+  pagination: {
+    offsetStep: 15,
+    baseLimit: 15
   }
 };

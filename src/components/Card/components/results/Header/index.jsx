@@ -12,8 +12,8 @@ export default function ResultsHeader(props) {
     <Fragment>
       <Link
         className={rootCss + "title"}
-        onClick={() => props.resetToken(item.name)}
-        to={`/person?person=${encodeURI(extractFirstLastWords(item.name))}`}
+        onClick={() => props.resetToken(item.id)}
+        to={`/person?personID=${item.id}`}
       >
         <Heading className={rootCss}>{item.name}</Heading>
       </Link>
