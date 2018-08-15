@@ -16,7 +16,7 @@ export default class Container extends Component {
 }
 
 Container.propTypes = {
-  personID: PropTypes.string.isRequired
+  personID: PropTypes.number.isRequired
 };
 
 Container.defaultProps = {};

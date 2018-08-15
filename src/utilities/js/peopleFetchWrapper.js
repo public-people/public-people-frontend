@@ -14,7 +14,7 @@ const siftMemberships = arr => {
   // See "How JavaScript’s Reduce method works, when to use it, and some of the
   // cool things it can do" https://medium.freecodecamp.org/reduce-f47a7da511a9 for help
   // with this code.
-  const membershipsSifted = arr.reduce(
+  return arr.reduce(
     (acc, curr, index) => {
       // Membership end date is null or empty string means it's a current position.
       if (curr.end_date === null || curr.end_date === "") {
@@ -32,7 +32,6 @@ const siftMemberships = arr => {
       remainder: []
     }
   );
-  return membershipsSifted;
 };
 
 const get = url => {
