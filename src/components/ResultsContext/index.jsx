@@ -1,23 +1,27 @@
-import PropTypes from "prop-types";
-import React from "react";
-import styles from "./styles.module.scss";
+import { connect } from "react-redux";
+import { initSearch as initSearchPeople } from "./../../redux/modules/search/people/people";
+import { setPersonID } from "./../../redux/modules/search/person/person";
+import Container from "./partials/Container";
 
-export default function ResultsContext(props) {
-  const { utils, list } = props;
-
-  const rootCss = [styles.root, utils].join(" ");
-  return (
-    <ul className={rootCss}>
-      {props.list}
-    </ul>
-  );
-}
-ResultsContext.propTypes = {
-  utils: PropTypes.string,
-  language: PropTypes.string,
-  list: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.object,
-    PropTypes.func
-  ])
+const mapStateToProps = (state, ownProps) => {
+  console.log("state page", state);
+  return {
+    ...ownProps,
+    results: state.people.results,
+    message: state.people.text,
+    loading: state.people.loading,
+    phrase: state.people.phrase,
+    error: state.people.error
+  };
 };
+
+const mapDispatchToProps = dispatch => ({
+  initSearchPeople: phrase => dispatch(initSearchPeople(phrase)),
+  resetToken: personID => dispatch(setPersonID(personID))
+});
+
+const Results = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Container);
+export default Results;

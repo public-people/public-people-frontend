@@ -1,3 +1,5 @@
+import { config } from "../runtime.config";
+
 export default {
   people: {
     phrase: "",
@@ -7,6 +9,13 @@ export default {
     notification: null
   },
   person: {
-    personToken: ""
+    personToken: "",
+    mediaList: []
+  },
+  page: {
+    count: 0,
+    offset: 0,
+    offsetStep: config.pagination.offsetStep,
+    limit: config.pagination.limit
   }
 };

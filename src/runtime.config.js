@@ -5,6 +5,6 @@ export const config = {
   },
   pagination: {
     offsetStep: 15,
-    baseLimit: 15
+    limit: 15
   }
 };

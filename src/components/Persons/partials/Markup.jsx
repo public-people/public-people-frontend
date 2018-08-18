@@ -3,12 +3,13 @@ import React, { Fragment } from "react";
 import FadeInWrap from "./../../FadeInWrap";
 import styles from "./../styles.module.scss";
 
-const buildResults = (results, props) => {
+const buildResults = (results, props, mediaList) => {
+  console.log("mediaList", mediaList);
   const List = props.list;
 
   return (
     <Fragment>
-      {results.map((item, index) => (
+      {mediaList.map((item, index) => (
         <List utils={"component"} key={item.id} item={item} />
       ))}
     </Fragment>
@@ -16,7 +17,9 @@ const buildResults = (results, props) => {
 };
 
 export default function Markup(props) {
-  const { loading, error, results, list, utils } = props;
+  console.log("props props", props);
+  const { loading, error, results, list, utils, mediaList } = props;
+  console.log("props props", props);
   const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {
@@ -56,7 +59,9 @@ export default function Markup(props) {
   return (
     <Fragment>
       <h1 className={`${rootCss} component`}>{props.person}</h1>
-      <Fragment>{results ? buildResults(results, props) : null}</Fragment>
+      <Fragment>
+        {results ? buildResults(results, props, mediaList) : null}
+      </Fragment>
     </Fragment>
   );
 }
@@ -70,7 +75,7 @@ Markup.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.bool,
   person: PropTypes.string,
-  results: PropTypes.arrayOf(
+  mediaList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
@@ -85,5 +90,6 @@ Markup.defaultProps = {
   loading: false,
   error: null,
   results: [],
-  person: ""
+  person: "",
+  mediaList: []
 };

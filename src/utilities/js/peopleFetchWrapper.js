@@ -53,6 +53,7 @@ const get = url => {
 export default function peopleFetchWrapper(url) {
   return new Promise((resolve, reject) => {
     return get(url).then(data => {
+      console.log("data", data);
       // See "JavaScript Promises: an Introduction"
       // https://developers.google.com/web/fundamentals/primers/promises#creating_a_sequence for
       // help with this code.

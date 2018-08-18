@@ -9,9 +9,9 @@ const SEND_REQUEST = "search/people/SEND_REQUEST";
 const CLEAR_REQUEST = "search/people/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/people/RESOLVE_REQUEST";
 const CANCEL_PROMISES = "search/people/CANCEL_PROMISES";
+const SET_COUNT = "metadata/page/SET_COUNT";
 
 export default function reducer(state = {}, action = {}) {
-  console.log("people state", state);
   switch (action.type) {
     case SET_PHRASE:
       return {
@@ -56,7 +56,8 @@ export default function reducer(state = {}, action = {}) {
         ...state,
         results: action.payload.results,
         error: action.error,
-        loading: false
+        loading: false,
+        count: action.payload.count
       };
 
     default:
@@ -90,8 +91,9 @@ export function cancelPromises(reason) {
   // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
   // for help with this code.
   return (dispatch, getState) => {
-    if (getState().people.fetchToken !== undefined) {
-      getState().people.fetchToken.token.cancel(reason);
+    const currStateToken = getState().people.fetchToken;
+    if (currStateToken !== undefined && currStateToken.token !== undefined) {
+      currStateToken.token.cancel(reason);
       dispatch({
         type: CANCEL_PROMISES,
         payload: reason
@@ -143,12 +145,19 @@ export function initSearch(phrase) {
     });
 
     token.request
-      .then(({ results }) => {
-        if (results.length > 0) {
+      .then(data => {
+        if (data.results.length > 0) {
+          const results = data.results;
+          const count = data.count;
+          dispatch({
+            type: SET_COUNT,
+            payload: count
+          });
           return dispatch({
             type: RESOLVE_REQUEST,
             payload: {
-              results
+              results,
+              count
             },
             error: null
           });

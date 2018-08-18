@@ -73,9 +73,9 @@ export default function personFetchWrapper(url) {
         dataToarray.map(curr => {
           if (curr.hasOwnProperty("name")) {
             return get(
-              `${config.api.alephapi}/search?${encodeURI(
+              `${config.api.alephapi}/search?q="${encodeURI(
                 extractFirstLastWords(data.name)
-              )}`
+              )}"`
               // Having returned the data, we add it to the object under media_list.
             ).then(res => (data.media_list = res));
           } else if (curr.memberships.length > 0) {
@@ -149,7 +149,7 @@ export default function personFetchWrapper(url) {
           }
         })
       )
-        .then(resolve(data))
+        .then(() => resolve(data))
         .catch(err =>
           reject(err =>
             reject(

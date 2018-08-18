@@ -12,6 +12,8 @@ const SEND_REQUEST = "search/person/SEND_REQUEST";
 const CLEAR_REQUEST = "search/person/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/person/RESOLVE_REQUEST";
 const CANCEL_PROMISES = "search/person/CANCEL_PROMISES";
+const SET_MEDIA = "search/person/SET_MEDIA ";
+const SET_COUNT = "metadata/page/SET_COUNT";
 
 export default function reducer(state = {}, action = {}) {
   console.log("person state", state);
@@ -25,6 +27,12 @@ export default function reducer(state = {}, action = {}) {
 
     case SET_LOADING:
       return { ...state, loading: action.payload };
+
+    case SET_MEDIA:
+      return {
+        ...state,
+        mediaList: action.payload
+      };
 
     case SEND_REQUEST:
       return { ...state, fetchToken: action.payload };
@@ -85,8 +93,9 @@ export function cancelPromises(reason) {
   // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
   // for help with this code.
   return (dispatch, getState) => {
-    if (getState().person.fetchToken !== undefined) {
-      getState().person.fetchToken.token.cancel(reason);
+    const currStateToken = getState().person.fetchToken;
+    if (currStateToken !== undefined && currStateToken.token !== undefined) {
+      currStateToken.token.cancel(reason);
       dispatch({
         type: CANCEL_PROMISES,
         payload: reason
@@ -124,7 +133,7 @@ export function initSearch1(personID) {
     const token = createPromiseToken(request);
     // const request = fetchWrapper(url);
     // const token = createPromiseToken(request);
-    console.log(request, token);
+
     dispatch({
       type: SEND_REQUEST,
       payload: token,
@@ -135,8 +144,18 @@ export function initSearch1(personID) {
 
     token.request
       .then(results => {
-        console.log(" results", results);
-        if (results.length > 0) {
+        if (results !== undefined) {
+          const mediaList = results.media_list.results;
+          console.log("mediaList", mediaList);
+          dispatch({
+            type: SET_MEDIA,
+            payload: results.media_list.results
+          });
+          const count = 19;
+          dispatch({
+            type: SET_COUNT,
+            payload: count
+          });
           return dispatch({
             type: RESOLVE_REQUEST,
             payload: {
@@ -171,7 +190,7 @@ export function initSearch1(personID) {
 }
 
 export function initSearch(person) {
-  console.log("person1", person);
+  console.log("person2", person);
   return dispatch => {
     dispatch({
       type: SET_LOADING,
@@ -192,6 +211,7 @@ export function initSearch(person) {
     const url = `${config.api.alephapi}?q="${encodeURI(
       extractFirstLastWords(person)
     )}"`;
+    console.log("url", url);
     const request = fetchWrapper(url);
     const token = createPromiseToken(request);
 

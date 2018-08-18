@@ -6,6 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   console.log("persons state", state);
   return {
     ...ownProps,
+    mediaList: state.person.mediaList,
     results: state.person.results,
     message: state.person.text,
     loading: state.person.loading,
