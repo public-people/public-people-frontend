@@ -8,10 +8,11 @@ import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/se
 import Markup from "./partials/Markup";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state", state);
   return {
     ...ownProps,
-    phrase: state.people.phrase
+    phrase: state.people.phrase,
+    limit: state.page.limit,
+    offset: state.page.offset
   };
 };
 
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
   cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
   cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason)),
   updatePhrase: phrase => dispatch(setPhrase(phrase)),
-  initSearch: phrase => dispatch(initSearch(phrase))
+  initSearch: (phrase, limit, offset) =>
+    dispatch(initSearch(phrase, limit, offset))
 });
 
 const Header = connect(

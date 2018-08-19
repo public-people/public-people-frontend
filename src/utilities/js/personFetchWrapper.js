@@ -54,7 +54,7 @@ const get = url => {
     .catch(err => console.log(`Failed inside get()/fetch() with: ${err}`));
 };
 
-export default function personFetchWrapper(url) {
+export default function personFetchWrapper(url, limit, offset) {
   // Apologies in advance, lots of mutation below.
   return new Promise((resolve, reject) => {
     // See "JavaScript Promises: an Introduction"
@@ -75,7 +75,7 @@ export default function personFetchWrapper(url) {
             return get(
               `${config.api.alephapi}/search?q="${encodeURI(
                 extractFirstLastWords(data.name)
-              )}"`
+              )}"&limit=${limit}&offset=${offset}`
               // Having returned the data, we add it to the object under media_list.
             ).then(res => (data.media_list = res));
           } else if (curr.memberships.length > 0) {

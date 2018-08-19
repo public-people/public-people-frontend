@@ -10,12 +10,15 @@ const mapStateToProps = (state, ownProps) => {
     message: state.people.text,
     loading: state.people.loading,
     phrase: state.people.phrase,
-    error: state.people.error
+    error: state.people.error,
+    limit: state.page.limit,
+    offset: state.page.offset
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  initSearchPeople: phrase => dispatch(initSearchPeople(phrase)),
+  initSearchPeople: (phrase, limit, offset) =>
+    dispatch(initSearchPeople(phrase, limit, offset)),
   resetToken: personID => dispatch(setPersonID(personID))
 });
 

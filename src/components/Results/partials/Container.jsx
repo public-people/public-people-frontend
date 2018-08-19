@@ -4,9 +4,9 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, initSearchPeople } = this.props;
+    const { phrase, initSearchPeople, limit, offset } = this.props;
     if (phrase) {
-      initSearchPeople(phrase);
+      initSearchPeople(phrase, limit, offset);
     }
   }
 

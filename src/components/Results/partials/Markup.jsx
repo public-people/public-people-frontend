@@ -6,7 +6,7 @@ import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
 import PropTypes from "prop-types";
 
-const buildResults = (results, props) =>
+const buildResults = (results, props, offset, limit) =>
   results.map((item, index) => (
     <li className={"component flex"} key={item.id}>
       <Card
@@ -15,6 +15,8 @@ const buildResults = (results, props) =>
             resetToken={props.resetToken}
             item={item}
             headerLevel={2}
+            offset={offset}
+            limit={limit}
           />
         }
         footer="Unknown amount of events"
@@ -27,7 +29,16 @@ const buildResults = (results, props) =>
   ));
 
 export default function Markup(props) {
-  const { loading, error, results, phrase, person, utils } = props;
+  const {
+    loading,
+    error,
+    results,
+    phrase,
+    person,
+    utils,
+    offset,
+    limit
+  } = props;
   const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {
@@ -78,7 +89,11 @@ export default function Markup(props) {
     );
   }
 
-  return <Fragment>{results ? buildResults(results, props) : null}</Fragment>;
+  return (
+    <Fragment>
+      {results ? buildResults(results, props, offset, limit) : null}
+    </Fragment>
+  );
 }
 
 Markup.propTypes = {

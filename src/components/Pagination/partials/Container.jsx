@@ -4,7 +4,18 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, limit, offset } = this.props;
+    const {
+      count,
+      current_url,
+      limit,
+      offset,
+      utils,
+      offsetStep,
+      searchPerson,
+      searchPeople,
+      phrase,
+      personID
+    } = this.props;
   }
 
   render() {

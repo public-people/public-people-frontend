@@ -11,12 +11,15 @@ const mapStateToProps = (state, ownProps) => {
     message: state.person.text,
     loading: state.person.loading,
     personID: state.person.personID,
-    error: state.people.error
+    error: state.people.error,
+    limit: state.page.limit,
+    offset: state.page.offset
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  initSearchPerson: person => dispatch(initSearchPerson(person))
+  initSearchPerson: (person, limit, offset) =>
+    dispatch(initSearchPerson(person, limit, offset))
 });
 
 const Persons = connect(

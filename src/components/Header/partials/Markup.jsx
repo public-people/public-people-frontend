@@ -15,7 +15,13 @@ const buildLoadingMarkup = () => (
   </div>
 );
 
-const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
+const createForm = (
+  phrase,
+  updatePhraseWrap,
+  initSearchWrap,
+  limit,
+  offset
+) => (
   <form className={styles.searchWrap}>
     <div className={styles.search}>
       <div className={styles.input}>
@@ -28,7 +34,9 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
       </div>
       <div className={"foo " + styles.button}>
         <Link
-          to={`/results?phrase=${encodeURI(phrase)}`}
+          to={`/results?phrase=${encodeURI(
+            phrase
+          )}&offset=${offset}&limit=${limit}`}
           onClick={initSearchWrap}
         >
           <Button inline submit utils="rounded-l-0">
@@ -41,6 +49,7 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
 );
 
 export default function Markup(props) {
+  console.log("Header", props);
   const {
     loading,
     phrase,
@@ -48,7 +57,9 @@ export default function Markup(props) {
     initSearch,
     cancelPromisesPeople,
     cancelPromisesPerson,
-    ql
+    ql,
+    limit,
+    offset
   } = props;
 
   const updatePhraseWrap = event => updatePhrase(event.target.value);
@@ -60,7 +71,7 @@ export default function Markup(props) {
     cancelPromisesPerson("initiated a new search");
     cancelPromisesPeople("initiated a new search");
     if (phrase) {
-      initSearch(phrase);
+      initSearch(phrase, limit, offset);
     }
   };
 
@@ -83,7 +94,13 @@ export default function Markup(props) {
             </Link>
           </div>
           {!loading
-            ? createForm(phrase, updatePhraseWrap, initSearchWrap)
+            ? createForm(
+                phrase,
+                updatePhraseWrap,
+                initSearchWrap,
+                limit,
+                offset
+              )
             : buildLoadingMarkup()}
         </div>
         {props.navigation ? props.navigation : null}

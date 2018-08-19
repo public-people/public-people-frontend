@@ -8,8 +8,11 @@ export default function MediaList(props) {
 
   return (
     <li className={rootCss}>
-      {item.published_at} – in <em>{item.collection.label}</em>:&nbsp;
-      <a href={item.source_url}>{item.title}</a>
+      {item.published_at} – in <em>{item.collection.label}</em>
+      :&nbsp;
+      <a href={item.source_url} target="_blank">
+        {item.title}
+      </a>
     </li>
   );
 }

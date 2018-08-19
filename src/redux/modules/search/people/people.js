@@ -10,6 +10,7 @@ const CLEAR_REQUEST = "search/people/CLEAR_REQUEST";
 const RESOLVE_REQUEST = "search/people/RESOLVE_REQUEST";
 const CANCEL_PROMISES = "search/people/CANCEL_PROMISES";
 const SET_COUNT = "metadata/page/SET_COUNT";
+const SET_CURRENT_URL = "metadata/page/SET_CURRENT_URL";
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
@@ -107,9 +108,8 @@ export function cancelPromises(reason) {
   };
 }
 
-export function initSearch(phrase) {
+export function initSearch(phrase, limit, offset) {
   const callPromise = (promise, dispatch) => {
-    console.log("dispatch1", dispatch);
     return promise
       .then(data => {
         if (data.results.length > 0) {
@@ -167,7 +167,9 @@ export function initSearch(phrase) {
 
     const url = `${config.api.publicpeople}/persons/?search=${encodeURI(
       phrase
-    )}`;
+    )}&limit=${limit}&offset=${offset}`;
+
+    dispatch({ type: SET_CURRENT_URL, payload: url });
 
     const token = createPromiseToken(
       callPromise(peopleFetchWrapper(url), dispatch)
