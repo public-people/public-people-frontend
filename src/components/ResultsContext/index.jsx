@@ -4,7 +4,6 @@ import { setPersonID } from "./../../redux/modules/search/person/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state page", state);
   return {
     ...ownProps,
     results: state.people.results,

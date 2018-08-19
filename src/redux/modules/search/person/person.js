@@ -16,7 +16,6 @@ const SET_MEDIA = "search/person/SET_MEDIA ";
 const SET_COUNT = "metadata/page/SET_COUNT";
 
 export default function reducer(state = {}, action = {}) {
-  console.log("person state", state);
   switch (action.type) {
     case SET_PERSON_ID:
       return { ...state, personID: action.payload };
@@ -109,52 +108,19 @@ export function cancelPromises(reason) {
   };
 }
 
-export function initSearch1(personID) {
-  console.log("person1", personID);
-  return dispatch => {
-    dispatch({
-      type: SET_LOADING,
-      payload: true
-    });
-
-    clearRequest();
-
-    dispatch({
-      type: CLEAR_REQUEST,
-      payload: "new request being sent"
-    });
-
-    dispatch({ type: SET_PERSON_ID, payload: personID });
-
-    const url = `${config.api.publicpeople}/persons/${personID}`;
-    console.log("foo1");
-    const request = personFetchWrapper(url);
-
-    const token = createPromiseToken(request);
-    // const request = fetchWrapper(url);
-    // const token = createPromiseToken(request);
-
-    dispatch({
-      type: SEND_REQUEST,
-      payload: token,
-      meta: {
-        url
-      }
-    });
-
-    token.request
+export function initSearch(personID) {
+  const callPromise = (promise, dispatch) => {
+    return promise
       .then(results => {
-        if (results !== undefined) {
+        if (results.media_list.results.length > 0) {
           const mediaList = results.media_list.results;
-          console.log("mediaList", mediaList);
           dispatch({
             type: SET_MEDIA,
             payload: results.media_list.results
           });
-          const count = 19;
           dispatch({
             type: SET_COUNT,
-            payload: count
+            payload: results.media_list.results.total
           });
           return dispatch({
             type: RESOLVE_REQUEST,
@@ -187,10 +153,7 @@ export function initSearch1(personID) {
         });
       });
   };
-}
 
-export function initSearch(person) {
-  console.log("person2", person);
   return dispatch => {
     dispatch({
       type: SET_LOADING,
@@ -204,16 +167,13 @@ export function initSearch(person) {
       payload: "new request being sent"
     });
 
-    dispatch({ type: SET_PERSON, payload: person });
+    dispatch({ type: SET_PERSON_ID, payload: personID });
 
-    dispatch({ type: SET_PERSON_TOKEN, payload: person });
+    const url = `${config.api.publicpeople}/persons/${personID}`;
 
-    const url = `${config.api.alephapi}?q="${encodeURI(
-      extractFirstLastWords(person)
-    )}"`;
-    console.log("url", url);
-    const request = fetchWrapper(url);
-    const token = createPromiseToken(request);
+    const token = createPromiseToken(
+      callPromise(personFetchWrapper(url), dispatch)
+    );
 
     dispatch({
       type: SEND_REQUEST,
@@ -222,39 +182,5 @@ export function initSearch(person) {
         url
       }
     });
-
-    token.request
-      .then(({ results }) => {
-        if (results.length > 0) {
-          return dispatch({
-            type: RESOLVE_REQUEST,
-            payload: {
-              results
-            },
-            error: null
-          });
-        }
-
-        return dispatch({
-          type: RESOLVE_REQUEST,
-          payload: {
-            results: [],
-            text: "No results were returned, please try another search phrase"
-          },
-          error: false
-        });
-      })
-      .catch(error => {
-        console.warn(error);
-
-        return dispatch({
-          type: RESOLVE_REQUEST,
-          payload: {
-            results: [],
-            text: "An error occured, please try searching again"
-          },
-          error: true
-        });
-      });
   };
 }

@@ -9,7 +9,6 @@ import { NavConfig } from "./../components/Nav/config";
 
 export default function PersonsPage({ data }) {
   const ql = data;
-  console.log("NavConfig", NavConfig);
   return (
     <Fragment>
       <Header

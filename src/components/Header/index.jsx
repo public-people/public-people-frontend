@@ -7,10 +7,13 @@ import {
 import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
 import Markup from "./partials/Markup";
 
-const mapStateToProps = (state, ownProps) => ({
-  ...ownProps,
-  phrase: state.people.phrase
-});
+const mapStateToProps = (state, ownProps) => {
+  console.log("state", state);
+  return {
+    ...ownProps,
+    phrase: state.people.phrase
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),

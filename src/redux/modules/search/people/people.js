@@ -108,43 +108,9 @@ export function cancelPromises(reason) {
 }
 
 export function initSearch(phrase) {
-  return dispatch => {
-    dispatch({
-      type: SET_LOADING,
-      payload: true
-    });
-
-    clearRequest();
-
-    dispatch({
-      type: CLEAR_REQUEST,
-      payload: "new request being sent"
-    });
-
-    const url = `${config.api.publicpeople}/persons/?search=${encodeURI(
-      phrase
-    )}`;
-
-    const request = peopleFetchWrapper(url);
-    const token = createPromiseToken(request);
-
-    dispatch({
-      type: SEND_REQUEST,
-      payload: token,
-      meta: {
-        url
-      }
-    });
-
-    dispatch({
-      type: SEND_REQUEST,
-      payload: token,
-      meta: {
-        url
-      }
-    });
-
-    token.request
+  const callPromise = (promise, dispatch) => {
+    console.log("dispatch1", dispatch);
+    return promise
       .then(data => {
         if (data.results.length > 0) {
           const results = data.results;
@@ -184,5 +150,35 @@ export function initSearch(phrase) {
           error: true
         });
       });
+  };
+
+  return dispatch => {
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    });
+
+    clearRequest();
+
+    dispatch({
+      type: CLEAR_REQUEST,
+      payload: "new request being sent"
+    });
+
+    const url = `${config.api.publicpeople}/persons/?search=${encodeURI(
+      phrase
+    )}`;
+
+    const token = createPromiseToken(
+      callPromise(peopleFetchWrapper(url), dispatch)
+    );
+
+    dispatch({
+      type: SEND_REQUEST,
+      payload: token,
+      meta: {
+        url
+      }
+    });
   };
 }

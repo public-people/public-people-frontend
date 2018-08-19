@@ -14,7 +14,6 @@ export default function fetchWrapper(url) {
             if (data.success === "false") {
               reject(new Error("Requested failed inside CKAN"));
             }
-            console.log("data in da fetch", data);
             resolve(data);
           })
           .catch(reject);

@@ -28,7 +28,6 @@ const buildResults = (results, props) =>
 
 export default function Markup(props) {
   const { loading, error, results, phrase, person, utils } = props;
-  console.log("props", props);
   const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {

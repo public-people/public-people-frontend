@@ -12,7 +12,6 @@ import { default as CardBody } from "../components/Card/components/basic/Body/in
 
 export default function IndexPage({ data }) {
   const ql = data;
-  console.log("ql", ql);
   return (
     <Fragment>
       <Header

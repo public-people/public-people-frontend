@@ -6,7 +6,6 @@ export default function BasicHeader(props) {
   const { utils } = props;
   const Heading = `h${props.headerLevel}`;
   const rootCss = [styles.root, utils].join(" ");
-  console.log("rootCss", rootCss);
   return (
     <Fragment>
       <a className="skiplink" href={"#" + props.title}>

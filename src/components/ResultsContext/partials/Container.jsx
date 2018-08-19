@@ -4,10 +4,7 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, initSearchPeople } = this.props;
-    if (phrase) {
-      initSearchPeople(phrase);
-    }
+    const { phrase } = this.props;
   }
 
   render() {

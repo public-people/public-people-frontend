@@ -4,7 +4,6 @@ import FadeInWrap from "./../../FadeInWrap";
 import styles from "./../styles.module.scss";
 
 const buildResults = (results, props, mediaList) => {
-  console.log("mediaList", mediaList);
   const List = props.list;
 
   return (
@@ -17,9 +16,7 @@ const buildResults = (results, props, mediaList) => {
 };
 
 export default function Markup(props) {
-  console.log("props props", props);
   const { loading, error, results, list, utils, mediaList } = props;
-  console.log("props props", props);
   const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {

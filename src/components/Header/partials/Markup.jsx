@@ -59,7 +59,9 @@ export default function Markup(props) {
     // This will also be true of navigation
     cancelPromisesPerson("initiated a new search");
     cancelPromisesPeople("initiated a new search");
-    initSearch(phrase);
+    if (phrase) {
+      initSearch(phrase);
+    }
   };
 
   return (

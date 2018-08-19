@@ -3,22 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 export default function Card(props) {
-  const {
-    header,
-    body,
-    footer,
-    // title,
-    // children,
-    // level,
-    // highlighted,
-    // link,
-    // height,
-    utils
-  } = props;
-
-  // const Header1 = props.header;
-  // console.log("header", header);
-  // console.log("header1", Header1);
+  const { header, body, footer, utils } = props;
 
   const rootCss = [styles.root, utils].join(" ");
 

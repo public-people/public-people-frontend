@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { initSearch1 as initSearchPerson } from "./../../redux/modules/search/person/person";
+import { initSearch as initSearchPerson } from "./../../redux/modules/search/person/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
