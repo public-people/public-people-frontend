@@ -15,6 +15,7 @@ const CANCEL_PROMISES = "search/person/CANCEL_PROMISES";
 const SET_MEDIA = "search/person/SET_MEDIA ";
 const SET_COUNT = "metadata/page/SET_COUNT";
 const SET_CURRENT_URL = "metadata/page/SET_CURRENT_URL";
+const SET_OFFSET = "metadata/page/SET_OFFSET";
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
@@ -110,7 +111,7 @@ export function cancelPromises(reason) {
 }
 
 export function initSearch(personID, limit, offset) {
-  const callPromise = (promise, dispatch) => {
+  const callPromise = (promise, dispatch, getState) => {
     return promise
       .then(results => {
         if (results.media_list.results.length > 0) {
@@ -155,7 +156,7 @@ export function initSearch(personID, limit, offset) {
       });
   };
 
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({
       type: SET_LOADING,
       payload: true
@@ -169,15 +170,16 @@ export function initSearch(personID, limit, offset) {
     });
 
     dispatch({ type: SET_PERSON_ID, payload: personID });
-
+    dispatch({ type: SET_OFFSET, payload: offset });
     const url = `${
       config.api.publicpeople
     }/persons/${personID}?limit=${limit}&offset=${offset}`;
 
     dispatch({ type: SET_CURRENT_URL, payload: url });
-
+    const incomingToken = getState().person.fetchToken.token;
     const token = createPromiseToken(
-      callPromise(personFetchWrapper(url, limit, offset), dispatch)
+      callPromise(personFetchWrapper(url, limit, offset), dispatch),
+      incomingToken
     );
 
     dispatch({
