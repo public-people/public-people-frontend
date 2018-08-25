@@ -1,7 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
-import store from "./src/redux/store";
+import configureStore from "./src/redux/store";
+const store = configureStore();
+console.log("store in ssr", store);
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   const ConnectedBody = () => (
