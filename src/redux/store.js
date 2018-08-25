@@ -12,8 +12,6 @@ const middleware = applyMiddleware(thunk, epicMiddleware);
 const otherEnhancers = batchedSubscribe(notify => notify());
 const enhancers = composeWithDevTools(middleware, otherEnhancers);
 
-// export default createStore(rootReducer, initialState, enhancers);
-
 export default function configureStore() {
   const store = createStore(rootReducer, initialState, enhancers);
 
