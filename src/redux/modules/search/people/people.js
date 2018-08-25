@@ -101,11 +101,6 @@ export function cancelPromises(reason) {
         type: CANCEL_PROMISES,
         payload: reason
       });
-    } else {
-      dispatch({
-        type: CANCEL_PROMISES,
-        payload: "... Scratch that; not cancelled."
-      });
     }
   };
 }

@@ -6,6 +6,7 @@ import {
 } from "./../../redux/modules/search/people/people";
 import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
 import Markup from "./partials/Markup";
+import { fetchUser } from "./../../redux/epics/users";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -17,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  fetchUser: name => dispatch(fetchUser(name)),
   cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
   cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason)),
   updatePhrase: phrase => dispatch(setPhrase(phrase)),

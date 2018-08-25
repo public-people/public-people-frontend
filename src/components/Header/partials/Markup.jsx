@@ -17,6 +17,7 @@ const buildLoadingMarkup = () => (
 
 const createForm = (
   phrase,
+  fetchUser,
   updatePhraseWrap,
   initSearchWrap,
   limit,
@@ -37,7 +38,7 @@ const createForm = (
           to={`/results?phrase=${encodeURI(
             phrase
           )}&offset=${offset}&limit=${limit}`}
-          onClick={initSearchWrap}
+          onClick={() => initSearchWrap}
         >
           <Button inline submit utils="rounded-l-0">
             <Icon type="search" />
@@ -57,6 +58,7 @@ export default function Markup(props) {
     initSearch,
     cancelPromisesPeople,
     cancelPromisesPerson,
+    fetchUser,
     ql,
     limit,
     offset
@@ -64,10 +66,12 @@ export default function Markup(props) {
 
   const updatePhraseWrap = event => updatePhrase(event.target.value);
   const initSearchWrap = () => {
+    console.log("Console did log");
     // The ordering of these three functions is crucial.
     // The first cancels any previous unresolved request and the second initates a new one.
     // Because the search button can be pressed from anywhere, all promises must be cancelled here.
     // This will also be true of navigation
+    fetchUser("torvalds");
     cancelPromisesPerson("initiated a new search");
     cancelPromisesPeople("initiated a new search");
     if (phrase) {
@@ -96,6 +100,7 @@ export default function Markup(props) {
           {!loading
             ? createForm(
                 phrase,
+                fetchUser,
                 updatePhraseWrap,
                 initSearchWrap,
                 limit,
