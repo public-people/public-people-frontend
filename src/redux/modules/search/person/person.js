@@ -90,6 +90,7 @@ export function clearRequest(reason) {
 }
 
 export function cancelPromises(reason) {
+  console.log("reason1", reason);
   // See "How to dispatch a Redux action with a timeout?"
   // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
   // for help with this code.

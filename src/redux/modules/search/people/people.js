@@ -14,6 +14,7 @@ const SET_CURRENT_URL = "metadata/page/SET_CURRENT_URL";
 const SET_OFFSET = "metadata/page/SET_OFFSET";
 
 export default function reducer(state = {}, action = {}) {
+  console.log("people", state, action);
   switch (action.type) {
     case SET_PHRASE:
       return {
@@ -89,10 +90,16 @@ export function clearRequest(reason) {
 }
 
 export function cancelPromises(reason) {
+  console.log("reason2", reason);
   // See "How to dispatch a Redux action with a timeout?"
   // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559
   // for help with this code.
   return (dispatch, getState) => {
+    console.log("inside da promise");
+    dispatch({
+      type: CANCEL_PROMISES,
+      payload: reason
+    });
     const currStateToken = getState().people.fetchToken;
     if (currStateToken !== undefined && currStateToken.token !== undefined) {
       currStateToken.token.cancel(reason);

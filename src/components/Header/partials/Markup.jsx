@@ -33,12 +33,12 @@ const createForm = (
           onChange={updatePhraseWrap}
         />
       </div>
-      <div className={"foo " + styles.button}>
+      <div className={styles.button}>
         <Link
           to={`/results?phrase=${encodeURI(
             phrase
           )}&offset=${offset}&limit=${limit}`}
-          onClick={() => initSearchWrap}
+          onClick={initSearchWrap}
         >
           <Button inline submit utils="rounded-l-0">
             <Icon type="search" />
@@ -59,6 +59,7 @@ export default function Markup(props) {
     cancelPromisesPeople,
     cancelPromisesPerson,
     fetchUser,
+    fetchPeople,
     ql,
     limit,
     offset
@@ -71,9 +72,10 @@ export default function Markup(props) {
     // The first cancels any previous unresolved request and the second initates a new one.
     // Because the search button can be pressed from anywhere, all promises must be cancelled here.
     // This will also be true of navigation
-    fetchUser("torvalds");
     cancelPromisesPerson("initiated a new search");
     cancelPromisesPeople("initiated a new search");
+    fetchUser({ personID: 13968, offset: 0, limit: 15 });
+    fetchPeople("charl", 0, 15);
     if (phrase) {
       initSearch(phrase, limit, 0);
     }
