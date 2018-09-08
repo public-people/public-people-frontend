@@ -17,7 +17,6 @@ const buildLoadingMarkup = () => (
 
 const createForm = (
   phrase,
-  fetchUser,
   updatePhraseWrap,
   initSearchWrap,
   limit,
@@ -55,30 +54,27 @@ export default function Markup(props) {
     loading,
     phrase,
     updatePhrase,
-    initSearch,
-    cancelPromisesPeople,
-    cancelPromisesPerson,
-    fetchUser,
+    getPeopleCancel,
+    getPersonCancel,
+    getPeople,
     fetchPeople,
     ql,
     limit,
     offset
   } = props;
 
-  const updatePhraseWrap = event => updatePhrase(event.target.value);
+  const updatePhraseWrap = event => {
+    console.log(event);
+    updatePhrase(event.target.value);
+  };
   const initSearchWrap = () => {
-    console.log("Console did log");
     // The ordering of these three functions is crucial.
     // The first cancels any previous unresolved request and the second initates a new one.
     // Because the search button can be pressed from anywhere, all promises must be cancelled here.
     // This will also be true of navigation
-    cancelPromisesPerson("initiated a new search");
-    cancelPromisesPeople("initiated a new search");
-    fetchUser({ personID: 13968, offset: 0, limit: 15 });
-    fetchPeople("charl", 0, 15);
-    if (phrase) {
-      initSearch(phrase, limit, 0);
-    }
+    getPeopleCancel();
+    getPersonCancel();
+    getPeople(phrase, offset, limit);
   };
 
   return (
@@ -102,7 +98,6 @@ export default function Markup(props) {
           {!loading
             ? createForm(
                 phrase,
-                fetchUser,
                 updatePhraseWrap,
                 initSearchWrap,
                 limit,
@@ -120,7 +115,6 @@ Markup.propTypes = {
   loading: PropTypes.bool,
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
-  initSearch: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   navigation: PropTypes.element
 };

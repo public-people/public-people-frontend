@@ -73,6 +73,16 @@ const callSearch = (
   personID,
   path
 ) => {
+  console.log(
+    "calling search",
+    searchPerson,
+    searchPeople,
+    limit,
+    offset,
+    phrase,
+    personID,
+    path
+  );
   switch (true) {
     case path === "/results" && phrase !== undefined:
       return searchPeople(phrase, limit, offset);

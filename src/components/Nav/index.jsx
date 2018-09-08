@@ -1,10 +1,6 @@
 import { connect } from "react-redux";
-import {
-  initSearch,
-  setPhrase,
-  cancelPromises as cancelPromisesPeople
-} from "./../../redux/modules/search/people/people";
-import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
+import { getPeopleCancel } from "./../../redux/modules/search/people";
+import { getPersonCancel } from "./../../redux/modules/search/person";
 import Markup from "./partials/Markup";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -13,8 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
-  cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason))
+  getPeopleCancel: () => dispatch(getPeopleCancel()),
+  getPersonCancel: () => dispatch(getPersonCancel())
 });
 
 const Nav = connect(

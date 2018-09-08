@@ -4,10 +4,10 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { personID, initSearchPerson, limit, offset } = this.props;
-    if (personID) {
-      initSearchPerson(personID, limit, offset);
-    }
+    const { personID, limit, offset } = this.props;
+    // if (personID) {
+    //   initSearchPerson(personID, limit, offset);
+    // }
   }
 
   render() {
@@ -15,8 +15,8 @@ export default class Container extends Component {
   }
 }
 
-Container.propTypes = {
-  personID: PropTypes.number.isRequired
-};
+// Container.propTypes = {
+//   personID: PropTypes.number.isRequired
+// };
 
-Container.defaultProps = {};
+// Container.defaultProps = {};

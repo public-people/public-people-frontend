@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { initSearch as initSearchPeople } from "./../../redux/modules/search/people/people";
-import { setPersonID } from "./../../redux/modules/search/person/person";
+import { getPeople } from "./../../redux/modules/search/people";
+import { getPerson } from "./../../redux/modules/search/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,9 +17,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initSearchPeople: (phrase, limit, offset) =>
-    dispatch(initSearchPeople(phrase, limit, offset)),
-  resetToken: personID => dispatch(setPersonID(personID))
+  getPeople: (phrase, limit, offset) =>
+    dispatch(getPeople(phrase, limit, offset)),
+  getPerson: (personID, limit, offset) =>
+    dispatch(getPerson(personID, limit, offset))
 });
 
 const Results = connect(

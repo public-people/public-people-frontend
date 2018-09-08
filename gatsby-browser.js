@@ -3,8 +3,6 @@ import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 import configureStore from "./src/redux/store";
-import { setPhrase } from "./src/redux/modules/search/people/people";
-import { setPersonID } from "./src/redux/modules/search/person/person";
 import extractQueryString from "./src/utilities/js/extractQueryString";
 // The two plugins below are polyfills for IE 11.
 import "whatwg-fetch";
@@ -20,13 +18,6 @@ exports.onClientEntry = () => {
   );
   const limit = extractQueryString("limit", window.location.search);
   const offset = extractQueryString("offset", window.location.search);
-
-  if (phrase) {
-    store.dispatch(setPhrase(phrase));
-  }
-  if (personID) {
-    store.dispatch(setPersonID(personID));
-  }
 };
 
 exports.replaceRouterComponent = ({ history }) => {

@@ -8,7 +8,7 @@ const buildResults = (results, props, mediaList) => {
 
   return (
     <Fragment>
-      {mediaList.map((item, index) => (
+      {results.media.map((item, index) => (
         <List utils={"component"} key={item.id} item={item} />
       ))}
     </Fragment>
@@ -16,7 +16,7 @@ const buildResults = (results, props, mediaList) => {
 };
 
 export default function Markup(props) {
-  const { loading, error, results, list, utils, mediaList } = props;
+  const { loading, error, results, list, utils } = props;
   const rootCss = [styles.root, utils].join(" ");
 
   if (error === false) {
@@ -37,7 +37,7 @@ export default function Markup(props) {
     ));
   }
 
-  if (error) {
+  if (error.isError) {
     return (
       <FadeInWrap>
         <div className="text-center">Error</div>
@@ -45,7 +45,7 @@ export default function Markup(props) {
     );
   }
 
-  if (results.length < 1) {
+  if (results.media.length < 1) {
     return (
       <FadeInWrap>
         <div className="text-center">No results</div>
@@ -56,37 +56,35 @@ export default function Markup(props) {
   return (
     <Fragment>
       <h1 className={`${rootCss} component`}>{props.person}</h1>
-      <Fragment>
-        {results ? buildResults(results, props, mediaList) : null}
-      </Fragment>
+      <Fragment>{results ? buildResults(results, props) : null}</Fragment>
     </Fragment>
   );
 }
 
-Markup.propTypes = {
-  list: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.object,
-    PropTypes.func
-  ]),
-  loading: PropTypes.bool,
-  error: PropTypes.bool,
-  person: PropTypes.string,
-  mediaList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      title: PropTypes.string,
-      source_url: PropTypes.string,
-      published_at: PropTypes.string
-    })
-  )
-};
+// Markup.propTypes = {
+//   list: PropTypes.oneOfType([
+//     PropTypes.element,
+//     PropTypes.object,
+//     PropTypes.func
+//   ]),
+//   loading: PropTypes.bool,
+//   error: PropTypes.bool,
+//   person: PropTypes.string,
+//   mediaList: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string,
+//       name: PropTypes.string,
+//       title: PropTypes.string,
+//       source_url: PropTypes.string,
+//       published_at: PropTypes.string
+//     })
+//   )
+// };
 
-Markup.defaultProps = {
-  loading: false,
-  error: null,
-  results: [],
-  person: "",
-  mediaList: []
-};
+// Markup.defaultProps = {
+//   loading: false,
+//   error: null,
+//   results: [],
+//   person: "",
+//   mediaList: []
+// };

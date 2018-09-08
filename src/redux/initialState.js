@@ -9,8 +9,12 @@ export default {
     notification: null
   },
   person: {
+    loading: true,
     personToken: "",
-    mediaList: []
+    results: {
+      personal: [],
+      media: []
+    }
   },
   page: {
     count: 0,

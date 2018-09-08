@@ -1,15 +1,14 @@
 import { connect } from "react-redux";
-import {
-  initSearch as initSearchPeople,
-  cancelPromises as cancelPromisesPeople,
-  setPhrase
-} from "./../../redux/modules/search/people/people";
 import Container from "./partials/Container";
 import {
-  initSearch as initSearchPerson,
-  cancelPromises as cancelPromisesPerson,
-  setPersonID
-} from "./../../redux/modules/search/person/person";
+  setPhrase,
+  getPeople,
+  getPeopleCancel
+} from "./../../redux/modules/search/people";
+import {
+  getPerson,
+  getPersonCancel
+} from "./../../redux/modules/search/person";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -26,14 +25,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   searchPeople: (phrase, limit, offset) => {
-    dispatch(cancelPromisesPeople("changed page"));
-    dispatch(setPhrase(phrase));
-    dispatch(initSearchPeople(phrase, limit, offset));
+    dispatch(getPeopleCancel());
+    dispatch(getPeople(phrase, limit, offset));
   },
   searchPerson: (personID, limit, offset) => {
-    dispatch(cancelPromisesPerson("changed page"));
-    dispatch(setPersonID(personID));
-    dispatch(initSearchPerson(personID, limit, offset));
+    dispatch(getPersonCancel());
+    dispatch(getPerson(personID, limit, offset));
   }
 });
 

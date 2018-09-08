@@ -6,27 +6,32 @@ import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
 import PropTypes from "prop-types";
 
-const buildResults = (results, props, offset, limit) =>
-  results.map((item, index) => (
-    <li className={"component flex"} key={item.id}>
-      <Card
-        header={
-          <CardHeader
-            resetToken={props.resetToken}
-            item={item}
-            headerLevel={2}
-            offset={offset}
-            limit={limit}
-          />
-        }
-        footer="Unknown amount of events"
-        title={item.name}
-        link
-        footer="Unknown amount of events"
-        height={250}
-      />
-    </li>
-  ));
+const buildResults = (results, props, offset, limit) => {
+  console.log("FIIIIIRE");
+  return results.map((item, index) => {
+    console.log("item in item", item);
+    return (
+      <li className={"component flex"} key={item.id}>
+        <Card
+          header={
+            <CardHeader
+              clickFn={props.getPerson}
+              item={item}
+              headerLevel={2}
+              offset={offset}
+              limit={limit}
+            />
+          }
+          footer="Unknown amount of events"
+          title={item.name}
+          link
+          footer="Unknown amount of events"
+          height={250}
+        />
+      </li>
+    );
+  });
+};
 
 export default function Markup(props) {
   const {
@@ -34,14 +39,15 @@ export default function Markup(props) {
     error,
     results,
     phrase,
-    person,
+    getPerson,
     utils,
     offset,
     limit
   } = props;
   const rootCss = [styles.root, utils].join(" ");
-
+  console.log("FIIIIIRE1");
   if (error === false) {
+    console.log("FIIIIIRE2");
     return (
       <div>
         No results were found for this search. Please try another search term
@@ -50,6 +56,7 @@ export default function Markup(props) {
   }
 
   if (loading) {
+    console.log("FIIIIIRE3");
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
@@ -59,7 +66,8 @@ export default function Markup(props) {
     ));
   }
 
-  if (error) {
+  if (error.isError) {
+    console.log("FIIIIIRE4");
     return (
       <FadeInWrap>
         <div className="text-center">
@@ -72,6 +80,7 @@ export default function Markup(props) {
   }
 
   if (results.length < 1) {
+    console.log("FIIIIIRE5");
     return (
       <FadeInWrap>
         <div className="text-center">
@@ -88,7 +97,7 @@ export default function Markup(props) {
       </FadeInWrap>
     );
   }
-
+  console.log("FIIIIIRE6");
   return (
     <Fragment>
       {results ? buildResults(results, props, offset, limit) : null}
@@ -98,13 +107,6 @@ export default function Markup(props) {
 
 Markup.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.bool,
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string
-    })
-  ),
   phrase: PropTypes.string.isRequired
 };
 

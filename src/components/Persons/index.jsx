@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { initSearch as initSearchPerson } from "./../../redux/modules/search/person/person";
+import { getPerson } from "./../../redux/modules/search/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,8 +18,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initSearchPerson: (person, limit, offset) =>
-    dispatch(initSearchPerson(person, limit, offset))
+  getPerson: (person, limit, offset) => {
+    dispatch(getPerson(person, limit, offset));
+  }
 });
 
 const Persons = connect(

@@ -4,18 +4,20 @@ import styles from "../styles.module.scss";
 import Link from "gatsby-link";
 
 export default function Nav(props) {
-  const { utils, links, cancelPromisesPeople, cancelPromisesPerson } = props;
-  const cancelAllPromises = () => {
-    cancelPromisesPeople("navigating away.");
-    cancelPromisesPerson("navigating away.");
+  const { utils, links, getPersonCancel, getPeopleCancel } = props;
+
+  const cancelCurrentRequests = () => {
+    getPersonCancel();
+    getPeopleCancel();
   };
+
   const rootCss = [styles.root, utils].join(" ");
 
   return (
     <nav className={rootCss}>
       {links.map((link, index) => (
         <Link
-          onClick={cancelAllPromises}
+          onClick={cancelCurrentRequests}
           key={`key-${index}-${link.text}`}
           to={link.url}
         >

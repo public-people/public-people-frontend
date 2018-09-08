@@ -1,16 +1,15 @@
 import { connect } from "react-redux";
 import {
-  initSearch,
+  getPeople,
   setPhrase,
-  cancelPromises as cancelPromisesPeople
-} from "./../../redux/modules/search/people/people";
-import { cancelPromises as cancelPromisesPerson } from "./../../redux/modules/search/person/person";
+  getPeopleCancel,
+  updatePhrase
+} from "./../../redux/modules/search/people";
+import { getPersonCancel } from "./../../redux/modules/search/person";
 import Markup from "./partials/Markup";
-import { fetchUser } from "./../../redux/epics/users";
-import { fetchPeople } from "./../../redux/epics/getPeople";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state", state);
+  console.log("state1", state);
   return {
     ...ownProps,
     phrase: state.people.phrase,
@@ -20,14 +19,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchUser: name => dispatch(fetchUser(name)),
-  fetchPeople: (phrase, offset, limit) =>
-    dispatch(fetchPeople(phrase, offset, limit)),
-  cancelPromisesPeople: reason => dispatch(cancelPromisesPeople(reason)),
-  cancelPromisesPerson: reason => dispatch(cancelPromisesPerson(reason)),
-  updatePhrase: phrase => dispatch(setPhrase(phrase)),
-  initSearch: (phrase, limit, offset) =>
-    dispatch(initSearch(phrase, limit, offset))
+  getPeople: (phrase, offset, limit) =>
+    dispatch(getPeople(phrase, offset, limit)),
+  getPeopleCancel: reason => dispatch(getPeopleCancel(reason)),
+  getPersonCancel: reason => dispatch(getPersonCancel(reason)),
+  updatePhrase: phrase => dispatch(setPhrase(phrase))
 });
 
 const Header = connect(
