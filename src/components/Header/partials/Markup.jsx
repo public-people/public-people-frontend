@@ -64,7 +64,6 @@ export default function Markup(props) {
   } = props;
 
   const updatePhraseWrap = event => {
-    console.log(event);
     updatePhrase(event.target.value);
   };
   const initSearchWrap = () => {
@@ -74,7 +73,7 @@ export default function Markup(props) {
     // This will also be true of navigation
     getPeopleCancel();
     getPersonCancel();
-    getPeople(phrase, offset, limit);
+    phrase ? getPeople(phrase, limit, offset) : getPeople("", 15, 0);
   };
 
   return (

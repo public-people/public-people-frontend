@@ -5,9 +5,7 @@ import extractFirstLastWords from "../../../../../utilities/js/extractFirstLastW
 import styles from "./styles.module.scss";
 
 export default function ResultsHeader(props) {
-  console.log("props", props);
-  const { utils, item, offset, limit } = props;
-  console.log("props", props);
+  const { utils, item, limit, offset } = props;
 
   const Heading = `h${props.headerLevel}`;
   const rootCss = [styles.root, utils].join(" ");

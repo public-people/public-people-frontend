@@ -1,6 +1,6 @@
 import { ajax } from "rxjs/ajax";
 import { ofType } from "redux-observable";
-import { switchMap, flatMap, takeUntil, catchError } from "rxjs/operators";
+import { switchMap, flatMap, takeUntil, catchError, tap } from "rxjs/operators";
 import { of, concat } from "rxjs";
 import { config } from "./../../runtime.config";
 
@@ -29,6 +29,7 @@ export const getQueryURIencoded = arr => {
 export const getPeopleEpic = action$ =>
   action$.pipe(
     ofType(GET_PEOPLE),
+    tap(action => console.log("action", action)),
     switchMap(action =>
       concat(
         ajax

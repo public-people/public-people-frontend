@@ -6,14 +6,15 @@ const GET_PERSON_CANCEL = "search/people/GET_PERSON_CANCEL";
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case GET_PERSON_CANCEL:
-      return state;
+      return {
+        ...state,
+        loading: false
+      };
 
     case GET_PERSON:
       return {
         ...state,
         personID: action.payload.personID,
-        limit: action.payload.limit,
-        offset: action.payload.offset,
         loading: true,
         error: {
           ...state.error,
@@ -59,8 +60,8 @@ export const getPerson = (personID, limit, offset) => ({
   type: GET_PERSON,
   payload: {
     personID: personID,
-    offset: offset,
-    limit: limit
+    limit: limit,
+    offset: offset
   }
 });
 
@@ -74,12 +75,13 @@ export const getPersonSuccess = payload => ({
 
 export const getPersonFailure = payload => ({
   type: GET_PERSON_FAILURE,
-  payload,
-  error: true
+  payload: {
+    text: "Lorum errum",
+    message: payload.payload.message,
+    status: payload.payload.status
+  }
 });
 
-export const getPersonCancel = payload => ({
-  type: GET_PERSON_CANCEL,
-  payload,
-  error: true
+export const getPersonCancel = () => ({
+  type: GET_PERSON_CANCEL
 });

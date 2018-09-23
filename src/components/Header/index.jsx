@@ -11,7 +11,6 @@ import Markup from "./partials/Markup";
 const mapStateToProps = (state, ownProps) => {
   console.log("state1", state);
   return {
-    ...ownProps,
     phrase: state.people.phrase,
     limit: state.page.limit,
     offset: state.page.offset
@@ -19,8 +18,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getPeople: (phrase, offset, limit) =>
-    dispatch(getPeople(phrase, offset, limit)),
+  getPeople: (phrase, limit, offset) =>
+    dispatch(getPeople(phrase, limit, offset)),
   getPeopleCancel: reason => dispatch(getPeopleCancel(reason)),
   getPersonCancel: reason => dispatch(getPersonCancel(reason)),
   updatePhrase: phrase => dispatch(setPhrase(phrase))

@@ -6,7 +6,7 @@ import ResultsContext from "./../components/ResultsContext/index";
 import { NavConfig } from "./../components/Nav/config";
 import Nav from "./../components/Nav/index";
 
-export default function ResultsPage({ data }) {
+export default function ResultsPage({ data, location, action }) {
   const ql = data;
   return (
     <Fragment>
@@ -16,7 +16,10 @@ export default function ResultsPage({ data }) {
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
-        <ResultsContext utils={"dist-size300-3"} list={<Results />} />
+        <ResultsContext
+          utils={"dist-size300-3"}
+          list={data => <Results data={data} location={location} />}
+        />
       </Main>
     </Fragment>
   );

@@ -12,7 +12,6 @@ import {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    ...ownProps,
     count: state.page.count,
     current_url: state.page.current_url,
     limit: state.page.limit,
@@ -24,11 +23,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  searchPeople: (phrase, limit, offset) => {
+  getPeople: (phrase, limit, offset) => {
     dispatch(getPeopleCancel());
     dispatch(getPeople(phrase, limit, offset));
   },
-  searchPerson: (personID, limit, offset) => {
+  getPerson: (personID, limit, offset) => {
     dispatch(getPersonCancel());
     dispatch(getPerson(personID, limit, offset));
   }

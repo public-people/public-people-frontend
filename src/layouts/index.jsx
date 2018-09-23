@@ -7,7 +7,8 @@ import "./../utilities/css";
 
 const store = configureStore();
 
-export default function Layout({ children }) {
+export default function Layout({ children, history, location, match }) {
+  console.log("layout", history, location, match);
   return <Provider {...{ store }}>{children()}</Provider>;
 }
 

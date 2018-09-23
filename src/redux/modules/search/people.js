@@ -1,8 +1,3 @@
-import createPromiseToken from "../../../utilities/js/createPromiseToken";
-import fetchWrapper from "../../../utilities/js/fetchWrapper";
-import { config } from "../../../runtime.config";
-import peopleFetchWrapper from "./../../../utilities/js/peopleFetchWrapper";
-
 const GET_PEOPLE = "search/people/GET_PEOPLE";
 const GET_PEOPLE_FAILURE = "search/people/GET_PEOPLE_FAILURE";
 const GET_PEOPLE_SUCCESS = "search/people/GET_PEOPLE_SUCCESS";
@@ -12,9 +7,6 @@ const SET_PHRASE = "search/people/SET_PHRASE";
 export default function reducer(state = {}, action = {}) {
   console.log("people1", state, action);
   switch (action.type) {
-    case GET_PEOPLE_CANCEL:
-      return state;
-
     case GET_PEOPLE:
       return {
         ...state,
@@ -54,13 +46,16 @@ export default function reducer(state = {}, action = {}) {
         }
       };
 
-    case GET_PEOPLE_CANCEL:
-      return state;
-
     case SET_PHRASE:
       return {
         ...state,
         phrase: action.payload
+      };
+
+    case GET_PEOPLE_CANCEL:
+      return {
+        ...state,
+        loading: false
       };
 
     default:
@@ -68,21 +63,17 @@ export default function reducer(state = {}, action = {}) {
   }
 }
 
-// export const getPeopleCount = payload => ({
-//   type: GET_PEOPLE_COUNT,
-//   payload: {
-//     count: payload.count
-//   }
-// });
-
-export const getPeople = (phrase, offset, limit) => ({
-  type: GET_PEOPLE,
-  payload: {
-    phrase: phrase,
-    offset: offset,
-    limit: limit
-  }
-});
+export const getPeople = (phrase, limit, offset) => {
+  console.log("phrase, limit, offset", phrase, limit, offset);
+  return {
+    type: GET_PEOPLE,
+    payload: {
+      phrase: phrase,
+      offset: offset,
+      limit: limit
+    }
+  };
+};
 
 export const getPeopleCancel = () => ({
   type: GET_PEOPLE_CANCEL

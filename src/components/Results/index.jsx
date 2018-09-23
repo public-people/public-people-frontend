@@ -2,8 +2,11 @@ import { connect } from "react-redux";
 import { getPeople } from "./../../redux/modules/search/people";
 import { getPerson } from "./../../redux/modules/search/person";
 import Container from "./partials/Container";
+import extractQueryString from "./../../utilities/js/extractQueryString";
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("ownProps", ownProps);
+  console.log("state", state);
   return {
     ...ownProps,
     results: state.people.results,
@@ -16,11 +19,29 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const getDataOnRouteChangeOrEntry = () => {
+  console.log("local-route-change");
+  const phrase = extractQueryString("phrase", window.location.search) || "";
+  const personID = Number(
+    extractQueryString("personID", window.location.search)
+  );
+  const limit = extractQueryString("limit", window.location.search);
+  const offset = extractQueryString("offset", window.location.search);
+
+  if (window.location.pathname === "/person") {
+    return getPerson(personID, limit, offset);
+  }
+  if (window.location.pathname === "/results") {
+    return getPeople(phrase, limit, offset);
+  }
+};
+
 const mapDispatchToProps = dispatch => ({
   getPeople: (phrase, limit, offset) =>
     dispatch(getPeople(phrase, limit, offset)),
   getPerson: (personID, limit, offset) =>
-    dispatch(getPerson(personID, limit, offset))
+    dispatch(getPerson(personID, limit, offset)),
+  getDataOnRouteChangeOrEntry: () => dispatch(getDataOnRouteChangeOrEntry())
 });
 
 const Results = connect(

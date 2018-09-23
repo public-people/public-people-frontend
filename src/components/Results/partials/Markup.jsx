@@ -6,10 +6,8 @@ import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
 import PropTypes from "prop-types";
 
-const buildResults = (results, props, offset, limit) => {
-  console.log("FIIIIIRE");
+const buildResults = (results, props, limit, offset) => {
   return results.map((item, index) => {
-    console.log("item in item", item);
     return (
       <li className={"component flex"} key={item.id}>
         <Card
@@ -34,6 +32,7 @@ const buildResults = (results, props, offset, limit) => {
 };
 
 export default function Markup(props) {
+  console.log("PROPS IN THE WAAY", props);
   const {
     loading,
     error,
@@ -45,6 +44,7 @@ export default function Markup(props) {
     limit
   } = props;
   const rootCss = [styles.root, utils].join(" ");
+  console.log("markup props", props);
   console.log("FIIIIIRE1");
   if (error === false) {
     console.log("FIIIIIRE2");
@@ -100,7 +100,7 @@ export default function Markup(props) {
   console.log("FIIIIIRE6");
   return (
     <Fragment>
-      {results ? buildResults(results, props, offset, limit) : null}
+      {results ? buildResults(results, props, limit, offset) : null}
     </Fragment>
   );
 }

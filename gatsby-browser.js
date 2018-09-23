@@ -7,25 +7,40 @@ import extractQueryString from "./src/utilities/js/extractQueryString";
 // The two plugins below are polyfills for IE 11.
 import "whatwg-fetch";
 import "core-js/es6/promise";
+import { getPeople } from "./src/redux/modules/search/people";
+import { getPerson } from "./src/redux/modules/search/person";
+import { setPageMetaOffset } from "./src/redux/modules/metadata/page";
 
-const store = configureStore();
+export const store = configureStore();
 
-exports.onClientEntry = () => {
-  const phrase = extractQueryString("phrase", window.location.search);
-  const person = extractQueryString("person", window.location.search);
+const getDataOnRouteChangeOrEntry = () => {
+  const phrase = extractQueryString("phrase", window.location.search) || "";
   const personID = Number(
     extractQueryString("personID", window.location.search)
   );
-  const limit = extractQueryString("limit", window.location.search);
-  const offset = extractQueryString("offset", window.location.search);
+  const limit = Number(extractQueryString("limit", window.location.search));
+  const offset = Number(extractQueryString("offset", window.location.search));
+  if (window.location.pathname === "/person") {
+    store.dispatch(setPageMetaOffset(offset));
+    store.dispatch(getPerson(personID, limit, offset));
+  }
+  if (window.location.pathname === "/results") {
+    store.dispatch(setPageMetaOffset(offset));
+    store.dispatch(getPeople(phrase, limit, offset));
+  }
+};
+
+exports.onClientEntry = () => {};
+
+exports.onRouteUpdate = ({ location, action }) => {
+  getDataOnRouteChangeOrEntry();
 };
 
 exports.replaceRouterComponent = ({ history }) => {
   /* eslint-disable react/jsx-filename-extension */
   /* Gatsby requires that this file be '.js' */
-  console.log("storer", store);
   const ConnectedRouterWrapper = ({ children }) => (
-    <Provider {...{ store }}>
+    <Provider store={store}>
       <Router {...{ history }}>{children}</Router>
     </Provider>
   );

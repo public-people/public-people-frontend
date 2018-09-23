@@ -4,22 +4,30 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, getPeople, limit, offset } = this.props;
-    if (phrase) {
-      getPeople(phrase, offset, limit);
-    }
+    const {
+      getDataOnRouteChangeOrEntry,
+      phrase,
+      getPeople,
+      limit,
+      offset
+    } = this.props;
+
+    // getDataOnRouteChangeOrEntry();
+
+    console.log("THIS DID MOUNT");
   }
 
   render() {
+    console.log("THIS DID RENDER");
     return <Markup {...this.props} />;
   }
 }
 
-Container.propTypes = {
-  phrase: PropTypes.string,
-  getPeople: PropTypes.func.isRequired
-};
+// Container.propTypes = {
+//   phrase: PropTypes.string,
+//   getPeople: PropTypes.func.isRequired
+// };
 
-Container.defaultProps = {
-  phrase: ""
-};
+// Container.defaultProps = {
+//   phrase: ""
+// };

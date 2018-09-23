@@ -3,6 +3,7 @@ import { getPeople } from "./../../redux/modules/search/people";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("state at results context", state, ownProps);
   return {
     ...ownProps,
     results: state.people.results,
