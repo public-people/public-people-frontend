@@ -103,6 +103,8 @@ export default function AboutUsPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const SiteMetaQuery = graphql`
   query AboutUs {
     site {
@@ -110,3 +112,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */

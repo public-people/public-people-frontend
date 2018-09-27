@@ -4,14 +4,12 @@ import styles from "./../styles.module.scss";
 import Pagination from "./../../Pagination/index";
 
 export default function ResultsContext(props) {
-  console.log("ResultsContext", props);
   const { utils, list, limit, offset, results, loading } = props;
   const rootCss = [styles.root, utils].join(" ");
-  console.log(limit, offset);
-  console.log("limit, offset");
+
   return (
     <Fragment>
-      <ul className={rootCss}>{list(props)}</ul>
+      <ul className={rootCss}>{props.list}</ul>
       <Pagination />
     </Fragment>
   );

@@ -11,3 +11,7 @@ export default function ResultsBody(props) {
 ResultsBody.propTypes = {
   utils: PropTypes.string
 };
+
+ResultsBody.defaultProps = {
+  utils: null
+};

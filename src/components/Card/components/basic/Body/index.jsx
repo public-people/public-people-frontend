@@ -17,3 +17,6 @@ export default function BasicBody(props) {
 BasicBody.propTypes = {
   utils: PropTypes.string
 };
+BasicBody.defaultProps = {
+  utils: null
+};

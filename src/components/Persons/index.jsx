@@ -3,7 +3,6 @@ import { getPerson } from "./../../redux/modules/search/person";
 import Container from "./partials/Container";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("persons state", state);
   return {
     ...ownProps,
     mediaList: state.person.mediaList,

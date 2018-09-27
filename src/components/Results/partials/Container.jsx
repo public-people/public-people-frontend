@@ -11,14 +11,9 @@ export default class Container extends Component {
       limit,
       offset
     } = this.props;
-
-    // getDataOnRouteChangeOrEntry();
-
-    console.log("THIS DID MOUNT");
   }
 
   render() {
-    console.log("THIS DID RENDER");
     return <Markup {...this.props} />;
   }
 }

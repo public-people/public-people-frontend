@@ -8,7 +8,13 @@ export default function reducer(state = {}, action = {}) {
     case GET_PERSON_CANCEL:
       return {
         ...state,
-        loading: false
+        loading: false,
+        error: {
+          isError: false,
+          status: null,
+          message: null,
+          text: null
+        }
       };
 
     case GET_PERSON:
@@ -59,9 +65,9 @@ export default function reducer(state = {}, action = {}) {
 export const getPerson = (personID, limit, offset) => ({
   type: GET_PERSON,
   payload: {
-    personID: personID,
-    limit: limit,
-    offset: offset
+    personID,
+    limit,
+    offset
   }
 });
 

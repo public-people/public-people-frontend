@@ -18,7 +18,7 @@ export default function NotFoundPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Contact Us | Public People"}
+        title="Contact Us | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
@@ -29,6 +29,7 @@ export default function NotFoundPage({ data }) {
   /* eslint-enable */
 }
 
+/* eslint-disable */
 export const SiteMetaQuery = graphql`
   query NotFoundPage {
     site {
@@ -36,3 +37,4 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+/* eslint-disable */

@@ -17,13 +17,15 @@ export default function ResultsPage({ data, location, action }) {
       />
       <Main>
         <ResultsContext
-          utils={"dist-size300-3"}
-          list={data => <Results data={data} location={location} />}
+          utils={"dist-size300-1 dist-size400-2 dist-size500-3 dist-size800-4"}
+          list={<Results />}
         />
       </Main>
     </Fragment>
   );
 }
+
+/* eslint-disable */
 
 export const SiteMetaQuery = graphql`
   query Results {
@@ -32,3 +34,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */

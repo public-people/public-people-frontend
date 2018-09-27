@@ -6,7 +6,6 @@ const SET_CURRENT_URL = "metadata/page/SET_CURRENT_URL";
 const SET_OFFSET = "metadata/page/SET_OFFSET";
 
 export default function reducer(state = {}, action = {}) {
-  console.log("page", state, action);
   switch (action.type) {
     case SET_PAGE_META:
       return {
@@ -42,6 +41,6 @@ export default function reducer(state = {}, action = {}) {
 export const setPageMetaOffset = offset => ({
   type: SET_PAGE_META_OFFSET,
   payload: {
-    offset: offset
+    offset
   }
 });

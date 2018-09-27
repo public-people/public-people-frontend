@@ -28,6 +28,8 @@ export default function ContactUsPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const aboutQueryFragment = graphql`
   fragment aboutQueryFragment on Site {
     siteMetadata {
@@ -43,3 +45,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */

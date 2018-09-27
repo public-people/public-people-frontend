@@ -21,3 +21,8 @@ BasicHeader.propTypes = {
   headerLevel: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   utils: PropTypes.string
 };
+
+BasicHeader.defaultProps = {
+  headerLevel: 1,
+  utils: null
+};

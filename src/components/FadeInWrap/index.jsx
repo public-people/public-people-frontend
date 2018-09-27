@@ -18,9 +18,11 @@ export default function FadeInWrap(props) {
 
 FadeInWrap.propTypes = {
   children: PropTypes.node.isRequired,
-  delay: PropTypes.number
+  delay: PropTypes.number,
+  utils: PropTypes.string
 };
 
 FadeInWrap.defaultProps = {
-  delay: null
+  delay: null,
+  utils: null
 };

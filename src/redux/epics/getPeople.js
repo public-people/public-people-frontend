@@ -10,8 +10,8 @@ const GET_PEOPLE_FAILURE = "search/people/GET_PEOPLE_FAILURE";
 const GET_PEOPLE_SUCCESS = "search/people/GET_PEOPLE_SUCCESS";
 const GET_PEOPLE_CANCEL = "search/people/GET_PEOPLE_CANCEL";
 
-export const getQueryURIencoded = arr => {
-  return encodeURI(`fragment userFields on PersonType {
+export const getQueryURIencoded = arr =>
+  encodeURI(`fragment userFields on PersonType {
     id
     name
     memberships {
@@ -24,12 +24,10 @@ export const getQueryURIencoded = arr => {
   query {
     ${arr.map(id => `person_${id}: person(id: ${id}) { ...userFields }`)}
   }`);
-};
 
 export const getPeopleEpic = action$ =>
   action$.pipe(
     ofType(GET_PEOPLE),
-    tap(action => console.log("action", action)),
     switchMap(action =>
       concat(
         ajax
@@ -57,10 +55,10 @@ export const getPeopleEpic = action$ =>
                           )}`
                         )
                         .pipe(
-                          flatMap(response =>
+                          flatMap(responseTwo =>
                             of({
                               type: GET_PEOPLE_SUCCESS,
-                              payload: Object.values(response.data)
+                              payload: Object.values(responseTwo.data)
                             })
                           )
                         )

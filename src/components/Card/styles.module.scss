@@ -5,13 +5,11 @@
   }
   padding: 1rem;
   @import "../../utilities/css/abstracts";
-  color: $primary-gray;
+  color: $black;
   border-radius: 0.05rem;
   background: $white;
   width: 100%;
-  box-shadow: 0 0.0625rem 0.3125rem 0 rgba(0, 0, 0, 0.2),
-    0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.14),
-    0 0.1875rem 0.0625rem -0.125rem rgba(0, 0, 0, 0.12);
+  outline: 0.025rem solid $dark-background;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -26,6 +26,8 @@ export default function PersonsPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const SiteMetaQuery = graphql`
   query Person {
     site {
@@ -33,3 +35,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */

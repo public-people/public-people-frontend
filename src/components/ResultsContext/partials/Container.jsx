@@ -4,7 +4,7 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, limit, offset } = this.props;
+    const { phrase, limit, offset, list } = this.props;
   }
 
   render() {

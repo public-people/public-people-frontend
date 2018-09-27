@@ -5,7 +5,6 @@ const GET_PEOPLE_CANCEL = "search/people/GET_PEOPLE_CANCEL";
 const SET_PHRASE = "search/people/SET_PHRASE";
 
 export default function reducer(state = {}, action = {}) {
-  console.log("people1", state, action);
   switch (action.type) {
     case GET_PEOPLE:
       return {
@@ -55,7 +54,13 @@ export default function reducer(state = {}, action = {}) {
     case GET_PEOPLE_CANCEL:
       return {
         ...state,
-        loading: false
+        loading: false,
+        error: {
+          isError: false,
+          status: null,
+          message: null,
+          text: null
+        }
       };
 
     default:
@@ -63,17 +68,14 @@ export default function reducer(state = {}, action = {}) {
   }
 }
 
-export const getPeople = (phrase, limit, offset) => {
-  console.log("phrase, limit, offset", phrase, limit, offset);
-  return {
-    type: GET_PEOPLE,
-    payload: {
-      phrase: phrase,
-      offset: offset,
-      limit: limit
-    }
-  };
-};
+export const getPeople = (phrase, limit, offset) => ({
+  type: GET_PEOPLE,
+  payload: {
+    phrase,
+    offset,
+    limit
+  }
+});
 
 export const getPeopleCancel = () => ({
   type: GET_PEOPLE_CANCEL

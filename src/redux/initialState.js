@@ -6,7 +6,13 @@ export default {
     loading: true,
     activeFetchToken: null,
     results: [],
-    notification: null
+    notification: null,
+    error: {
+      isError: null,
+      status: null,
+      message: null,
+      text: null
+    }
   },
   person: {
     loading: true,
@@ -14,6 +20,12 @@ export default {
     results: {
       personal: [],
       media: []
+    },
+    error: {
+      isError: null,
+      status: null,
+      message: null,
+      text: null
     }
   },
   page: {

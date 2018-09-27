@@ -7,14 +7,6 @@ import Icon from "./../../Icon";
 import Input from "./../../Input";
 import styles from "./../styles.module.scss";
 
-const buildLoadingMarkup = () => (
-  <div className={styles.searchWrap}>
-    <div className={styles.search}>
-      <Input loading />
-    </div>
-  </div>
-);
-
 const createForm = (
   phrase,
   updatePhraseWrap,
@@ -49,31 +41,26 @@ const createForm = (
 );
 
 export default function Markup(props) {
-  console.log("Header", props);
   const {
-    loading,
     phrase,
     updatePhrase,
     getPeopleCancel,
     getPersonCancel,
     getPeople,
-    fetchPeople,
-    ql,
-    limit,
-    offset
+    limit
   } = props;
-
+  console.log("props", props);
   const updatePhraseWrap = event => {
     updatePhrase(event.target.value);
   };
   const initSearchWrap = () => {
     // The ordering of these three functions is crucial.
-    // The first cancels any previous unresolved request and the second initates a new one.
+    // The first cancels any previous unresolved request and the second initiates a new one.
     // Because the search button can be pressed from anywhere, all promises must be cancelled here.
     // This will also be true of navigation
     getPeopleCancel();
     getPersonCancel();
-    phrase ? getPeople(phrase, limit, offset) : getPeople("", 15, 0);
+    phrase ? getPeople(phrase, limit, 0) : getPeople("", 15, 0);
   };
 
   return (
@@ -94,15 +81,7 @@ export default function Markup(props) {
               </Button>
             </Link>
           </div>
-          {!loading
-            ? createForm(
-                phrase,
-                updatePhraseWrap,
-                initSearchWrap,
-                limit,
-                offset
-              )
-            : buildLoadingMarkup()}
+          {createForm(phrase, updatePhraseWrap, initSearchWrap, limit, 0)}
         </div>
         {props.navigation ? props.navigation : null}
       </header>
@@ -111,7 +90,6 @@ export default function Markup(props) {
 }
 
 Markup.propTypes = {
-  loading: PropTypes.bool,
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
@@ -119,6 +97,5 @@ Markup.propTypes = {
 };
 
 Markup.defaultProps = {
-  loading: false,
   phrase: ""
 };

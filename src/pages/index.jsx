@@ -16,10 +16,10 @@ export default function IndexPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Homepage | Public People"}
+        title="Homepage | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main utils={"dist-size300-3"}>
+      <Main utils="dist-size300-3">
         <FadeInWrap utils={"component"} delay={0}>
           <Card
             header={<CardHeader title={"foo"} headerLevel={2} />}
@@ -31,9 +31,9 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
-        <FadeInWrap utils={"component"} delay={0.2}>
+        <FadeInWrap utils="component" delay={0.2}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >
@@ -45,9 +45,9 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
-        <FadeInWrap utils={"component"} delay={0.2}>
+        <FadeInWrap utils="component" delay={0.2}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >
@@ -59,9 +59,9 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
-        <FadeInWrap utils={"component"} delay={0.2}>
+        <FadeInWrap utils="component" delay={0.2}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >
@@ -73,9 +73,9 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
-        <FadeInWrap utils={"component"} delay={0.2}>
+        <FadeInWrap utils="component" delay={0.2}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >
@@ -87,9 +87,9 @@ export default function IndexPage({ data }) {
           </Card>
         </FadeInWrap>
 
-        <FadeInWrap utils={"component"} delay={0.4}>
+        <FadeInWrap utils="component" delay={0.4}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >
@@ -102,6 +102,8 @@ export default function IndexPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const query = graphql`
   query siteMetadata_2 {
     site {
@@ -109,3 +111,5 @@ export const query = graphql`
     }
   }
 `;
+
+/* eslint-enable */

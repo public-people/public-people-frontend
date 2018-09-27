@@ -1,6 +1,6 @@
 import { ajax } from "rxjs/ajax";
 import { ofType } from "redux-observable";
-import { switchMap, takeUntil, catchError, flatMap } from "rxjs/operators";
+import { switchMap, takeUntil, catchError, flatMap, tap } from "rxjs/operators";
 import { of, concat } from "rxjs";
 import { config } from "./../../runtime.config";
 import extractFirstLastWords from "../../utilities/js/extractFirstLastWords";
@@ -11,8 +11,8 @@ const GET_PERSON_FAILURE = "search/people/GET_PERSON_FAILURE";
 const GET_PERSON_SUCCESS = "search/people/GET_PERSON_SUCCESS";
 const GET_PERSON_CANCEL = "search/people/GET_PERSON_CANCEL";
 
-export const getQueryURIencoded = id => {
-  return encodeURI(`query {
+export const getQueryURIencoded = id =>
+  encodeURI(`query {
   person(id: ${id}) {
     id
     name
@@ -25,7 +25,6 @@ export const getQueryURIencoded = id => {
     }
   }
 }`);
-};
 
 export const getPersonEpic = action$ =>
   action$.pipe(
@@ -33,14 +32,16 @@ export const getPersonEpic = action$ =>
     switchMap(action =>
       ajax
         .getJSON(
-          `${config.api.publicpeople}/persons/${action.payload.personID}`
+          `${config.api.publicpeopleql}${getQueryURIencoded(
+            action.payload.personID
+          )}`
         )
         .pipe(
           flatMap(
             response =>
               ajax.getJSON(
                 `${config.api.alephapi}/search?q="${encodeURI(
-                  extractFirstLastWords(response.name)
+                  extractFirstLastWords(response.data.person.name)
                 )}"&limit=${action.payload.limit}&offset=${
                   action.payload.offset
                 }`

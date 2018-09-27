@@ -20,6 +20,7 @@ export default function Nav(props) {
           onClick={cancelCurrentRequests}
           key={`key-${index}-${link.text}`}
           to={link.url}
+          className={styles.link}
         >
           {link.text}
         </Link>

@@ -5,8 +5,6 @@ import Container from "./partials/Container";
 import extractQueryString from "./../../utilities/js/extractQueryString";
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("ownProps", ownProps);
-  console.log("state", state);
   return {
     ...ownProps,
     results: state.people.results,
@@ -20,7 +18,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const getDataOnRouteChangeOrEntry = () => {
-  console.log("local-route-change");
   const phrase = extractQueryString("phrase", window.location.search) || "";
   const personID = Number(
     extractQueryString("personID", window.location.search)

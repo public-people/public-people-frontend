@@ -11,3 +11,7 @@ export default function ResultsFooter(props) {
 ResultsFooter.propTypes = {
   utils: PropTypes.string
 };
+
+ResultsFooter.defaultProps = {
+  utils: null
+};

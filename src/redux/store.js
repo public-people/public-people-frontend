@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { batchedSubscribe } from "redux-batched-subscribe";
-import initialState from "./initialState";
-
 import { createEpicMiddleware } from "redux-observable";
+import initialState from "./initialState";
 import { rootEpic, rootReducer } from "./modules/root";
 
 const epicMiddleware = createEpicMiddleware();

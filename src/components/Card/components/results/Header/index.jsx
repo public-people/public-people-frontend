@@ -5,7 +5,7 @@ import extractFirstLastWords from "../../../../../utilities/js/extractFirstLastW
 import styles from "./styles.module.scss";
 
 export default function ResultsHeader(props) {
-  const { utils, item, limit, offset } = props;
+  const { utils, item, limit, offset, clickFn } = props;
 
   const Heading = `h${props.headerLevel}`;
   const rootCss = [styles.root, utils].join(" ");
@@ -13,8 +13,8 @@ export default function ResultsHeader(props) {
   return (
     <Fragment>
       <Link
-        className={rootCss + "title"}
-        onClick={() => props.clickFn(item.id, limit, offset)}
+        className={`${rootCss} title`}
+        onClick={() => clickFn(item.id, limit, offset)}
         to={`/person?personID=${item.id}&offset=${offset}&limit=${limit}`}
       >
         <Heading className={rootCss}>{item.name}</Heading>
@@ -28,7 +28,13 @@ ResultsHeader.propTypes = {
   offset: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   utils: PropTypes.string,
+  clickFn: PropTypes.func.isRequired,
   item: PropTypes.shape({
     title: PropTypes.string
-  })
+  }).isRequired
+};
+
+ResultsHeader.defaultProps = {
+  headerLevel: 1,
+  utils: null
 };

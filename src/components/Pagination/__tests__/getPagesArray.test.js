@@ -1,5 +1,4 @@
-import { getPageArray } from "./../lib/getPageArray";
-import { getArray } from "./../lib/getPageArray";
+import { getPageArray, getArray } from "./../lib/getPageArray";
 
 describe("Pagination: getArray", () => {
   const num = 5;
@@ -46,6 +45,8 @@ describe("Pagination: getPageArray", () => {
   const currPage98 = 98;
   const currPage99 = 99;
   const currPage100 = 100;
+
+  /* eslint-disable camelcase */
 
   const option10_1 = { totalPages: totalPages10, currPage: currPage1 };
   const option1_1 = { totalPages: totalPages1, currPage: currPage1 };
@@ -133,3 +134,4 @@ describe("Pagination: getPageArray", () => {
     expect(getPageArray(option100_100)).toEqual([96, 97, 98, 99, 100]);
   });
 });
+/* eslint-enable camelcase */

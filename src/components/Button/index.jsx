@@ -3,15 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 export default function Button(props) {
-  const {
-    link,
-    clickFn,
-    children,
-    primary,
-    inline,
-    submit,
-    utils = null
-  } = props;
+  const { link, clickFn, children, primary, submit, utils = null } = props;
 
   if (link && !clickFn) {
     return (
@@ -23,8 +15,7 @@ export default function Button(props) {
 
   const rootCss = [
     styles.root,
-    primary ? styles.isPrimary : null,
-    inline ? styles.isInline : null,
+    primary ? styles.isPrimary : submit ? styles.isSubmit : null,
     utils
   ].join(" ");
 

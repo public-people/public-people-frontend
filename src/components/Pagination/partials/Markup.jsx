@@ -7,8 +7,6 @@ import { getPageArray } from "./../lib/getPageArray";
 import { getOptions } from "./../lib/getOptions";
 
 const callSearch = params => {
-  console.log("calling search", params);
-  console.log(params.limit);
   switch (true) {
     case window.location.pathname === "/results" && params.phrase !== undefined:
       return params.getPeople(params.phrase, params.limit, params.newOffset);
@@ -37,39 +35,59 @@ export default function Markup(props) {
   } = props;
   const rootCss = [styles.root, utils].join(" ");
 
-  console.log("pagination props", props);
-
   if (count <= limit) {
     return null;
   }
 
   const options = getOptions(count, limit, offset, offsetStep);
-  const pages = getPageArray(options);
+  const pages = getPageArray({
+    currPage: options.currPage,
+    totalPages: options.totalPages
+  });
 
   return (
     <div className={rootCss}>
-      Will page current page: {options.currPage}, totalPages:{" "}
-      {options.totalPages}, options:{" "}
-      {pages.map((pageNo, i) => {
-        const newOffset = (pageNo - 1) * offsetStep;
-        console.log("newOffset", newOffset);
-        return (
-          <Link
-            key={i}
-            to={getNewUrl(window.location.href, newOffset)}
-            onClick={callSearch.bind(this, {
-              getPerson,
-              getPeople,
-              phrase,
-              personID,
-              limit,
-              newOffset
-            })}
-          >
-            {pageNo}
-          </Link>
-        );
-      })}
+      <div className={styles.paginationInner}>
+        {pages.map((pageNo, i) => {
+          const newOffset = (pageNo - 1) * offsetStep;
+
+          return pageNo === options.currPage ? (
+            <Link
+              key={i}
+              to={getNewUrl(window.location.href, newOffset)}
+              onClick={callSearch.bind(this, {
+                getPerson,
+                getPeople,
+                phrase,
+                personID,
+                limit,
+                newOffset
+              })}
+              className={`${styles.currPage} ${styles.page}`}
+            >
+              {pageNo}
+            </Link>
+          ) : (
+            <Link
+              key={i}
+              to={getNewUrl(window.location.href, newOffset)}
+              onClick={callSearch.bind(this, {
+                getPerson,
+                getPeople,
+                phrase,
+                personID,
+                limit,
+                newOffset
+              })}
+              className={styles.page}
+            >
+              {pageNo}
+            </Link>
+          );
+        })}
+        &nbsp;
+        {`of ${options.totalPages}`}
+      </div>
     </div>
   );
 }

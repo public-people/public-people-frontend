@@ -32,7 +32,6 @@ const buildResults = (results, props, limit, offset) => {
 };
 
 export default function Markup(props) {
-  console.log("PROPS IN THE WAAY", props);
   const {
     loading,
     error,
@@ -44,10 +43,7 @@ export default function Markup(props) {
     limit
   } = props;
   const rootCss = [styles.root, utils].join(" ");
-  console.log("markup props", props);
-  console.log("FIIIIIRE1");
   if (error === false) {
-    console.log("FIIIIIRE2");
     return (
       <div>
         No results were found for this search. Please try another search term
@@ -56,7 +52,6 @@ export default function Markup(props) {
   }
 
   if (loading) {
-    console.log("FIIIIIRE3");
     return [0, 1, 2, 3].map(index => (
       <div key={index} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
@@ -67,7 +62,6 @@ export default function Markup(props) {
   }
 
   if (error.isError) {
-    console.log("FIIIIIRE4");
     return (
       <FadeInWrap>
         <div className="text-center">
@@ -80,7 +74,6 @@ export default function Markup(props) {
   }
 
   if (results.length < 1) {
-    console.log("FIIIIIRE5");
     return (
       <FadeInWrap>
         <div className="text-center">
@@ -97,7 +90,6 @@ export default function Markup(props) {
       </FadeInWrap>
     );
   }
-  console.log("FIIIIIRE6");
   return (
     <Fragment>
       {results ? buildResults(results, props, limit, offset) : null}

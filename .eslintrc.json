@@ -16,13 +16,8 @@
   },
   "rules": {
     "comma-dangle": ["error", "never"],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
+    "indent": 0,
+    "no-nested-ternary": 0,
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
@@ -35,6 +30,8 @@
         "specialLink": ["to"]
       }
     ],
+    "import/prefer-default-export": false,
+    "import/no-extraneous-dependencies": 0,
     "linebreak-style": ["error", "windows"],
     "no-console": [
       "error",

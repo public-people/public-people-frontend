@@ -68,6 +68,8 @@ export default function PatternsPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const SiteMetaQuery = graphql`
   query PatternLibrary {
     site {
@@ -75,3 +77,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */
