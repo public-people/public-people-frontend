@@ -4,7 +4,7 @@ import styles from "./../styles.module.scss";
 import Pagination from "./../../Pagination/index";
 
 export default function ResultsContext(props) {
-  const { utils, list, limit, offset, results, loading } = props;
+  const { utils, list } = props;
   const rootCss = [styles.root, utils].join(" ");
 
   return (
@@ -16,10 +16,13 @@ export default function ResultsContext(props) {
 }
 ResultsContext.propTypes = {
   utils: PropTypes.string,
-  language: PropTypes.string,
   list: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.object,
     PropTypes.func
-  ])
+  ]).isRequired
+};
+
+ResultsContext.defaultProp = {
+  utils: null
 };

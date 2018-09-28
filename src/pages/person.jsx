@@ -13,12 +13,12 @@ export default function PersonsPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Person | Public People"}
+        title="Person | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
         <ResultsContext
-          utils={"dist-size300-1 component"}
+          utils="dist-size1-1 component"
           list={<Persons list={PersonsList} />}
         />
       </Main>

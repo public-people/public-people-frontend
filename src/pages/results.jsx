@@ -12,12 +12,12 @@ export default function ResultsPage({ data, location, action }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Search Results | Public People"}
+        title="Search Results | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
         <ResultsContext
-          utils={"dist-size300-1 dist-size400-2 dist-size500-3 dist-size800-4"}
+          utils="dist-size1-1 dist-size400-2 dist-size500-3 dist-size800-4"
           list={<Results />}
         />
       </Main>

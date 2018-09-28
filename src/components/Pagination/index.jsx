@@ -1,3 +1,5 @@
+/* eslint react/prop-types: 0 */
+
 import { connect } from "react-redux";
 import Container from "./partials/Container";
 import {

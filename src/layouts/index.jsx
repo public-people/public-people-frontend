@@ -33,5 +33,6 @@ export default function Layout({ children, location }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired
 };

@@ -1,35 +1,31 @@
 import React, { Fragment } from "react";
-import { default as CardHeader } from "../../Card/components/results/Header/index";
+import PropTypes from "prop-types";
+import CardHeader from "../../Card/components/results/Header/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
-import PropTypes from "prop-types";
 
-const buildResults = (results, props, limit, offset) => {
-  return results.map((item, index) => {
-    return (
-      <li className={"component flex"} key={item.id}>
-        <Card
-          header={
-            <CardHeader
-              clickFn={props.getPerson}
-              item={item}
-              headerLevel={2}
-              offset={offset}
-              limit={limit}
-            />
-          }
-          footer="Unknown amount of events"
-          title={item.name}
-          link
-          footer="Unknown amount of events"
-          height={250}
-        />
-      </li>
-    );
-  });
-};
+const buildResults = (results, props, limit, offset) =>
+  results.map((item, index) => (
+    <li className="component flex" key={item.id}>
+      <Card
+        header={
+          <CardHeader
+            clickFn={props.getPerson}
+            item={item}
+            headerLevel={2}
+            offset={offset}
+            limit={limit}
+          />
+        }
+        footer="Unknown amount of events"
+        title={item.name}
+        link
+        height={250}
+      />
+    </li>
+  ));
 
 export default function Markup(props) {
   const {
@@ -98,12 +94,12 @@ export default function Markup(props) {
 }
 
 Markup.propTypes = {
-  loading: PropTypes.bool,
-  phrase: PropTypes.string.isRequired
-};
-
-Markup.defaultProps = {
-  loading: false,
-  error: null,
-  results: []
+  error: PropTypes.object.isRequired,
+  phrase: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  phrase: PropTypes.string.isRequired,
+  utils: PropTypes.string,
+  offset: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired
 };

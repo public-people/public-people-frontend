@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import { getPeople } from "./../../redux/modules/search/people";
 import Container from "./partials/Container";
 
+/* eslint-disable react/prop-types */
+
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
   results: state.people.results,
@@ -23,3 +25,5 @@ const ResultsContext = connect(
   mapDispatchToProps
 )(Container);
 export default ResultsContext;
+
+/* eslint-enable react/prop-types */

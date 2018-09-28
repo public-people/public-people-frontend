@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Header from "./../components/Header/index";
-import { Fragment } from "react";
 import Main from "./../components/Main/index";
 import { NavConfig } from "./../components/Nav/config";
 import Nav from "./../components/Nav/index";

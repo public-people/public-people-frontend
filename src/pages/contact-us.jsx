@@ -17,12 +17,11 @@ export default function ContactUsPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Contact Us | Public People"}
+        title="Contact Us | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main utils={"dist-size300-3"}>
-        <ReadingContext utils={"component"} lang={"gr"} content={content} />
-        <ReadingContext utils={"component"} lang={"fr"} content={content} />
+      <Main utils="dist-size1-3">
+        <ReadingContext utils="component" lang="en" content={content} />
       </Main>
     </Fragment>
   );

@@ -53,7 +53,7 @@ export default function Markup(props) {
 
           return pageNo === options.currPage ? (
             <Link
-              key={i}
+              key={pageNo}
               to={getNewUrl(window.location.href, newOffset)}
               onClick={callSearch.bind(this, {
                 getPerson,
@@ -69,7 +69,7 @@ export default function Markup(props) {
             </Link>
           ) : (
             <Link
-              key={i}
+              key={pageNo}
               to={getNewUrl(window.location.href, newOffset)}
               onClick={callSearch.bind(this, {
                 getPerson,

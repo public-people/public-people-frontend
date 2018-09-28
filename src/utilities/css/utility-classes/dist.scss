@@ -1,3 +1,20 @@
+.dist-size1- {
+  @include breakpoint($size1) {
+    @for $i from 0 through 6 {
+      &#{$i} {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+          flex-basis: auto;
+          max-width: #{(100% / $i)};
+          width: #{(100% / $i)};
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+}
+
 .dist-size300- {
   @include breakpoint($size300) {
     @for $i from 0 through 6 {

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Header from "./../components/Header";
 import Card from "./../components/Card";
 import Button from "./../components/Button";
 import FadeInWrap from "./../components/FadeInWrap";
-import { Fragment } from "react";
 import Main from "./../components/Main/index";
 import Nav from "./../components/Nav/index";
 import { NavConfig } from "./../components/Nav/config";
@@ -19,10 +18,10 @@ export default function IndexPage({ data }) {
         title="Homepage | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main utils="dist-size300-3">
-        <FadeInWrap utils={"component"} delay={0}>
+      <Main utils="dist-size1-3">
+        <FadeInWrap utils="component" delay={0}>
           <Card
-            header={<CardHeader title={"foo"} headerLevel={2} />}
+            header={<CardHeader title="foo" headerLevel={2} />}
             body={<CardBody />}
             title="Hello"
           >

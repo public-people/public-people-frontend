@@ -42,7 +42,7 @@ export default function PatternsPage({ data }) {
         <Input placeholder="Placeholder" />
       </div>
       <div className="mt-20">
-        <Header ql={ql} title={"Pattern Library | Public People"} />
+        <Header ql={ql} title="Pattern Library | Public People" />
       </div>
 
       <div className="mt-20">

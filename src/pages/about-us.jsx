@@ -1,7 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import ReadingContext from "../components/ReadingContext/index";
 import Main from "./../components/Main/index";
-import { Fragment } from "react";
 import Header from "./../components/Header/index";
 import { NavConfig } from "./../components/Nav/config";
 import Nav from "./../components/Nav/index";
@@ -93,7 +92,7 @@ export default function AboutUsPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Contact Us | Public People"}
+        title="Contact Us | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>
