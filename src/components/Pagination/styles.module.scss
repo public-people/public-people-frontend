@@ -1,0 +1,19 @@
+:local .root {
+  width: 100%;
+}
+
+:local .paginationInner {
+  display: flex;
+  justify-content: center;
+}
+
+:local .currPage {
+  @import "../../utilities/css/abstracts";
+  pointer-events: none;
+  text-decoration: none;
+  color: $black;
+}
+
+:local .page {
+  padding: 0 0.05rem;
+}

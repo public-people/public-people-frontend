@@ -7,14 +7,6 @@ import Icon from "./../../Icon";
 import Input from "./../../Input";
 import styles from "./../styles.module.scss";
 
-const buildLoadingMarkup = () => (
-  <div className={styles.searchWrap}>
-    <div className={styles.search}>
-      <Input loading />
-    </div>
-  </div>
-);
-
 const createForm = (
   phrase,
   updatePhraseWrap,
@@ -32,7 +24,7 @@ const createForm = (
           onChange={updatePhraseWrap}
         />
       </div>
-      <div className={"foo " + styles.button}>
+      <div className={styles.button}>
         <Link
           to={`/results?phrase=${encodeURI(
             phrase
@@ -49,36 +41,34 @@ const createForm = (
 );
 
 export default function Markup(props) {
-  console.log("Header", props);
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const {
-    loading,
     phrase,
     updatePhrase,
-    initSearch,
-    cancelPromisesPeople,
-    cancelPromisesPerson,
-    ql,
+    getPeopleCancel,
+    getPersonCancel,
+    getPeople,
     limit,
-    offset
+    ql,
+    title
   } = props;
-
-  const updatePhraseWrap = event => updatePhrase(event.target.value);
+  const updatePhraseWrap = event => {
+    updatePhrase(event.target.value);
+  };
   const initSearchWrap = () => {
     // The ordering of these three functions is crucial.
-    // The first cancels any previous unresolved request and the second initates a new one.
+    // The first cancels any previous unresolved request and the second initiates a new one.
     // Because the search button can be pressed from anywhere, all promises must be cancelled here.
     // This will also be true of navigation
-    cancelPromisesPerson("initiated a new search");
-    cancelPromisesPeople("initiated a new search");
-    if (phrase) {
-      initSearch(phrase, limit, 0);
-    }
+    getPeopleCancel();
+    getPersonCancel();
+    phrase ? getPeople(phrase, limit, 0) : getPeople("", 15, 0);
   };
 
   return (
     <Fragment>
-      <Helmet title={props.title}>
-        <html lang={props.ql.site.siteMetadata.language} />
+      <Helmet title={title}>
+        <html lang={ql.site.siteMetadata.language} />
         <meta
           name="viewport"
           content="width=device-width initial-scale=1.0, shrink-to-fit=no"
@@ -93,15 +83,7 @@ export default function Markup(props) {
               </Button>
             </Link>
           </div>
-          {!loading
-            ? createForm(
-                phrase,
-                updatePhraseWrap,
-                initSearchWrap,
-                limit,
-                offset
-              )
-            : buildLoadingMarkup()}
+          {createForm(phrase, updatePhraseWrap, initSearchWrap, limit, 0)}
         </div>
         {props.navigation ? props.navigation : null}
       </header>
@@ -110,15 +92,17 @@ export default function Markup(props) {
 }
 
 Markup.propTypes = {
-  loading: PropTypes.bool,
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
-  initSearch: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  navigation: PropTypes.element
+  navigation: PropTypes.element,
+  ql: PropTypes.object,
+  limit: PropTypes.number.isRequired,
+  getPeopleCancel: PropTypes.func,
+  getPersonCancel: PropTypes.func,
+  getPeople: PropTypes.func
 };
 
 Markup.defaultProps = {
-  loading: false,
   phrase: ""
 };

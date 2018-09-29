@@ -2,13 +2,10 @@
   @import "../../utilities/css/abstracts";
   border-radius: 0.25rem;
   background-color: #e0e1e2;
-  color: $primary-gray;
-  fill: $primary-gray;
+  color: $primary-background;
+  fill: $primary-background;
   padding: 1rem;
   border: 0.0625rem solid #e0e1e2;
-  box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.2),
-    0 0.0625rem 0.0625rem 0 rgba(0, 0, 0, 0.14),
-    0 0.125rem 0.0625rem -0.0625rem rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   text-decoration: none;
@@ -16,15 +13,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
   &:hover {
     background-color: darken(#e0e1e2, 10%);
     border: 0.0625rem solid darken(#e0e1e2, 10%);
-  }
-
-  &.isInline {
-    display: inline-block;
-    display: inline-flex;
   }
 
   &.hasIcon {
@@ -32,14 +25,18 @@
   }
 
   &.isPrimary {
-    background-color: $primary-blue;
+    background-color: $primary-accent;
     color: $white;
     fill: $white;
-    border: 0.0625rem solid $primary-blue;
+    border: 0.0625rem solid$primary-accent;
 
     &:hover {
-      background-color: darken($primary-blue, 10%);
-      border: 0.0625rem solid darken($primary-blue, 10%);
+      background-color: darken($primary-accent, 10%);
+      border: 0.0625rem solid darken($primary-accent, 10%);
     }
+  }
+
+  &.isSubmit {
+    border-radius: 0 0.25rem 0.25rem 0;
   }
 }

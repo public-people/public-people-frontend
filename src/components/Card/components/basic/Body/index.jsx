@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 export default function BasicBody(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils } = props;
   const rootCss = [styles.root, utils].join(" ");
   return (
@@ -16,4 +17,7 @@ export default function BasicBody(props) {
 
 BasicBody.propTypes = {
   utils: PropTypes.string
+};
+BasicBody.defaultProps = {
+  utils: null
 };

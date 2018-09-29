@@ -1,15 +1,20 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { batchedSubscribe } from "redux-batched-subscribe";
-import thunk from "redux-thunk";
+import { createEpicMiddleware } from "redux-observable";
+// Redux - Observable: https://redux-observable.js.org/
 import initialState from "./initialState";
-import people from "./modules/search/people/people";
-import person from "./modules/search/person/person";
-import page from "./modules/metadata/page/page";
+import { rootEpic, rootReducer } from "./modules/root";
 
-const reducers = combineReducers({ people, person, page });
-const middleware = applyMiddleware(thunk);
+const epicMiddleware = createEpicMiddleware();
+const middleware = applyMiddleware(epicMiddleware);
 const otherEnhancers = batchedSubscribe(notify => notify());
 const enhancers = composeWithDevTools(middleware, otherEnhancers);
 
-export default createStore(reducers, initialState, enhancers);
+export default function configureStore() {
+  const store = createStore(rootReducer, initialState, enhancers);
+
+  epicMiddleware.run(rootEpic);
+
+  return store;
+}

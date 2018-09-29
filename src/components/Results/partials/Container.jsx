@@ -4,10 +4,13 @@ import Markup from "./Markup";
 
 export default class Container extends Component {
   componentDidMount() {
-    const { phrase, initSearchPeople, limit, offset } = this.props;
-    if (phrase) {
-      initSearchPeople(phrase, limit, offset);
-    }
+    const {
+      getDataOnRouteChangeOrEntry,
+      phrase,
+      getPeople,
+      limit,
+      offset
+    } = this.props;
   }
 
   render() {
@@ -15,11 +18,11 @@ export default class Container extends Component {
   }
 }
 
-Container.propTypes = {
-  phrase: PropTypes.string,
-  initSearchPeople: PropTypes.func.isRequired
-};
+// Container.propTypes = {
+//   phrase: PropTypes.string,
+//   getPeople: PropTypes.func.isRequired
+// };
 
-Container.defaultProps = {
-  phrase: ""
-};
+// Container.defaultProps = {
+//   phrase: ""
+// };

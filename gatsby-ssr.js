@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
-import store from "./src/redux/store";
+import { store } from "./gatsby-browser";
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   const ConnectedBody = () => (

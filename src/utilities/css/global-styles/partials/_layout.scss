@@ -1,7 +1,5 @@
 * {
   box-sizing: border-box;
-  // scroll-behavior is a progressive enhancement.
-  scroll-behavior: smooth;
 }
 
 html {
@@ -13,7 +11,7 @@ html {
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  background-color: $white;
+  background-color: $primary-background;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -34,13 +32,6 @@ header {
   flex-wrap: wrap;
 }
 
-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: 1rem;
-}
-
 main {
   // The header is fixed, so the main needs to be offset at the top by the height
   // of the header as well so some additional aesthetically pleasing value.
@@ -57,6 +48,7 @@ main {
   // This keeps children central.
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 // This preserves space around all components directly in the flow under main
 // but doesn't add to the bottom margin.

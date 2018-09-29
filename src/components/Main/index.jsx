@@ -3,7 +3,8 @@ import React, { Fragment } from "react";
 import styles from "./styles.module.scss";
 
 export default function Main(props) {
-  const { utils } = props;
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+  const { utils, children } = props;
 
   const rootCss = [styles.root, utils].join(" ");
 
@@ -13,12 +14,13 @@ export default function Main(props) {
         Skip to main content.
       </a>
       <main id="main" className={rootCss}>
-        {props.children}
+        {children}
       </main>
     </Fragment>
   );
 }
 
 Main.propTypes = {
-  utils: PropTypes.string
+  utils: PropTypes.string,
+  children: PropTypes.node
 };

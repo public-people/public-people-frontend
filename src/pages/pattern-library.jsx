@@ -42,7 +42,7 @@ export default function PatternsPage({ data }) {
         <Input placeholder="Placeholder" />
       </div>
       <div className="mt-20">
-        <Header ql={ql} title={"Pattern Library | Public People"} />
+        <Header ql={ql} title="Pattern Library | Public People" />
       </div>
 
       <div className="mt-20">
@@ -68,6 +68,8 @@ export default function PatternsPage({ data }) {
   );
 }
 
+/* eslint-disable */
+
 export const SiteMetaQuery = graphql`
   query PatternLibrary {
     site {
@@ -75,3 +77,5 @@ export const SiteMetaQuery = graphql`
     }
   }
 `;
+
+/* eslint-enable */

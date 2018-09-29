@@ -6,11 +6,27 @@ export default {
     loading: true,
     activeFetchToken: null,
     results: [],
-    notification: null
+    notification: null,
+    error: {
+      isError: null,
+      status: null,
+      message: null,
+      text: null
+    }
   },
   person: {
+    loading: true,
     personToken: "",
-    mediaList: []
+    results: {
+      personal: [],
+      media: []
+    },
+    error: {
+      isError: null,
+      status: null,
+      message: null,
+      text: null
+    }
   },
   page: {
     count: 0,

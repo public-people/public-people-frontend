@@ -1,6 +1,7 @@
 module.exports = {
   extends: [
     "stylelint-config-standard",
+    "stylelint-config-recommended-scss",
     "stylelint-config-css-modules",
     "stylelint-config-prettier"
   ],
@@ -22,10 +23,34 @@ module.exports = {
     "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: ["for", "if", "return", "function", "mixin", "include"]
+        ignoreAtRules: [
+          "each",
+          "else",
+          "for",
+          "if",
+          "return",
+          "function",
+          "mixin",
+          "include",
+          "content"
+        ]
       }
     ],
-    "unit-whitelist": ["rem", "em", "deg", "%", "vh", "vw"],
+    "rule-empty-line-before": [
+      "always",
+      {
+        except: ["first-nested"],
+        ignore: ["after-comment", "first-nested", "inside-block"]
+      }
+    ],
+    "no-duplicate-at-import-rules": null,
+    "declaration-empty-line-before": [
+      "never",
+      {
+        ignore: ["after-comment"]
+      }
+    ],
+    "unit-whitelist": ["rem", "em", "deg", "%", "vh", "vw", "s"],
     "block-no-empty": null,
     "color-no-invalid-hex": true,
     "declaration-colon-newline-after": null,

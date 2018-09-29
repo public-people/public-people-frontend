@@ -16,13 +16,10 @@
   },
   "rules": {
     "comma-dangle": ["error", "never"],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
+    "consistent-return": 0,
+    "indent": 0,
+    "no-unused-expressions": 0,
+    "no-nested-ternary": 0,
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
@@ -35,6 +32,8 @@
         "specialLink": ["to"]
       }
     ],
+    "import/prefer-default-export": false,
+    "import/no-extraneous-dependencies": 0,
     "linebreak-style": ["error", "windows"],
     "no-console": [
       "error",
@@ -50,8 +49,12 @@
         "allowTemplateLiterals": true
       }
     ],
+
     "react/no-unused-prop-types": false,
+    "react/no-danger": false,
+    "react/forbid-prop-types": [false],
     "react/prop-types": ["error", { "skipUndeclared": true }],
+    "react/require-default-props": 0,
     "semi": ["error", "always"]
   }
 }

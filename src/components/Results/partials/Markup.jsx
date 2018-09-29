@@ -1,18 +1,20 @@
 import React, { Fragment } from "react";
-import { default as CardHeader } from "../../Card/components/results/Header/index";
+import PropTypes from "prop-types";
+// cuid www.npmjs.com/package/cuid
+import cuid from "cuid";
+import CardHeader from "../../Card/components/results/Header/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
-import PropTypes from "prop-types";
 
-const buildResults = (results, props, offset, limit) =>
+const buildResults = (results, getPerson, limit, offset) =>
   results.map((item, index) => (
-    <li className={"component flex"} key={item.id}>
+    <li className="component flex" key={cuid()}>
       <Card
         header={
           <CardHeader
-            resetToken={props.resetToken}
+            clickFn={getPerson}
             item={item}
             headerLevel={2}
             offset={offset}
@@ -22,7 +24,6 @@ const buildResults = (results, props, offset, limit) =>
         footer="Unknown amount of events"
         title={item.name}
         link
-        footer="Unknown amount of events"
         height={250}
       />
     </li>
@@ -34,13 +35,12 @@ export default function Markup(props) {
     error,
     results,
     phrase,
-    person,
+    getPerson,
     utils,
     offset,
     limit
   } = props;
   const rootCss = [styles.root, utils].join(" ");
-
   if (error === false) {
     return (
       <div>
@@ -51,7 +51,7 @@ export default function Markup(props) {
 
   if (loading) {
     return [0, 1, 2, 3].map(index => (
-      <div key={index} className={styles.item}>
+      <div key={cuid()} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
           <Placeholder utils="rounded-4" height={250} />
         </FadeInWrap>
@@ -59,7 +59,7 @@ export default function Markup(props) {
     ));
   }
 
-  if (error) {
+  if (error.isError) {
     return (
       <FadeInWrap>
         <div className="text-center">
@@ -88,28 +88,20 @@ export default function Markup(props) {
       </FadeInWrap>
     );
   }
-
   return (
     <Fragment>
-      {results ? buildResults(results, props, offset, limit) : null}
+      {results ? buildResults(results, getPerson, limit, offset) : null}
     </Fragment>
   );
 }
 
 Markup.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.bool,
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string
-    })
-  ),
-  phrase: PropTypes.string.isRequired
-};
-
-Markup.defaultProps = {
-  loading: false,
-  error: null,
-  results: []
+  error: PropTypes.object.isRequired,
+  phrase: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired,
+  getPerson: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  utils: PropTypes.string,
+  offset: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired
 };

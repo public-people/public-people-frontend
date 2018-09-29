@@ -2,16 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Markup from "./Markup";
 
-export default class Container extends Component {
-  componentDidMount() {
-    const { phrase, limit, offset } = this.props;
-  }
-
-  render() {
-    return <Markup {...this.props} />;
-  }
+export default function Container(props) {
+  return <Markup {...props} />;
 }
-
-Container.propTypes = {};
-
-Container.defaultProps = {};

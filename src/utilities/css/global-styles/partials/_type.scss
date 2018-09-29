@@ -37,12 +37,15 @@ h6 {
 h1,
 .h1 {
   font-size: 1.8rem;
+
   &.bold {
     font-weight: bold;
   }
+
   &.sm-caps {
     font-variant: small-caps;
   }
+
   &.itals {
     font-style: italic;
   }
@@ -51,12 +54,15 @@ h1,
 h2,
 .h2 {
   font-size: 1.4rem;
+
   &.bold {
     font-weight: bold;
   }
+
   &.sm-caps {
     font-variant: small-caps;
   }
+
   &.itals {
     font-style: italic;
   }
@@ -65,12 +71,15 @@ h2,
 h3,
 .h3 {
   font-size: 1.2rem;
+
   &.bold {
     font-weight: bold;
   }
+
   &.sm-caps {
     font-variant: small-caps;
   }
+
   &.itals {
     font-style: italic;
   }
@@ -79,12 +88,15 @@ h3,
 h4,
 .h4 {
   font-size: 1rem;
+
   &.bold {
     font-weight: bold;
   }
+
   &.sm-caps {
     font-variant: small-caps;
   }
+
   &.itals {
     font-style: italic;
   }
