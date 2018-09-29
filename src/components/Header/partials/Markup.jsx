@@ -41,15 +41,17 @@ const createForm = (
 );
 
 export default function Markup(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const {
     phrase,
     updatePhrase,
     getPeopleCancel,
     getPersonCancel,
     getPeople,
-    limit
+    limit,
+    ql,
+    title
   } = props;
-  console.log("props", props);
   const updatePhraseWrap = event => {
     updatePhrase(event.target.value);
   };
@@ -65,8 +67,8 @@ export default function Markup(props) {
 
   return (
     <Fragment>
-      <Helmet title={props.title}>
-        <html lang={props.ql.site.siteMetadata.language} />
+      <Helmet title={title}>
+        <html lang={ql.site.siteMetadata.language} />
         <meta
           name="viewport"
           content="width=device-width initial-scale=1.0, shrink-to-fit=no"
@@ -93,7 +95,12 @@ Markup.propTypes = {
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  navigation: PropTypes.element
+  navigation: PropTypes.element,
+  ql: PropTypes.object,
+  limit: PropTypes.number.isRequired,
+  getPeopleCancel: PropTypes.func,
+  getPersonCancel: PropTypes.func,
+  getPeople: PropTypes.func
 };
 
 Markup.defaultProps = {

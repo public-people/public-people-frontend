@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import React, { Fragment } from "react";
+// cuid www.npmjs.com/package/cuid
+import cuid from "cuid";
 import FadeInWrap from "./../../FadeInWrap";
 import styles from "./../styles.module.scss";
 
@@ -9,7 +10,7 @@ const buildResults = (results, props, mediaList) => {
   return (
     <Fragment>
       {results.media.map((item, index) => (
-        <List utils={"component"} key={item.id} item={item} />
+        <List utils="component" key={item.id} item={item} />
       ))}
     </Fragment>
   );
@@ -29,7 +30,7 @@ export default function Markup(props) {
 
   if (loading) {
     return [0, 1, 2, 3].map(index => (
-      <div key={index} className={styles.item}>
+      <div key={cuid()} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
           <div className="text-center">Loading</div>
         </FadeInWrap>

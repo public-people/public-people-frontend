@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 export default function Button(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { link, clickFn, children, primary, submit, utils = null } = props;
 
   if (link && !clickFn) {

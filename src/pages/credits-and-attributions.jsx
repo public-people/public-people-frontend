@@ -10,7 +10,7 @@ export default function PersonsPage({ data }) {
     <Fragment>
       <Header
         ql={ql}
-        title={"Credits & Attributions | Public People"}
+        title="Credits & Attributions | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
       <Main>

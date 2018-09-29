@@ -1,6 +1,8 @@
 import { ajax } from "rxjs/ajax";
 import { ofType } from "redux-observable";
-import { switchMap, flatMap, takeUntil, catchError, tap } from "rxjs/operators";
+// Redux - Observable: https://redux-observable.js.org/
+import { switchMap, flatMap, takeUntil, catchError } from "rxjs/operators";
+// RxJs Operators: https://www.learnrxjs.io/operators/
 import { of, concat } from "rxjs";
 import { config } from "./../../runtime.config";
 

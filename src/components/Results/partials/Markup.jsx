@@ -1,18 +1,20 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+// cuid www.npmjs.com/package/cuid
+import cuid from "cuid";
 import CardHeader from "../../Card/components/results/Header/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
 import styles from "./../styles.module.scss";
 
-const buildResults = (results, props, limit, offset) =>
+const buildResults = (results, getPerson, limit, offset) =>
   results.map((item, index) => (
-    <li className="component flex" key={item.id}>
+    <li className="component flex" key={cuid()}>
       <Card
         header={
           <CardHeader
-            clickFn={props.getPerson}
+            clickFn={getPerson}
             item={item}
             headerLevel={2}
             offset={offset}
@@ -49,7 +51,7 @@ export default function Markup(props) {
 
   if (loading) {
     return [0, 1, 2, 3].map(index => (
-      <div key={index} className={styles.item}>
+      <div key={cuid()} className={styles.item}>
         <FadeInWrap delay={index * 0.2}>
           <Placeholder utils="rounded-4" height={250} />
         </FadeInWrap>
@@ -88,7 +90,7 @@ export default function Markup(props) {
   }
   return (
     <Fragment>
-      {results ? buildResults(results, props, limit, offset) : null}
+      {results ? buildResults(results, getPerson, limit, offset) : null}
     </Fragment>
   );
 }
@@ -97,8 +99,8 @@ Markup.propTypes = {
   error: PropTypes.object.isRequired,
   phrase: PropTypes.string.isRequired,
   results: PropTypes.array.isRequired,
+  getPerson: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  phrase: PropTypes.string.isRequired,
   utils: PropTypes.string,
   offset: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired

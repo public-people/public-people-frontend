@@ -6,8 +6,8 @@ import FadeInWrap from "./../components/FadeInWrap";
 import Main from "./../components/Main/index";
 import Nav from "./../components/Nav/index";
 import { NavConfig } from "./../components/Nav/config";
-import { default as CardHeader } from "../components/Card/components/basic/Header/index";
-import { default as CardBody } from "../components/Card/components/basic/Body/index";
+import CardHeader from "../components/Card/components/basic/Header/index";
+import CardBody from "../components/Card/components/basic/Body/index";
 
 export default function IndexPage({ data }) {
   const ql = data;

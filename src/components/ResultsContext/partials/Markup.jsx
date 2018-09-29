@@ -4,6 +4,7 @@ import styles from "./../styles.module.scss";
 import Pagination from "./../../Pagination/index";
 
 export default function ResultsContext(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils, list } = props;
   const rootCss = [styles.root, utils].join(" ");
 

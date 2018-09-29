@@ -5,6 +5,7 @@ import extractFirstLastWords from "../../../../../utilities/js/extractFirstLastW
 import styles from "./styles.module.scss";
 
 export default function ResultsHeader(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils, item, limit, offset, clickFn } = props;
 
   const Heading = `h${props.headerLevel}`;

@@ -6,6 +6,12 @@ import extractQueryString from "./../../utilities/js/extractQueryString";
 
 /* eslint-disable react/prop-types */
 
+// Understanding React - Redux and mapStateToProps: https://stackoverflow.com/questions/38202572/understanding-react-redux-and-mapstatetoprops
+
+// React - Redux: https://redux.js.org/faq/reactredux
+
+// What is mapDispatchToProps?: https://stackoverflow.com/questions/39419237/what-is-mapdispatchtoprops
+
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
   results: state.people.results,

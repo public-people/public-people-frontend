@@ -16,7 +16,9 @@
   },
   "rules": {
     "comma-dangle": ["error", "never"],
+    "consistent-return": 0,
     "indent": 0,
+    "no-unused-expressions": 0,
     "no-nested-ternary": 0,
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
@@ -47,7 +49,10 @@
         "allowTemplateLiterals": true
       }
     ],
+
     "react/no-unused-prop-types": false,
+    "react/no-danger": false,
+    "react/forbid-prop-types": [false],
     "react/prop-types": ["error", { "skipUndeclared": true }],
     "react/require-default-props": 0,
     "semi": ["error", "always"]

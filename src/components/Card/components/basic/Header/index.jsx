@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import styles from "./styles.module.scss";
 
 export default function BasicHeader(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils } = props;
   const Heading = `h${props.headerLevel}`;
   const rootCss = [styles.root, utils].join(" ");

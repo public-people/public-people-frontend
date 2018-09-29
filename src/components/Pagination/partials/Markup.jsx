@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
-import styles from "./../styles.module.scss";
+import React from "react";
 import PropTypes from "prop-types";
 import Link from "gatsby-link";
+// cuid www.npmjs.com/package/cuid
+import cuid from "cuid";
 import { getNewUrl } from "./../lib/getNewUrl";
 import { getPageArray } from "./../lib/getPageArray";
 import { getOptions } from "./../lib/getOptions";
+import styles from "./../styles.module.scss";
 
 const callSearch = params => {
   switch (true) {
@@ -21,9 +23,9 @@ const callSearch = params => {
 };
 
 export default function Markup(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const {
     count,
-    current_url,
     limit,
     offset,
     utils,
@@ -48,37 +50,41 @@ export default function Markup(props) {
   return (
     <div className={rootCss}>
       <div className={styles.paginationInner}>
-        {pages.map((pageNo, i) => {
+        {pages.map(pageNo => {
           const newOffset = (pageNo - 1) * offsetStep;
 
           return pageNo === options.currPage ? (
             <Link
-              key={pageNo}
+              key={cuid()}
               to={getNewUrl(window.location.href, newOffset)}
-              onClick={callSearch.bind(this, {
-                getPerson,
-                getPeople,
-                phrase,
-                personID,
-                limit,
-                newOffset
-              })}
+              onClick={() =>
+                callSearch({
+                  getPerson,
+                  getPeople,
+                  phrase,
+                  personID,
+                  limit,
+                  newOffset
+                })
+              }
               className={`${styles.currPage} ${styles.page}`}
             >
               {pageNo}
             </Link>
           ) : (
             <Link
-              key={pageNo}
+              key={cuid()}
               to={getNewUrl(window.location.href, newOffset)}
-              onClick={callSearch.bind(this, {
-                getPerson,
-                getPeople,
-                phrase,
-                personID,
-                limit,
-                newOffset
-              })}
+              onClick={() =>
+                callSearch({
+                  getPerson,
+                  getPeople,
+                  phrase,
+                  personID,
+                  limit,
+                  newOffset
+                })
+              }
               className={styles.page}
             >
               {pageNo}
@@ -93,7 +99,13 @@ export default function Markup(props) {
 }
 
 Markup.propTypes = {
-  utils: PropTypes.string
+  utils: PropTypes.string,
+  limit: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired,
+  offsetStep: PropTypes.number.isRequired,
+  getPerson: PropTypes.func,
+  getPeople: PropTypes.func,
+  phrase: PropTypes.string,
+  count: PropTypes.number,
+  personID: PropTypes.string
 };
-
-Markup.defaultProps = {};

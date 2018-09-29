@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 export default function MediaList(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils, item } = props;
   const rootCss = [styles.root, utils].join(" ");
 
