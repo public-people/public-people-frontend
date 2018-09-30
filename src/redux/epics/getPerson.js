@@ -19,11 +19,17 @@ export const getQueryURIencoded = id =>
     id
     name
     memberships {
+      id
+      role
+      startDate
+      endDate
+      area {
+        id
+      }
       organization {
+        id
         name
       }
-      role
-
     }
   }
 }`);
@@ -32,53 +38,62 @@ export const getPersonEpic = action$ =>
   action$.pipe(
     ofType(GET_PERSON),
     switchMap(action =>
-      ajax
-        .getJSON(
-          `${config.api.publicpeopleql}${getQueryURIencoded(
-            action.payload.personID
-          )}`
-        )
-        .pipe(
-          flatMap(
-            response =>
-              ajax.getJSON(
-                `${config.api.alephapi}/search?q="${encodeURI(
-                  extractFirstLastWords(response.data.person.name)
-                )}"&limit=${action.payload.limit}&offset=${
-                  action.payload.offset
-                }`
-              ),
-            (response, media) => ({ response, media })
-          ),
-          switchMap(response =>
-            concat(
+      concat(
+        of({
+          type: SET_PAGE_META,
+          payload: {
+            count: 0,
+            offset: action.payload.offset
+          }
+        }),
+        ajax
+          .getJSON(
+            `${config.api.publicpeopleql}${getQueryURIencoded(
+              action.payload.personID
+            )}`
+          )
+          .pipe(
+            flatMap(
+              response =>
+                ajax.getJSON(
+                  `${config.api.alephapi}/search?q="${encodeURI(
+                    extractFirstLastWords(response.data.person.name)
+                  )}"&limit=${action.payload.limit}&offset=${
+                    action.payload.offset
+                  }`
+                ),
+              (response, media) => ({ response, media })
+            ),
+            switchMap(response =>
+              concat(
+                of({
+                  type: SET_PAGE_META,
+                  payload: {
+                    count: response.media.total,
+                    offset: action.payload.offset
+                  }
+                }),
+                of({
+                  type: GET_PERSON_SUCCESS,
+                  payload: {
+                    media: response.media,
+                    personal: response.response
+                  }
+                })
+              )
+            ),
+            catchError(error =>
               of({
-                type: SET_PAGE_META,
+                type: GET_PERSON_FAILURE,
                 payload: {
-                  count: response.media.total,
-                  offset: action.payload.offset
-                }
-              }),
-              of({
-                type: GET_PERSON_SUCCESS,
-                payload: {
-                  media: response.media,
-                  personal: response.response
+                  message: error.message,
+                  status: error.xhr.status,
+                  statusText: error.xhr.statusText
                 }
               })
-            )
-          ),
-          catchError(error =>
-            of({
-              type: GET_PERSON_FAILURE,
-              payload: {
-                message: error.message,
-                status: error.xhr.status,
-                statusText: error.xhr.statusText
-              }
-            })
-          ),
-          takeUntil(action$.pipe(ofType(GET_PERSON_CANCEL)))
-        )
+            ),
+            takeUntil(action$.pipe(ofType(GET_PERSON_CANCEL)))
+          )
+      )
     )
   );

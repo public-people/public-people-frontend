@@ -17,10 +17,17 @@ export const getQueryURIencoded = arr =>
     id
     name
     memberships {
+      id
+      role
+      startDate
+      endDate
+      area {
+        id
+      }
       organization {
+        id
         name
       }
-      role
     }
   }
   query {
@@ -32,6 +39,13 @@ export const getPeopleEpic = action$ =>
     ofType(GET_PEOPLE),
     switchMap(action =>
       concat(
+        of({
+          type: SET_PAGE_META,
+          payload: {
+            count: 0,
+            offset: action.payload.offset
+          }
+        }),
         ajax
           .getJSON(
             `${config.api.publicpeople}/persons/?search=${encodeURI(

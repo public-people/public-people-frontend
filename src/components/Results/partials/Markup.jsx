@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 // cuid www.npmjs.com/package/cuid
 import cuid from "cuid";
 import CardHeader from "../../Card/components/results/Header/index";
+import CardBody from "../../Card/components/results/Body/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
@@ -21,6 +22,7 @@ const buildResults = (results, getPerson, limit, offset) =>
             limit={limit}
           />
         }
+        body={<CardBody item={item} />}
         footer="Unknown amount of events"
         title={item.name}
         link
