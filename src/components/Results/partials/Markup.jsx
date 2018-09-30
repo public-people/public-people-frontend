@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import cuid from "cuid";
 import CardHeader from "../../Card/components/results/Header/index";
 import CardBody from "../../Card/components/results/Body/index";
+import CardFooter from "../../Card/components/results/Footer/index";
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import Placeholder from "./../../Placeholder";
@@ -23,7 +24,7 @@ const buildResults = (results, getPerson, limit, offset) =>
           />
         }
         body={<CardBody item={item} />}
-        footer="Unknown amount of events"
+        footer={<CardFooter item={item} />}
         title={item.name}
         link
         height={250}

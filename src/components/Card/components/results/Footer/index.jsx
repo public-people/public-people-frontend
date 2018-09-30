@@ -4,13 +4,18 @@ import styles from "./styles.module.scss";
 
 export default function ResultsFooter(props) {
   // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-  const { utils } = props;
+  const { utils, item } = props;
   const rootCss = [styles.root, utils].join(" ");
-  return <div>Test Foot</div>;
+  return (
+    <div className={rootCss}>
+      <div>{`Memberships: ${item.memberships.length}`}</div>
+    </div>
+  );
 }
 
 ResultsFooter.propTypes = {
-  utils: PropTypes.string
+  utils: PropTypes.string,
+  item: PropTypes.object.isRequired
 };
 
 ResultsFooter.defaultProps = {
