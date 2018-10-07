@@ -39,13 +39,6 @@ export const getPeopleEpic = action$ =>
     ofType(GET_PEOPLE),
     switchMap(action =>
       concat(
-        of({
-          type: SET_PAGE_META,
-          payload: {
-            count: 0,
-            offset: action.payload.offset
-          }
-        }),
         ajax
           .getJSON(
             `${config.api.publicpeople}/persons/?search=${encodeURI(

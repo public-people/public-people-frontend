@@ -5,8 +5,9 @@ import Results from "./../components/Results/index";
 import ResultsContext from "./../components/ResultsContext/index";
 import { NavConfig } from "./../components/Nav/config";
 import Nav from "./../components/Nav/index";
+import Pagination from "./../components/Pagination/index";
 
-export default function ResultsPage({ data, location, action }) {
+export default function ResultsPage({ data }) {
   const ql = data;
   return (
     <Fragment>
@@ -20,6 +21,7 @@ export default function ResultsPage({ data, location, action }) {
           utils="dist-size1-1 dist-size400-2 dist-size500-3 dist-size800-4"
           list={<Results />}
         />
+        <Pagination />
       </Main>
     </Fragment>
   );

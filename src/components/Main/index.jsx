@@ -1,26 +1,26 @@
-import PropTypes from "prop-types";
-import React, { Fragment } from "react";
-import styles from "./styles.module.scss";
+import { connect } from "react-redux";
+import Markup from "./Markup";
 
-export default function Main(props) {
-  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-  const { utils, children } = props;
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  results: state.people.results,
+  message: state.people.text,
+  loading: state.people.loading,
+  loadingPerson: state.person.loading,
+  phrase: state.people.phrase,
+  error: state.people.error,
+  limit: state.page.limit,
+  offset: state.page.offset,
+  person: state.person.results
+});
 
-  const rootCss = [styles.root, utils].join(" ");
+const mapDispatchToProps = dispatch => ({
+  getPeople: (phrase, limit, offset) =>
+    dispatch(getPeople(phrase, limit, offset))
+});
 
-  return (
-    <Fragment>
-      <a className="skiplink" href="#main">
-        Skip to main content.
-      </a>
-      <main id="main" className={rootCss}>
-        {children}
-      </main>
-    </Fragment>
-  );
-}
-
-Main.propTypes = {
-  utils: PropTypes.string,
-  children: PropTypes.node
-};
+const Main = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Markup);
+export default Main;

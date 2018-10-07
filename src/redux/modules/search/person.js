@@ -2,6 +2,7 @@ const GET_PERSON = "search/person/GET_PERSON";
 const GET_PERSON_FAILURE = "search/people/GET_PERSON_FAILURE";
 const GET_PERSON_SUCCESS = "search/people/GET_PERSON_SUCCESS";
 const GET_PERSON_CANCEL = "search/people/GET_PERSON_CANCEL";
+const CLEAR_PERSON_STATES = "search/people/CLEAR_PERSON_STATES";
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
@@ -20,7 +21,7 @@ export default function reducer(state = {}, action = {}) {
     case GET_PERSON:
       return {
         ...state,
-        personID: action.payload.personID,
+        personID: Number(action.payload.personID),
         loading: true,
         error: {
           ...state.error,
@@ -49,6 +50,18 @@ export default function reducer(state = {}, action = {}) {
           personal: action.payload.personal,
           media: action.payload.media.results
         },
+        error: {
+          isError: false,
+          status: null,
+          message: null,
+          text: null
+        }
+      };
+
+    case CLEAR_PERSON_STATES:
+      return {
+        ...state,
+        loading: false,
         error: {
           isError: false,
           status: null,
@@ -90,4 +103,8 @@ export const getPersonFailure = payload => ({
 
 export const getPersonCancel = () => ({
   type: GET_PERSON_CANCEL
+});
+
+export const clearPersonState = () => ({
+  type: CLEAR_PERSON_STATES
 });

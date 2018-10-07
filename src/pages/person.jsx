@@ -6,6 +6,7 @@ import Persons from "./../components/Persons/index";
 import ResultsContext from "./../components/ResultsContext/index";
 import Nav from "./../components/Nav/index";
 import { NavConfig } from "./../components/Nav/config";
+import Sidebar from "./../components/Sidebar";
 
 export default function PersonsPage({ data }) {
   const ql = data;
@@ -16,7 +17,7 @@ export default function PersonsPage({ data }) {
         title="Person | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main>
+      <Main sidebar={Sidebar}>
         <ResultsContext
           utils="dist-size1-1 component"
           list={<Persons list={PersonsList} />}

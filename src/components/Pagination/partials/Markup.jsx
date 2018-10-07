@@ -33,9 +33,10 @@ export default function Markup(props) {
     getPerson,
     getPeople,
     phrase,
-    personID
+    personID,
+    style
   } = props;
-  const rootCss = [styles.root, utils].join(" ");
+  const rootCss = [styles.root, style, utils].join(" ");
 
   if (count <= limit) {
     return null;
@@ -107,5 +108,5 @@ Markup.propTypes = {
   getPeople: PropTypes.func,
   phrase: PropTypes.string,
   count: PropTypes.number,
-  personID: PropTypes.string
+  personID: PropTypes.number
 };

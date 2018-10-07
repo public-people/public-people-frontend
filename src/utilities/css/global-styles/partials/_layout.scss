@@ -20,8 +20,10 @@ body {
 // This creates an orderly central column.
 #___gatsby {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 header {
@@ -32,7 +34,13 @@ header {
   flex-wrap: wrap;
 }
 
-main {
+.max10 {
+  max-height: 11rem;
+}
+
+main,
+aside {
+  min-height: $initialHeight;
   // The header is fixed, so the main needs to be offset at the top by the height
   // of the header as well so some additional aesthetically pleasing value.
   // (See here for why <main> will appear as an error in IE11:
@@ -52,11 +60,13 @@ main {
 }
 // This preserves space around all components directly in the flow under main
 // but doesn't add to the bottom margin.
-main > * {
+main > *,
+aside > * {
   margin-top: $base-vertical-spacing;
 }
 
 main,
+aside,
 .component-container {
   margin-left: -$layout-offset;
   margin-right: -$layout-offset;

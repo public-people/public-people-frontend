@@ -1,7 +1,22 @@
-@mixin clearfix {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
+:local .aside {
+  width: calc(66 / 100 * 30rem);
+  order: 1;
+  @import "../../utilities/css/abstracts";
+
+  > * h1 {
+    margin-top: calc(#{$base-vertical-spacing} * 1.2em);
   }
+
+  > *,
+  > * ul {
+    margin-top: $base-vertical-spacing;
+  }
+}
+
+:local .main {
+  width: calc(66 / 100 * 70rem);
+}
+
+:local .pagination {
+  order: 2;
 }

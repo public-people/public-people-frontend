@@ -5,7 +5,7 @@ export default {
     phrase: "",
     loading: true,
     activeFetchToken: null,
-    results: [],
+    results: {},
     notification: null,
     error: {
       isError: null,
@@ -32,6 +32,7 @@ export default {
     count: 0,
     offset: 0,
     offsetStep: config.pagination.offsetStep,
-    limit: config.pagination.limit
+    limit: config.pagination.limit,
+    lastPathname: null
   }
 };

@@ -1,18 +1,14 @@
-const GET_PEOPLE = "search/people/GET_PEOPLE";
-const GET_PEOPLE_FAILURE = "search/people/GET_PEOPLE_FAILURE";
-const GET_PEOPLE_SUCCESS = "search/people/GET_PEOPLE_SUCCESS";
-const GET_PEOPLE_CANCEL = "search/people/GET_PEOPLE_CANCEL";
-const CLEAR_PEOPLE_STATES = "search/people/CLEAR_PEOPLE_STATES";
-const SET_PHRASE = "search/people/SET_PHRASE";
+const GET_FRONTPAGE = "search/frontpage/GET_FRONTPAGE";
+const GET_FRONTPAGE_FAILURE = "search/frontpage/GET_FRONTPAGE_FAILURE";
+const GET_FRONTPAGE_SUCCESS = "search/frontpage/GET_FRONTPAGE_SUCCESS";
+const GET_FRONTPAGE_CANCEL = "search/frontpage/GET_FRONTPAGE_CANCEL";
+const CLEAR_FRONTPAGE_STATES = "search/frontpage/CLEAR_FRONTPAGE_STATES";
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
-    case GET_PEOPLE:
+    case GET_FRONTPAGE:
       return {
         ...state,
-        phrase: action.payload.phrase,
-        limit: action.payload.limit,
-        offset: action.payload.offset,
         loading: true,
         error: {
           ...state.error,
@@ -20,7 +16,7 @@ export default function reducer(state = {}, action = {}) {
         }
       };
 
-    case GET_PEOPLE_FAILURE:
+    case GET_FRONTPAGE_FAILURE:
       return {
         ...state,
         loading: false,
@@ -33,7 +29,7 @@ export default function reducer(state = {}, action = {}) {
         }
       };
 
-    case GET_PEOPLE_SUCCESS:
+    case GET_FRONTPAGE_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -46,13 +42,7 @@ export default function reducer(state = {}, action = {}) {
         }
       };
 
-    case SET_PHRASE:
-      return {
-        ...state,
-        phrase: action.payload
-      };
-
-    case GET_PEOPLE_CANCEL:
+    case GET_FRONTPAGE_CANCEL:
       return {
         ...state,
         loading: false,
@@ -63,7 +53,7 @@ export default function reducer(state = {}, action = {}) {
           text: null
         }
       };
-    case CLEAR_PEOPLE_STATES:
+    case CLEAR_FRONTPAGE_STATES:
       return {
         ...state,
         loading: false,
@@ -80,35 +70,23 @@ export default function reducer(state = {}, action = {}) {
   }
 }
 
-export const getPeople = (phrase, limit, offset) => ({
-  type: GET_PEOPLE,
-  payload: {
-    phrase,
-    offset,
-    limit
-  }
+export const getFrontpage = () => ({
+  type: GET_FRONTPAGE
 });
 
-export const getPeopleCancel = () => ({
-  type: GET_PEOPLE_CANCEL
+export const getFrontpageCancel = () => ({
+  type: GET_FRONTPAGE_CANCEL
 });
 
-export const getPeopleSuccess = payload => ({
-  type: GET_PEOPLE_SUCCESS,
+export const getFrontpageSuccess = payload => ({
+  type: GET_FRONTPAGE_SUCCESS,
   payload: {
     results: payload
   }
 });
 
-export function setPhrase(phrase) {
-  return {
-    type: SET_PHRASE,
-    payload: phrase
-  };
-}
-
-export const getPeopleFailure = payload => ({
-  type: GET_PEOPLE_FAILURE,
+export const getFrontpageFailure = payload => ({
+  type: GET_FRONTPAGE_FAILURE,
   payload: {
     text: "Lorum errum",
     message: payload.payload.message,
@@ -116,6 +94,6 @@ export const getPeopleFailure = payload => ({
   }
 });
 
-export const clearPeopleState = () => ({
-  type: CLEAR_PEOPLE_STATES
+export const clearFrontpageState = () => ({
+  type: CLEAR_FRONTPAGE_STATES
 });

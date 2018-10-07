@@ -4,8 +4,21 @@
   position: relative;
   width: 100%;
   justify-content: flex-start;
+  align-items: stretch;
 
   > * {
     margin-top: $base-vertical-spacing;
   }
+  min-height: $initialHeight;
+}
+
+:local .errorOrEmpty {
+  justify-content: center;
+}
+
+:local .placeholder {
+  @import "../../utilities/css/abstracts";
+  min-width: 100%;
+  min-height: $initialHeight;
+  background-color: red;
 }

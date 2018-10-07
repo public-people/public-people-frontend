@@ -1,15 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import Markup from "./Markup";
 
-export default class Container extends Component {
-  componentDidMount() {}
-
-  render() {
-    return <Markup {...this.props} />;
-  }
+export default function Container(props) {
+  return <Markup {...props} />;
 }
-
-Container.propTypes = {};
-
-Container.defaultProps = {};

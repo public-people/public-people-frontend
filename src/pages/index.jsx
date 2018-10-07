@@ -1,13 +1,10 @@
 import React, { Fragment } from "react";
 import Header from "./../components/Header";
-import Card from "./../components/Card";
-import Button from "./../components/Button";
-import FadeInWrap from "./../components/FadeInWrap";
 import Main from "./../components/Main/index";
 import Nav from "./../components/Nav/index";
 import { NavConfig } from "./../components/Nav/config";
-import CardHeader from "../components/Card/components/basic/Header/index";
-import CardBody from "../components/Card/components/basic/Body/index";
+import Results from "./../components/Results/index";
+import ResultsContext from "./../components/ResultsContext/index";
 
 export default function IndexPage({ data }) {
   const ql = data;
@@ -18,84 +15,11 @@ export default function IndexPage({ data }) {
         title="Homepage | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main utils="dist-size1-3">
-        <FadeInWrap utils="component" delay={0}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfa</p>
-            <p>adfgafdsh</p>
-          </Card>
-        </FadeInWrap>
-
-        <FadeInWrap utils="component" delay={0.2}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfadsdhsgfdh</p>
-            <p>adfgafdgh</p>
-            <Button link="http://techforgood.org.za/politician-data-project/">
-              Contribute to this project
-            </Button>
-          </Card>
-        </FadeInWrap>
-
-        <FadeInWrap utils="component" delay={0.2}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfadsdhsgfdh</p>
-            <p>adfgafdgh</p>
-            <Button link="http://techforgood.org.za/politician-data-project/">
-              Contribute to this project
-            </Button>
-          </Card>
-        </FadeInWrap>
-
-        <FadeInWrap utils="component" delay={0.2}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfadsdhsgfdh</p>
-            <p>adfgafdgh</p>
-            <Button link="http://techforgood.org.za/politician-data-project/">
-              Contribute to this project
-            </Button>
-          </Card>
-        </FadeInWrap>
-
-        <FadeInWrap utils="component" delay={0.2}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfadsdhsgfdh</p>
-            <p>adfgafdgh</p>
-            <Button link="http://techforgood.org.za/politician-data-project/">
-              Contribute to this project
-            </Button>
-          </Card>
-        </FadeInWrap>
-
-        <FadeInWrap utils="component" delay={0.4}>
-          <Card
-            header={<CardHeader title="foo" headerLevel={2} />}
-            body={<CardBody />}
-            title="Hello"
-          >
-            <p>afdgsfadsdhsgfdh</p>
-            <p>adfgafdgh</p>
-          </Card>
-        </FadeInWrap>
+      <Main>
+        <ResultsContext
+          utils="dist-size1-1 dist-size400-2 dist-size500-3 dist-size800-4"
+          list={<Results page="frontpage" />}
+        />
       </Main>
     </Fragment>
   );

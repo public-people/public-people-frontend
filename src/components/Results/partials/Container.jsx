@@ -1,28 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import Markup from "./Markup";
 
-export default class Container extends Component {
-  componentDidMount() {
-    const {
-      getDataOnRouteChangeOrEntry,
-      phrase,
-      getPeople,
-      limit,
-      offset
-    } = this.props;
-  }
+export default function Container(props) {
+  const {
+    getDataOnRouteChangeOrEntry,
+    phrase,
+    getPeople,
+    limit,
+    offset
+  } = props;
 
-  render() {
-    return <Markup {...this.props} />;
-  }
+  return <Markup {...props} />;
 }
-
-// Container.propTypes = {
-//   phrase: PropTypes.string,
-//   getPeople: PropTypes.func.isRequired
-// };
-
-// Container.defaultProps = {
-//   phrase: ""
-// };

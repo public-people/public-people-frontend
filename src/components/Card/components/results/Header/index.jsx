@@ -1,7 +1,6 @@
 import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import extractFirstLastWords from "../../../../../utilities/js/extractFirstLastWords";
 import styles from "./styles.module.scss";
 
 export default function ResultsHeader(props) {
