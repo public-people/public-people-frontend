@@ -47,5 +47,6 @@ ResultsContext.propTypes = {
   person: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   loadingPerson: PropTypes.bool.isRequired,
-  error: PropTypes.object.isRequired
+  error: PropTypes.object.isRequired,
+  layoutCss: PropTypes.string
 };
