@@ -8,6 +8,12 @@ p {
 a {
   position: relative;
   color: $font-accent;
+  transition: color 0.15s linear;
+
+  &:hover {
+    color: $dark-accent;
+    transition: color 0.15s linear;
+  }
 }
 
 a.skiplink {
@@ -99,5 +105,32 @@ h4,
 
   &.itals {
     font-style: italic;
+  }
+}
+
+.smallcaps {
+  font-size: 0.85em;
+  text-transform: uppercase;
+}
+
+.smallcaps-primary-accent {
+  color: $primary-accent;
+  font-weight: bold;
+}
+
+.smallcaps-dark-accent {
+  color: $dark-gray;
+  font-weight: bold;
+}
+
+.smallcaps-small {
+  font-size: 0.65em;
+  @include breakpoint(1rem) {
+    /* stylelint-disable */
+    font-size: calc(0.65em + 2px);
+    /* stylelint-enable */
+  }
+  @include breakpoint(64rem) {
+    font-size: 0.65em;
   }
 }

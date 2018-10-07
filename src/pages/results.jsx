@@ -16,10 +16,10 @@ export default function ResultsPage({ data }) {
         title="Search Results | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main>
+      <Main utils="results">
         <ResultsContext
-          utils="dist-size1-1 dist-size400-2 dist-size500-3 dist-size800-4"
           list={<Results />}
+          layoutCss="dist-size1-1dist-size400-2 dist-size500-3 dist-size800-4"
         />
         <Pagination />
       </Main>

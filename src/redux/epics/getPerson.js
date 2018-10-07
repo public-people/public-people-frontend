@@ -53,7 +53,7 @@ export const getPersonEpic = action$ =>
                     extractFirstLastWords(response.data.person.name)
                   )}"&limit=${action.payload.limit}&offset=${
                     action.payload.offset
-                  }`
+                  }&sort=published_at:desc`
                 ),
               (response, media) => ({ response, media })
             ),

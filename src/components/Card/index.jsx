@@ -9,9 +9,9 @@ export default function Card(props) {
 
   return (
     <article className={rootCss}>
-      {props.header && props.header}
-      {props.body && props.body}
-      {props.footer && props.footer}
+      {header && header}
+      {body && body}
+      {footer && footer}
     </article>
   );
 }

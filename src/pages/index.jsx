@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import Header from "./../components/Header";
 import Main from "./../components/Main/index";
 import Nav from "./../components/Nav/index";
@@ -8,6 +8,7 @@ import ResultsContext from "./../components/ResultsContext/index";
 
 export default function IndexPage({ data }) {
   const ql = data;
+
   return (
     <Fragment>
       <Header
@@ -15,9 +16,9 @@ export default function IndexPage({ data }) {
         title="Homepage | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main>
+      <Main utils="results">
         <ResultsContext
-          utils="dist-size1-1 dist-size400-2 dist-size500-3 dist-size800-4"
+          layoutCss="dist-size1-1dist-size400-2 dist-size500-3 dist-size800-4"
           list={<Results page="frontpage" />}
         />
       </Main>

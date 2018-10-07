@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-// cuid www.npmjs.com/package/cuid
-import cuid from "cuid";
+
 import FadeInWrap from "./../../FadeInWrap";
 import styles from "./../styles.module.scss";
 
@@ -29,13 +28,11 @@ export default function Markup(props) {
   }
 
   if (loading) {
-    return [0, 1, 2, 3].map(index => (
-      <div key={cuid()} className={styles.item}>
-        <FadeInWrap delay={index * 0.2}>
-          <div className="text-center">Loading</div>
-        </FadeInWrap>
-      </div>
-    ));
+    return (
+      <FadeInWrap>
+        <div className="text-center">Loading</div>
+      </FadeInWrap>
+    );
   }
 
   if (error.isError) {
@@ -54,12 +51,7 @@ export default function Markup(props) {
     );
   }
 
-  return (
-    <Fragment>
-      <h1 className={`${rootCss} component`}>{props.person}</h1>
-      <Fragment>{results ? buildResults(results, props) : null}</Fragment>
-    </Fragment>
-  );
+  return <Fragment>{results ? buildResults(results, props) : null}</Fragment>;
 }
 
 // Markup.propTypes = {

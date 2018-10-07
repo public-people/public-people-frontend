@@ -13,4 +13,6 @@
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.17, 0.67, 0.43, 1.53);
+  flex-grow: 1;
+  display: flex;
 }

@@ -18,5 +18,6 @@ export default function ReadingContext(props) {
 ReadingContext.propTypes = {
   lang: PropTypes.string,
   utils: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
+  layoutCss: PropTypes.string
 };

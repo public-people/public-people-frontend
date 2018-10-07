@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { parse, format } from "date-fns";
 import styles from "./styles.module.scss";
 
 export default function MediaList(props) {
@@ -9,7 +10,10 @@ export default function MediaList(props) {
 
   return (
     <li className={rootCss}>
-      {item.published_at} – in <em>{item.collection.label}</em>
+      <span className="smallcaps smallcaps-dark-accent smallcaps-small">
+        {format(parse(item.published_at), "YYYY-MM-DD")}
+      </span>{" "}
+      <em>{item.collection.label}</em>
       :&nbsp;
       <a href={item.source_url} rel="noopener noreferrer" target="_blank">
         {item.title}

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { Fragment } from "react";
+import { parse, format } from "date-fns";
 import styles from "./styles.module.scss";
 import siftMemberships from "../../../../ResultsContext/lib/siftMemberships";
 import sortArrByFunc from "../../../../ResultsContext/lib/sortArrByFunc";
@@ -45,10 +46,23 @@ export default function ResultsBody(props) {
       ? highestPriorityMembership.entry
       : undefined;
 
+  format(parse(item.published_at), "YYYY-MM-DD");
+
   const display =
-    entry !== undefined
-      ? `${entry.role}, ${entry.organization.name}`
-      : `No membership information`;
+    entry !== undefined && current.length >= 1 ? (
+      `${entry.role}, ${entry.organization.name}`
+    ) : current.length === 0 ? (
+      <Fragment>
+        {entry.role}, {entry.organization.name}
+        &nbsp;
+        <span className="smallcaps smallcaps-primary-accent">
+          &ndash; until&nbsp;
+          {format(parse(entry.endDate), "YYYY-MM")}
+        </span>
+      </Fragment>
+    ) : (
+      `No membership information`
+    );
 
   const rootCss = [styles.root, utils].join(" ");
   return <div className={rootCss}>{display}</div>;

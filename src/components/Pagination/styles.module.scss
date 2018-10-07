@@ -1,6 +1,13 @@
 :local .root {
+  @import "../../utilities/css/abstracts";
   width: 100%;
   max-height: 3rem;
+  @include breakpoint($size1) {
+    margin-top: 3rem;
+  }
+  @include breakpoint($size400) {
+    margin-top: 1rem;
+  }
 }
 
 :local .paginationInner {
@@ -16,5 +23,5 @@
 }
 
 :local .page {
-  padding: 0 0.05rem;
+  padding: 0 0.1rem;
 }

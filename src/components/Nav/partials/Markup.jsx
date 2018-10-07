@@ -1,14 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Link from "gatsby-link";
-// cuid www.npmjs.com/package/cuid
-import cuid from "cuid";
 import styles from "../styles.module.scss";
 
 export default function Nav(props) {
   // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils, links, getPersonCancel, getPeopleCancel } = props;
-
   const cancelCurrentRequests = () => {
     getPersonCancel();
     getPeopleCancel();
@@ -21,7 +18,7 @@ export default function Nav(props) {
       {links.map(link => (
         <Link
           onClick={cancelCurrentRequests}
-          key={cuid()}
+          key={link.url}
           to={link.url}
           className={styles.link}
         >

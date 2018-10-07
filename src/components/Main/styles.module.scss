@@ -1,10 +1,26 @@
+:local .root {
+}
+
 :local .aside {
-  width: calc(66 / 100 * 30rem);
   order: 1;
+  padding: 0 0.75rem;
+
   @import "../../utilities/css/abstracts";
+  @include breakpoint(1rem) {
+    width: 100%;
+    margin-top: $header-height;
+    margin-bottom: 0;
+    min-height: 0;
+  }
+  @include breakpoint(64rem) {
+    order: 2;
+    width: calc(66 / 100 * 30rem);
+    min-height: $initialHeight;
+    margin-bottom: $base-vertical-spacing;
+  }
 
   > * h1 {
-    margin-top: calc(#{$base-vertical-spacing} * 1.2em);
+    margin-top: calc(#{$base-vertical-spacing} * 0.9em);
   }
 
   > *,
@@ -14,9 +30,58 @@
 }
 
 :local .main {
-  width: calc(66 / 100 * 70rem);
+  @import "../../utilities/css/abstracts";
+  flex-direction: column;
+  @include breakpoint(1rem) {
+    width: 100%;
+    order: 1;
+    margin-top: 0;
+    margin-bottom: $header-height;
+    min-height: 0;
+  }
+  @include breakpoint(64rem) {
+    margin-top: $header-height;
+    margin-bottom: $header-height;
+    min-height: $initialHeight;
+    order: 1;
+    width: calc(66 / 100 * 70rem);
+  }
 }
 
 :local .pagination {
+  @import "../../utilities/css/abstracts";
+  @include breakpoint(1rem) {
+    margin-top: calc(#{$base-vertical-spacing} * 2);
+    order: 2;
+  }
+  @include breakpoint(64rem) {
+    margin-top: $base-vertical-spacing;
+  }
+}
+
+:local .loadingMain {
+  @import "../../utilities/css/abstracts";
+  flex-direction: column;
+  @include breakpoint(1rem) {
+    width: 100%;
+    order: 1;
+    margin-top: $base-vertical-spacing;
+    margin-bottom: $base-vertical-spacing;
+    min-height: $initialHeight;
+  }
+  @include breakpoint(64rem) {
+    margin-top: $header-height;
+    margin-bottom: $header-height;
+    min-height: $initialHeight;
+    order: 1;
+    width: calc(66 / 100 * 70rem);
+  }
+}
+
+:local .loadingPage {
+  @import "../../utilities/css/abstracts";
   order: 2;
+  @include breakpoint(64rem) {
+    padding-right: calc(66 / 100 * 30rem + -1.5rem);
+  }
 }

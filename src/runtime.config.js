@@ -5,7 +5,7 @@ export const config = {
     publicpeopleql: `https://publicpeople.org.za/graphql/?query=`
   },
   pagination: {
-    offsetStep: 15,
-    limit: 15
+    offsetStep: 12,
+    limit: 12
   }
 };

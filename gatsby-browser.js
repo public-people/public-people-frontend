@@ -2,10 +2,9 @@ import React from "react";
 import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
-import configureStore from "./src/redux/store";
+import { store } from "./configureStore";
 import "whatwg-fetch";
 import "core-js/es6/promise";
-export const store = configureStore();
 
 exports.onClientEntry = () => {};
 

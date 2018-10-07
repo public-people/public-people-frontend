@@ -62,7 +62,7 @@ export default function Markup(props) {
     // This will also be true of navigation
     getPeopleCancel();
     getPersonCancel();
-    phrase ? getPeople(phrase, limit, 0) : getPeople("", 15, 0);
+    phrase ? getPeople(phrase, limit, 0) : getPeople("", 12, 0);
   };
 
   return (

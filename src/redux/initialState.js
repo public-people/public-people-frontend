@@ -1,6 +1,15 @@
 import { config } from "../runtime.config";
 
 export default {
+  frontpage: {
+    results: {},
+    error: {
+      isError: null,
+      status: null,
+      message: null,
+      text: null
+    }
+  },
   people: {
     phrase: "",
     loading: true,

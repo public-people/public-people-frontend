@@ -95,7 +95,7 @@ export default function AboutUsPage({ data }) {
         title="Contact Us | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main>
+      <Main utils="fadeIn">
         <ReadingContext content={content} />
       </Main>
     </Fragment>

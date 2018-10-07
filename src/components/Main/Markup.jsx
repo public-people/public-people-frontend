@@ -6,10 +6,21 @@ import Pagination from "./../Pagination/index";
 
 export default function Markup(props) {
   // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-  const { utils, children, sidebar, person, loadingPerson, error } = props;
+  const {
+    utils,
+    children,
+    sidebar,
+    person,
+    loading,
+    loadingPerson,
+    error
+  } = props;
   const Sidebar = sidebar;
   const rootCss = [styles.root, utils].join(" ");
 
+  const stylePagination =
+    loading || loadingPerson ? styles.loadingPage : styles.pagination;
+  const main = loading || loadingPerson ? styles.loadingMain : styles.main;
   return (
     <Fragment>
       <a className="skiplink" href="#main">
@@ -20,15 +31,18 @@ export default function Markup(props) {
           <Sidebar
             style={styles.aside}
             data={person}
-            loading={loadingPerson}
+            loading={loading}
+            loadingPerson={loadingPerson}
             error={error}
             // See: Render Props https://reactjs.org/docs/render-props.html
-            render={data => <Memberships data={data} />}
+            renderMemberships={data => (
+              <Memberships data={data} utils="component" />
+            )}
           />
-          <main id="main" className={styles.main}>
+          <main id="main" className={main}>
             {children}
+            <Pagination style={stylePagination} />
           </main>
-          <Pagination style={styles.pagination} />
         </Fragment>
       )}
 
@@ -48,7 +62,8 @@ Markup.propTypes = {
     PropTypes.object,
     PropTypes.func
   ]),
-  results: PropTypes.array.isRequired,
+  loadingPerson: PropTypes.bool,
+  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   person: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object.isRequired,

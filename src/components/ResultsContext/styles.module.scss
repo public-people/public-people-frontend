@@ -1,15 +1,12 @@
 :local .root {
   @import "../../utilities/css/abstracts";
-  display: flex;
   position: relative;
   width: 100%;
-  justify-content: flex-start;
-  align-items: stretch;
+  flex-grow: 1;
 
   > * {
     margin-top: $base-vertical-spacing;
   }
-  min-height: $initialHeight;
 }
 
 :local .errorOrEmpty {
@@ -19,6 +16,16 @@
 :local .placeholder {
   @import "../../utilities/css/abstracts";
   min-width: 100%;
-  min-height: $initialHeight;
-  background-color: red;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+:local .layout {
+  @import "../../utilities/css/abstracts";
+
+  > * {
+    margin-top: $base-vertical-spacing;
+  }
 }

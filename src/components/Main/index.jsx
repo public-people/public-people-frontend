@@ -14,9 +14,8 @@ const mapStateToProps = (state, ownProps) => ({
   person: state.person.results
 });
 
-const mapDispatchToProps = dispatch => ({
-  getPeople: (phrase, limit, offset) =>
-    dispatch(getPeople(phrase, limit, offset))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  ...ownProps
 });
 
 const Main = connect(

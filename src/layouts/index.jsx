@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "normalize.css";
 import { Provider } from "react-redux";
 import configureStore from "./../redux/store";
 import "./../utilities/css";
-import onRouteChangeOrEntry from "./onRouteChangeOrEntry";
+import onRouteChangeOrEntry from "../onRouteChangeOrEntry";
 
 const store = configureStore();
 

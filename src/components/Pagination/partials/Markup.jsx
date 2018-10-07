@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "gatsby-link";
-// cuid www.npmjs.com/package/cuid
-import cuid from "cuid";
+
 import { getNewUrl } from "./../lib/getNewUrl";
 import { getPageArray } from "./../lib/getPageArray";
 import { getOptions } from "./../lib/getOptions";
@@ -56,7 +55,7 @@ export default function Markup(props) {
 
           return pageNo === options.currPage ? (
             <Link
-              key={cuid()}
+              key={pageNo}
               to={getNewUrl(window.location.href, newOffset)}
               onClick={() =>
                 callSearch({
@@ -74,7 +73,7 @@ export default function Markup(props) {
             </Link>
           ) : (
             <Link
-              key={cuid()}
+              key={pageNo}
               to={getNewUrl(window.location.href, newOffset)}
               onClick={() =>
                 callSearch({
@@ -108,5 +107,6 @@ Markup.propTypes = {
   getPeople: PropTypes.func,
   phrase: PropTypes.string,
   count: PropTypes.number,
-  personID: PropTypes.number
+  personID: PropTypes.number,
+  style: PropTypes.string
 };

@@ -34,8 +34,13 @@ header {
   flex-wrap: wrap;
 }
 
-.max10 {
-  max-height: 11rem;
+.max25pc {
+  max-height: 25%;
+}
+
+main.results {
+  align-content: space-between;
+  flex-direction: column;
 }
 
 main,
@@ -52,7 +57,7 @@ aside {
   width: 100%;
   // Until there is a footer, this gives the site guaranteed bottom space. It seems
   // symmetrical to have it match the header height, but this is merely a design opinion.
-  margin-bottom: $header-height;
+  margin-bottom: calc(#{$header-height} / 2);
   // This keeps children central.
   display: flex;
   justify-content: center;
@@ -75,4 +80,14 @@ aside,
 .component {
   padding-left: $layout-offset;
   padding-right: $layout-offset;
+}
+
+.persons li:first-child {
+  @include breakpoint(1rem) {
+    border-top: 0.125rem solid $dark-accent;
+    padding-top: 2rem;
+  }
+  @include breakpoint(64rem) {
+    border-top: 0.125rem solid transparent;
+  }
 }

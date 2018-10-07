@@ -36,23 +36,17 @@ export const getQueryURIencoded = arr =>
 const frontPageIdQuery = [
   13912,
   13967,
-  13772,
   7780,
-  13306,
   13968,
   8227,
   13204,
   13614,
-  13802,
-  13794,
   13977,
   13708,
   13958,
   7531,
   13622
 ];
-
-console.log("frontPageIdQuery", frontPageIdQuery);
 
 export const getFrontPageEpic = action$ =>
   action$.pipe(

@@ -17,9 +17,9 @@ export default function PersonsPage({ data }) {
         title="Person | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main sidebar={Sidebar}>
+      <Main sidebar={Sidebar} utils="results">
         <ResultsContext
-          utils="dist-size1-1 component"
+          utils="component persons"
           list={<Persons list={PersonsList} />}
         />
       </Main>

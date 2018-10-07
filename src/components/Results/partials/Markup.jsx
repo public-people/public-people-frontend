@@ -1,31 +1,33 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-// cuid www.npmjs.com/package/cuid
-import cuid from "cuid";
+
 import CardHeader from "../../Card/components/results/Header/index";
 import CardBody from "../../Card/components/results/Body/index";
+
 import Card from "./../../Card";
 import FadeInWrap from "./../../FadeInWrap";
 import styles from "./../styles.module.scss";
 
-const buildResults = (results, getPersonAndClear, limit, offset) =>
+const buildResults = (results, getPersonAndClear, limit, offset, itemStyle) =>
   results.map((item, index) => (
-    <li className="component flex max10" key={cuid()}>
-      <Card
-        header={
-          <CardHeader
-            clickFn={getPersonAndClear}
-            item={item}
-            headerLevel={3}
-            offset={offset}
-            limit={limit}
-          />
-        }
-        body={<CardBody item={item} />}
-        title={item.name}
-        link
-        height={250}
-      />
+    <li className={itemStyle} key={item.id}>
+      <FadeInWrap>
+        <Card
+          header={
+            <CardHeader
+              clickFn={getPersonAndClear}
+              item={item}
+              headerLevel={4}
+              offset={offset}
+              limit={limit}
+            />
+          }
+          body={<CardBody item={item} />}
+          title={item.name}
+          link
+          height={250}
+        />
+      </FadeInWrap>
     </li>
   ));
 
@@ -42,14 +44,14 @@ export default function Markup(props) {
     offset,
     limit
   } = props;
-
+  /* eslint-disable no-shadow */
   const getPersonAndClear = (personID, limit, offset) => {
     clearPeopleState();
     clearPersonState();
     getPerson(personID, limit, offset);
   };
-
-  console.log("results", results);
+  /* eslint-enable no-shadow */
+  const itemStyle = [styles.item, "component flex"].join(" ");
   const rootCss = [styles.root, utils].join(" ");
   if (error === false) {
     return (
@@ -86,18 +88,22 @@ export default function Markup(props) {
   }
   return (
     <Fragment>
-      {results ? buildResults(results, getPersonAndClear, limit, offset) : null}
+      {results
+        ? buildResults(results, getPersonAndClear, limit, offset, itemStyle)
+        : null}
     </Fragment>
   );
 }
 
 Markup.propTypes = {
   error: PropTypes.object.isRequired,
-  phrase: PropTypes.string.isRequired,
+  phrase: PropTypes.string,
   results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   getPerson: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   utils: PropTypes.string,
   offset: PropTypes.number.isRequired,
-  limit: PropTypes.number.isRequired
+  limit: PropTypes.number.isRequired,
+  clearPeopleState: PropTypes.func,
+  clearPersonState: PropTypes.func
 };

@@ -14,7 +14,7 @@ $header-height: 7rem;
 
 $typographic-maxwidth: 60rem;
 
-$initialHeight: calc(100vh - #{$header-height} * 2);
+$initialHeight: calc(100vh - #{$header-height} * 1.7);
 
 // ------------------ Coupled values
 // The header is fixed, so the main needs to be offset at the top by the height

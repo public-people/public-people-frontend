@@ -1,21 +1,47 @@
-:local .root {
-  @keyframes shimmer {
-    from {
-      background-position: -62.5rem 0;
+:local .loadingBar {
+  display: inline-block;
+  /* stylelint-disable */
+  width: 2px;
+  /* stylelint-enable */
+  height: 1.5rem;
+  border-radius: 0.15rem;
+  margin: 0 0.25rem;
+  animation: loading 1s ease-in-out infinite;
+  @keyframes loading {
+    0% {
+      transform: scale(1);
     }
 
-    to {
-      background-position: 62.5rem 0;
+    20% {
+      transform: scale(1, 2.2);
+    }
+
+    40% {
+      transform: scale(1);
     }
   }
-  height: 100%;
-  width: 100%;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-name: shimmer;
-  animation-timing-function: linear;
-  background: #ebebeb;
-  background: linear-gradient(to right, #ebebeb 0%, #e0e0e0 20%, #ebebeb 40%);
-  background-size: 125rem 125rem;
-  position: relative;
+}
+
+:local .bar1 {
+  @import "../../utilities/css/abstracts";
+  background-color: $dark-accent;
+  animation-delay: 0.18s;
+}
+
+:local .bar2 {
+  @import "../../utilities/css/abstracts";
+  background-color: $dark-gray;
+  animation-delay: 0.36s;
+}
+
+:local .bar3 {
+  @import "../../utilities/css/abstracts";
+  background-color: $dark-background;
+  animation-delay: 0.66s;
+}
+
+:local .bar4 {
+  @import "../../utilities/css/abstracts";
+  background-color: $primary-accent;
+  animation-delay: 0.84s;
 }

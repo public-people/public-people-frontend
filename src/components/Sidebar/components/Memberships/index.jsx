@@ -1,28 +1,32 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-// cuid www.npmjs.com/package/cuid
-import cuid from "cuid";
+
 import styles from "./styles.module.scss";
 import siftMemberships from "./../../../ResultsContext/lib/siftMemberships";
 import { rolePriorityEnum } from "./../../../ResultsContext/enums/rolePriority";
 import sortArrByFunc from "./../../../ResultsContext/lib/sortArrByFunc";
 import sortNumberAsc from "./../../../ResultsContext/lib/sortNumberAsc";
+import FadeInWrap from "../../../FadeInWrap/index";
 
 export default function MembershipsList(props) {
   const { utils, data } = props;
-  const person = data.personal.data.person;
+  if (
+    data === undefined ||
+    data.personal === undefined ||
+    data.personal.data === undefined ||
+    data.personal.data.person === undefined
+  ) {
+    return <div>Loading...</div>;
+  }
+  const { person } = data.personal.data;
   const { memberships } = person;
   const siftedMemberships = siftMemberships(
     memberships,
     "endDate",
     rolePriorityEnum
   );
-  console.log("person", person);
-  console.log("memberships", memberships);
-  console.log("siftedMemberships", siftedMemberships);
-
-  console.log("data", data);
-  const rootCss = [styles.root, utils].join(" ");
+  const rootCss = [styles.root, "component-container"].join(" ");
+  const component = [styles.component, "component"].join(" ");
   const sortedYears = sortArrByFunc(
     Object.keys(siftedMemberships.byYear),
     sortNumberAsc
@@ -30,12 +34,12 @@ export default function MembershipsList(props) {
 
   return (
     <div className={rootCss}>
-      <h1>{person.name}</h1>
+      <h1 className={component}>{person.name}</h1>
       {siftedMemberships.current.length > 0 && (
-        <ul>
+        <ul className={component}>
           Current position
           {siftedMemberships.current.map(item => (
-            <li key={cuid()}>{`${item.entry.role}, ${
+            <li key={item.entry.id}>{`${item.entry.role}, ${
               item.entry.organization.name
             }`}</li>
           ))}
@@ -43,13 +47,13 @@ export default function MembershipsList(props) {
       )}
       {siftedMemberships.remainder.length > 0 &&
         sortedYears.map(year => (
-          <ul key={cuid()}>
+          <ul className={component} key={year}>
             {siftedMemberships.current.length === 0 && (
               <div> Latest positions</div>
             )}
             {year}
             {siftedMemberships.byYear[year].map(item => (
-              <li key={cuid()}>{`${item.entry.role}, ${
+              <li key={item.entry.id}>{`${item.entry.role}, ${
                 item.entry.organization.name
               }`}</li>
             ))}

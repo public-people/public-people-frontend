@@ -20,7 +20,7 @@ export default function ContactUsPage({ data }) {
         title="Contact Us | Public People"
         navigation={<Nav links={NavConfig.standard} />}
       />
-      <Main utils="dist-size1-3">
+      <Main utils="dist-size1-3 fadeIn">
         <ReadingContext utils="component" lang="en" content={content} />
       </Main>
     </Fragment>
