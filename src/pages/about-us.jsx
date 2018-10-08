@@ -47,7 +47,7 @@ const content = `<h2>About Public People</h2>
 <ul>
   <li>Legally obtained</li>
   <li>
-    Relevant to the public interest
+    Relevant to the public interest:
     <ul>
       <li>e.g. for the public to exercise their democratic rights</li>
       <li>This includes information needed to identify this person</li>
@@ -65,7 +65,7 @@ const content = `<h2>About Public People</h2>
 
 <ul>
   <li>
-    Programmers
+    <h4>Programmers</h4>
     <ul>
       <li>Look at the <a href="https://trello.com/b/9TVRB4gb/public-people">prioritised task board</a> and identify tasks you can help with</li>
       <li>Join us in the #public-people channel on the <a href="https://zatech.github.io/">ZATech Slack</a> and let us know you’d like to contribute and how you think you can</li>
@@ -79,7 +79,7 @@ const content = `<h2>About Public People</h2>
     </ul>
   </li>
   <li>
-    Anyone
+    <h4>Anyone</h4>
     <ul>
       <li><a href="/contact">Let us know</a> of corrections or improvements to information about persons, their job history shown on the site, or mistakes in showing news about a person</li>
     </ul>

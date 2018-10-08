@@ -6,13 +6,14 @@ export default function ReadingContext(props) {
   // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const { utils, lang, content } = props;
 
-  const rootCss = [styles.root, utils].join(" ");
+  const rootCss = [styles.root, utils, "component-container"].join(" ");
   return (
-    <div
-      lang={lang}
-      className={rootCss}
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
+    <div lang={lang} className={rootCss}>
+      <article
+        className="component"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    </div>
   );
 }
 ReadingContext.propTypes = {
