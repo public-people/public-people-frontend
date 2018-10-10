@@ -18,7 +18,7 @@ const buildResults = (results, props, mediaList) => {
 export default function Markup(props) {
   const { loading, error, results, list, utils } = props;
   const rootCss = [styles.root, utils].join(" ");
-
+  const emptycss = [styles.errorOrEmpty, "text-center"].join(" ");
   if (error === false) {
     return (
       <div>
@@ -37,16 +37,20 @@ export default function Markup(props) {
 
   if (error.isError) {
     return (
-      <FadeInWrap>
-        <div className="text-center">Error</div>
+      <FadeInWrap utils={emptycss}>
+        <div className="text-center">
+          <h2>Something went wrong.</h2>
+          <p>Please try again at a later stage</p>
+        </div>
       </FadeInWrap>
     );
   }
-
   if (results.media.length < 1) {
     return (
-      <FadeInWrap>
-        <div className="text-center">No results</div>
+      <FadeInWrap utils={emptycss}>
+        <div className="text-center">
+          <h2>No results.</h2>
+        </div>
       </FadeInWrap>
     );
   }

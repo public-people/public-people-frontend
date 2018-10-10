@@ -10,7 +10,19 @@
 }
 
 :local .errorOrEmpty {
+  @import "../../utilities/css/abstracts";
   justify-content: center;
+  display: flex;
+  > ul {
+    h2 {
+      font-size: 2rem;
+      width: 100%;
+      color: $primary-accent;
+    }
+    font-size: 1.5rem;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 :local .placeholder {

@@ -51,6 +51,7 @@ export default function Markup(props) {
     getPerson(personID, limit, offset);
   };
   /* eslint-enable no-shadow */
+  const emptycss = [styles.errorOrEmpty, "text-center"].join(" ");
   const itemStyle = [styles.item, "component flex"].join(" ");
   const rootCss = [styles.root, utils].join(" ");
   if (error === false) {
@@ -67,9 +68,10 @@ export default function Markup(props) {
 
   if (error.isError) {
     return (
-      <FadeInWrap>
+      <FadeInWrap utils={emptycss}>
         <div className="text-center">
-          Something went wrong. Please try again at a later stage
+          <h2>Something went wrong. </h2>
+          <p>Please try again at a later stage</p>
         </div>
       </FadeInWrap>
     );
@@ -77,11 +79,12 @@ export default function Markup(props) {
 
   if (results.count === 0 || Object.keys(results).length === 0) {
     return (
-      <FadeInWrap>
-        <div className="text-center">
-          No result was found matching the query &ldquo;
-          {phrase}
-          &rdquo;, please try another phrase.
+      <FadeInWrap utils={emptycss}>
+        <div>
+          <ul>
+            <h2>No result was found matching this query</h2>
+            <p>Please try another phrase.</p>
+          </ul>
         </div>
       </FadeInWrap>
     );

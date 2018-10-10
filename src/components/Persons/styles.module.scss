@@ -3,3 +3,24 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+:local .errorOrEmpty {
+  @import "../../utilities/css/abstracts";
+  justify-content: center;
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  > ul,
+  > div {
+    h2 {
+      font-size: 2rem;
+      width: 100%;
+      color: $primary-accent;
+    }
+    font-size: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+  }
+}
