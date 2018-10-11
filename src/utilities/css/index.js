@@ -1,2 +1,1 @@
-import './utility-classes';
-import './global-styles';
+import "./index.scss";

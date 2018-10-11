@@ -1,22 +1,19 @@
-import React from 'react';
-import Link from 'gatsby-link';
-import PropTypes from 'prop-types';
-import styles from './../styles.module.scss';
-import Button from './../../Button';
-import Icon from './../../Icon';
-import Input from './../../Input';
+import Link from "gatsby-link";
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
+import Helmet from "react-helmet";
+import Button from "./../../Button";
+import Icon from "./../../Icon";
+import Input from "./../../Input";
+import styles from "./../styles.module.scss";
 
-
-const buildLoadingMarkup = () => (
-  <div className={styles.searchWrap}>
-    <div className={styles.search}>
-      <Input loading />
-    </div>
-  </div>
-);
-
-
-const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
+const createForm = (
+  phrase,
+  updatePhraseWrap,
+  initSearchWrap,
+  limit,
+  offset
+) => (
   <form className={styles.searchWrap}>
     <div className={styles.search}>
       <div className={styles.input}>
@@ -28,7 +25,12 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
         />
       </div>
       <div className={styles.button}>
-        <Link to={`/results?phrase=${encodeURI(phrase)}`} onClick={initSearchWrap}>
+        <Link
+          to={`/results?phrase=${encodeURI(
+            phrase
+          )}&offset=${offset}&limit=${limit}`}
+          onClick={initSearchWrap}
+        >
           <Button inline submit utils="rounded-l-0">
             <Icon type="search" />
           </Button>
@@ -38,44 +40,69 @@ const createForm = (phrase, updatePhraseWrap, initSearchWrap) => (
   </form>
 );
 
-
 export default function Markup(props) {
+  // Destructuring assignment: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
   const {
-    loading,
     phrase,
     updatePhrase,
-    initSearch,
+    getPeopleCancel,
+    getPersonCancel,
+    getPeople,
+    limit,
+    ql,
+    title
   } = props;
-
-  const updatePhraseWrap = event => updatePhrase(event.target.value);
-  const initSearchWrap = () => initSearch(phrase);
+  const updatePhraseWrap = event => {
+    updatePhrase(event.target.value);
+  };
+  const initSearchWrap = () => {
+    // The ordering of these three functions is crucial.
+    // The first cancels any previous unresolved request and the second initiates a new one.
+    // Because the search button can be pressed from anywhere, all promises must be cancelled here.
+    // This will also be true of navigation
+    getPeopleCancel();
+    getPersonCancel();
+    phrase ? getPeople(phrase, limit, 0) : getPeople("", 12, 0);
+  };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.wrap}>
-        <div className={styles.home}>
-          <Link to="/">
-            <Button primary inline>
-              <Icon type="home" />
-            </Button>
-          </Link>
+    <Fragment>
+      <Helmet title={title}>
+        <html lang={ql.site.siteMetadata.language} />
+        <meta
+          name="viewport"
+          content="width=device-width initial-scale=1.0, shrink-to-fit=no"
+        />
+      </Helmet>
+      <header className={styles.root}>
+        <div className={styles.wrap}>
+          <div className={styles.home}>
+            <Link to="/">
+              <Button primary inline>
+                <Icon type="home" />
+              </Button>
+            </Link>
+          </div>
+          {createForm(phrase, updatePhraseWrap, initSearchWrap, limit, 0)}
         </div>
-        {!loading ? createForm(phrase, updatePhraseWrap, initSearchWrap) : buildLoadingMarkup()}
-      </div>
-    </div>
+        {props.navigation ? props.navigation : null}
+      </header>
+    </Fragment>
   );
 }
 
-
 Markup.propTypes = {
-  loading: PropTypes.bool,
   phrase: PropTypes.string,
   updatePhrase: PropTypes.func.isRequired,
-  initSearch: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  navigation: PropTypes.element,
+  ql: PropTypes.object,
+  limit: PropTypes.number.isRequired,
+  getPeopleCancel: PropTypes.func,
+  getPersonCancel: PropTypes.func,
+  getPeople: PropTypes.func
 };
 
-
 Markup.defaultProps = {
-  loading: false,
-  phrase: '',
+  phrase: ""
 };

@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  // Because all units are defined in rem, the whole site will scale with this font-size value.
+  // The value set here allows algorithmic scaling as it adds width as the screen gets wider.
+  font-size: calc(0.8em + 0.2vw);
+  min-height: 100%;
+}
+
+body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  background-color: $primary-background;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// T  // Maybe trivially, but since the <main> tag is restricted in size, something has to keep it in the center.
+// This creates an orderly central column.
+#___gatsby {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+header {
+  max-height: $header-height;
+  position: fixed;
+  z-index: 1;
+  padding: $base-vertical-spacing calc((100% - 50rem) / 2);
+  flex-wrap: wrap;
+}
+
+.max25pc {
+  max-height: 25%;
+}
+
+main.results {
+  align-content: space-between;
+  flex-direction: column;
+}
+
+main,
+aside {
+  min-height: $initialHeight;
+  // The header is fixed, so the main needs to be offset at the top by the height
+  // of the header as well so some additional aesthetically pleasing value.
+  // (See here for why <main> will appear as an error in IE11:
+  // https://stackoverflow.com/questions/35820429/main-element-not-working-in-internet-explorer-11)
+  margin-top: $main-offset-top;
+  // This value defines the outermost padding of the site when the screen width is small than the max width.
+  padding: 0 $layout-offset;
+  max-width: calc(66rem + (2 * #{$layout-offset}));
+  width: 100%;
+  // Until there is a footer, this gives the site guaranteed bottom space. It seems
+  // symmetrical to have it match the header height, but this is merely a design opinion.
+  margin-bottom: calc(#{$header-height} / 2);
+  // This keeps children central.
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+// This preserves space around all components directly in the flow under main
+// but doesn't add to the bottom margin.
+main > *,
+aside > * {
+  margin-top: $base-vertical-spacing;
+}
+
+main,
+aside,
+.component-container {
+  margin-left: -$layout-offset;
+  margin-right: -$layout-offset;
+}
+
+.component {
+  padding-left: $layout-offset;
+  padding-right: $layout-offset;
+}
+
+.persons li:first-child {
+  @include breakpoint(1rem) {
+    border-top: 0.125rem solid $dark-accent;
+    padding-top: 2rem;
+  }
+  @include breakpoint(64rem) {
+    border-top: 0.125rem solid transparent;
+  }
+}

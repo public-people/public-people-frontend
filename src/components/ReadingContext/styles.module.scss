@@ -1,0 +1,91 @@
+:local .root {
+  @import "../../utilities/css/abstracts";
+  display: block;
+  max-width: $typographic-maxwidth;
+
+  article > * {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  li {
+    margin-top: 0.5rem;
+    position: relative;
+  }
+
+  article > ul {
+    margin-left: 1.5rem;
+    position: relative;
+  }
+
+  article > ul > li > ul {
+    margin: 0.3rem 0;
+    margin-left: 1.6rem;
+    padding: 0;
+    position: relative;
+  }
+
+  article > ul > li {
+    position: relative;
+  }
+
+  ul > li::before {
+    @import "../../utilities/css/abstracts";
+    content: "";
+    position: absolute;
+    display: flex;
+    height: 0.7rem;
+    width: 0.7rem;
+    left: -1.5rem;
+
+    @include breakpoint($size1) {
+      top: 0.2em;
+    }
+    @include breakpoint($size500) {
+      top: 0.25em;
+    }
+  }
+
+  article > ul > li::before {
+    @import "../../utilities/css/abstracts";
+    background: $primary-accent;
+  }
+
+  article > ul > li > ul > li::before {
+    @import "../../utilities/css/abstracts";
+    background: $darker-background;
+    left: -1.4rem;
+    height: 0.7rem;
+    width: 0.7rem;
+
+    @include breakpoint($size1) {
+      top: 0.2em;
+    }
+
+    @include breakpoint($size500) {
+      top: 0.2em;
+    }
+  }
+
+  article > ul > li > ul > li > ul > li {
+    margin-left: 1.5rem;
+  }
+
+  article > ul > li > ul > li > ul > li::before {
+    @import "../../utilities/css/abstracts";
+    background: $primary-accent;
+    left: -1.4rem;
+    height: 0.7rem;
+    width: 0.7rem;
+    @include breakpoint($size1) {
+      top: 0.2em;
+    }
+    @include breakpoint($size500) {
+      top: 0.2em;
+    }
+  }
+}

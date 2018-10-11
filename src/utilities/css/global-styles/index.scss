@@ -1,0 +1,14 @@
+// The purpose of this file is to concatenate the partials scss into a file for export.
+// This could in theory be imported directly to the index one level up, but for now
+// I've chosen to separate conceptually utilities and global styles.
+//
+// Keep abstract types and variables at the top and those with selectors below.
+
+@import "./partials/layout-values";
+@import "./partials/screensizes";
+@import "./partials/mixins";
+@import "./partials/type";
+@import "./partials/colors";
+@import "./partials/links";
+@import "./partials/layout";
+@import "global";

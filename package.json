@@ -2,69 +2,78 @@
   "name": "public-people-frontend",
   "description": "Public People aims to give an overview of individuals holding public office or trying to do so, in a way that is easily understandable by the average person at a glance.",
   "version": "0.1.0",
-  "author": "Schalk Venter <venterschalk@gmail.com>",
+  "author": "Schalk Venter <venterschalk@gmail.com> & Saul Nachman <saulnachman@gmail.com>",
   "keywords": [
     "gatsby redux"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "start": "gatsby develop -o",
+    "start": "gatsby develop -o -p 3000",
     "test:jest": "jest src",
     "test:eslint": "eslint ./src/**/*.js & eslint ./src/**/*.jsx",
     "test:stylelint": "stylelint ./src/**/*.scss",
-    "test:backstop": "gatsby build & node tooling/backstop/index",
-    "test:local": "npm run test:eslint & npm run test:stylelint & npm run test:jest & npm run test:backstop -- --cli",
+    "test:local": "npm run test:eslint & npm run test:stylelint & npm run test:jest",
     "test": "npm run test:eslint & npm run test:stylelint & npm run test:jest",
     "prepush": "npm run test:local"
   },
   "dependencies": {
-    "babel-eslint": "^8.2.3",
+    "core-js": "^2.5.7",
+    "date-fns": "^1.29.0",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
+    "gatsby-plugin-create-client-paths": "^1.0.6-11",
     "gatsby-plugin-google-fonts": "0.0.4",
     "gatsby-plugin-react-helmet": "^2.0.10",
-    "gatsby-plugin-sass": "^1.0.26",
+    "gatsby-plugin-react-next": "^1.0.11",
+    "is-node": "^1.0.2",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
     "redux-batched-subscribe": "^0.1.6",
-    "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-observable": "^1.0.0",
+    "rxjs": "^6.2.2",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
-    "backstopjs": "^3.2.16",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "front-matter": "^2.3.0",
+    "gatsby-plugin-sass": "^1.0.26",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "nock": "^9.2.6",
     "node-fetch": "^2.1.2",
+    "redux-devtools-extension": "^2.13.2",
     "serve": "^6.5.8",
     "stylelint": "^9.2.1",
     "stylelint-config-css-modules": "^1.2.0",
+    "stylelint-config-prettier": "^3.3.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-no-unsupported-browser-features": "^3.0.0",
-    "stylelint-scss": "^3.1.0"
+    "stylelint-scss": "^3.1.0",
+    "url-loader": "^1.0.1"
   },
   "browserslist": [
     "last 12 chrome versions",
     "last 12 firefox versions",
     "last 6 safari versions",
-    "explorer >= 10",
+    "IE 11",
     "edge > 0"
   ],
   "babel": {
@@ -72,67 +81,5 @@
       "env",
       "react"
     ]
-  },
-  "jest": {
-    "roots": [
-      "src"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "env": {
-      "browser": true,
-      "es6": true,
-      "jest": true,
-      "node": true
-    },
-    "extends": "airbnb",
-    "plugins": [
-      "compat"
-    ],
-    "rules": {
-      "jsx-a11y/anchor-is-valid": [
-        "error",
-        {
-          "components": [
-            "Link"
-          ],
-          "specialLink": [
-            "to"
-          ]
-        }
-      ]
-    }
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-standard",
-      "stylelint-config-css-modules"
-    ],
-    "plugins": [
-      "stylelint-scss",
-      "stylelint-no-unsupported-browser-features"
-    ],
-    "rules": {
-      "plugin/no-unsupported-browser-features": [
-        true,
-        {
-          "severity": "warning"
-        }
-      ],
-      "at-rule-no-unknown": [
-        true,
-        {
-          "ignoreAtRules": [
-            "for",
-            "if",
-            "return",
-            "function",
-            "mixin",
-            "include"
-          ]
-        }
-      ]
-    }
   }
 }

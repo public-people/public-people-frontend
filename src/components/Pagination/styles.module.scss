@@ -1,0 +1,27 @@
+:local .root {
+  @import "../../utilities/css/abstracts";
+  width: 100%;
+  max-height: 3rem;
+  @include breakpoint($size1) {
+    margin-top: 3rem;
+  }
+  @include breakpoint($size400) {
+    margin-top: 1rem;
+  }
+}
+
+:local .paginationInner {
+  display: flex;
+  justify-content: center;
+}
+
+:local .currPage {
+  @import "../../utilities/css/abstracts";
+  pointer-events: none;
+  text-decoration: none;
+  color: $black;
+}
+
+:local .page {
+  padding: 0 0.1rem;
+}

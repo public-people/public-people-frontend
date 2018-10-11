@@ -1,28 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './../styles.module.scss';
-import Card from './../../Card';
-import BounceWrap from './../../BounceWrap';
-import Placeholder from './../../Placeholder';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
-const buildResults = results => results.map((item, index) => (
-  <div
-    key={item.id}
-    className={styles.item}
-    style={{ animationDelay: `${index * 0.1}s` }}
-  >
-    <Card
-      title={item.name}
-      link
-      footer="Unknown amount of events"
-      height={250}
-    >
-      <span className="font-bold block">Position Unknown</span>
-      <span className="block italic">Organisation Unknown</span>
-    </Card>
-  </div>
-));
+import CardHeader from "../../Card/components/results/Header/index";
+import CardBody from "../../Card/components/results/Body/index";
 
+import Card from "./../../Card";
+import FadeInWrap from "./../../FadeInWrap";
+import styles from "./../styles.module.scss";
+
+const buildResults = (results, getPersonAndClear, limit, offset, itemStyle) =>
+  results.map((item, index) => (
+    <li className={itemStyle} key={item.id}>
+      <FadeInWrap>
+        <Card
+          header={
+            <CardHeader
+              clickFn={getPersonAndClear}
+              item={item}
+              headerLevel={4}
+              offset={offset}
+              limit={limit}
+            />
+          }
+          body={<CardBody item={item} />}
+          title={item.name}
+          link
+          height={250}
+        />
+      </FadeInWrap>
+    </li>
+  ));
 
 export default function Markup(props) {
   const {
@@ -30,63 +37,76 @@ export default function Markup(props) {
     error,
     results,
     phrase,
+    getPerson,
+    clearPeopleState,
+    clearPersonState,
+    utils,
+    offset,
+    limit
   } = props;
-
-  if (error === 'no-resuls') {
-    return <div>No results were found for this search. Please try another search term</div>;
+  /* eslint-disable no-shadow */
+  const getPersonAndClear = (personID, limit, offset) => {
+    clearPeopleState();
+    clearPersonState();
+    getPerson(personID, limit, offset);
+  };
+  /* eslint-enable no-shadow */
+  const emptycss = [styles.errorOrEmpty, "text-center"].join(" ");
+  const itemStyle = [styles.item, "component flex"].join(" ");
+  const rootCss = [styles.root, utils].join(" ");
+  if (error === false) {
+    return (
+      <div>
+        No results were found for this search. Please try another search term
+      </div>
+    );
   }
 
   if (loading) {
-    return [0, 1, 2, 3].map(index => (
-      <div key={index} className={styles.item}>
-        <BounceWrap delay={index * 0.2}>
-          <Placeholder utils="rounded-4" height={250} />
-        </BounceWrap>
-      </div>
-    ));
+    return <Fragment />;
   }
 
-  if (error) {
+  if (error.isError) {
     return (
-      <BounceWrap>
+      <FadeInWrap utils={emptycss}>
         <div className="text-center">
-          <Card highlighted title="Error" utils="max-w-4 ml-auto mr-auto">Something went wrong. Please try again at a later stage</Card>
+          <h2>Something went wrong. </h2>
+          <p>Please try again at a later stage</p>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
 
-  if (results.length < 1) {
+  if (results.count === 0 || Object.keys(results).length === 0) {
     return (
-      <BounceWrap>
-        <div className="text-center">
-          <Card highlighted title="No people found" utils="max-w-4 ml-auto mr-auto">No result was found matching the query &ldquo;{phrase}&rdquo;, please try another phrase.</Card>
+      <FadeInWrap utils={emptycss}>
+        <div>
+          <ul>
+            <h2>No result was found matching this query</h2>
+            <p>Please try another phrase.</p>
+          </ul>
         </div>
-      </BounceWrap>
+      </FadeInWrap>
     );
   }
-
   return (
-    <div className={styles.root}>
-      {results ? buildResults(results) : null}
-    </div>
+    <Fragment>
+      {results
+        ? buildResults(results, getPersonAndClear, limit, offset, itemStyle)
+        : null}
+    </Fragment>
   );
 }
 
-
 Markup.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.string,
-  results: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-  })),
-  phrase: PropTypes.string.isRequired,
-};
-
-
-Markup.defaultProps = {
-  loading: false,
-  error: null,
-  results: [],
+  error: PropTypes.object.isRequired,
+  phrase: PropTypes.string,
+  results: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  getPerson: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  utils: PropTypes.string,
+  offset: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  clearPeopleState: PropTypes.func,
+  clearPersonState: PropTypes.func
 };

@@ -1,29 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Markup from './Markup';
+import React from "react";
+import Markup from "./Markup";
 
+export default function Container(props) {
+  const { phrase, getPeople, limit, offset } = props;
 
-export default class Container extends Component {
-  componentDidMount() {
-    const { phrase, initSearch } = this.props;
-
-    if (phrase) {
-      initSearch(phrase);
-    }
-  }
-
-  render() {
-    return <Markup {...this.props} />;
-  }
+  return <Markup {...props} />;
 }
-
-
-Container.propTypes = {
-  phrase: PropTypes.string,
-  initSearch: PropTypes.func.isRequired,
-};
-
-
-Container.defaultProps = {
-  phrase: '',
-};

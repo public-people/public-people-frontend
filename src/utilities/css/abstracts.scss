@@ -1,0 +1,8 @@
+// The purpose of this file is to export cross-site variables and mixins into scss.modules.
+// Only abstracts and processes (mixins) should be included here, as anything that is an actual
+// selector causes scoping problems.
+
+@import "global-styles/partials/layout-values";
+@import "global-styles/partials/screensizes";
+@import "global-styles/partials/mixins";
+@import "global-styles/partials/colors";

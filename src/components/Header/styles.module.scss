@@ -1,47 +1,52 @@
 :local .root {
-  background-color: #5c5c5c;
-  padding: 10px;
-  box-shadow:
-    0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  @import "../../utilities/css/abstracts";
+  width: 100%;
+  background-color: $primary-background;
+  display: flex;
+  /* stylelint-disable */
+  border-bottom: 1px solid $dark-background;
+  /* stylelint-enable */
 }
 
-:local .wrap {
-  display: table;
-  width: 100%;
-  max-width: 860px;
-  margin: 0 auto;
+@media (min-width: 1rem) {
+  :local .wrap {
+    max-width: 90%;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+  }
+}
+
+@media (min-width: 57.75rem) {
+  :local .wrap {
+    display: flex;
+    width: 100%;
+    max-width: 53.75rem;
+    margin: 0 auto;
+  }
 }
 
 :local .home {
-  display: table-cell;
-  vertical-align: top;
+  display: flex;
 }
 
 :local .searchWrap {
-  vertical-align: top;
-  display: table-cell;
+  display: flex;
   width: 100%;
-  padding-left: 10px;
+  padding-left: 0.625rem;
 }
 
 :local .search {
-  display: table;
+  display: flex;
   width: 100%;
-  box-shadow:
-    0 1px 3px 0 rgba(0, 0, 0, 0.2),
-    0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 :local .button {
-  vertical-align: top;
-  display: table-cell;
+  display: flex;
+  height: 100%;
 }
 
 :local .input {
-  vertical-align: top;
-  display: table-cell;
+  display: flex;
   width: 100%;
 }

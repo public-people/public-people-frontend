@@ -1,0 +1,44 @@
+:local .root {
+  @import "../../utilities/css/abstracts";
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+
+  > * {
+    margin-top: $base-vertical-spacing;
+  }
+}
+
+:local .errorOrEmpty {
+  @import "../../utilities/css/abstracts";
+  justify-content: center;
+  display: flex;
+
+  > ul {
+    h2 {
+      font-size: 2rem;
+      width: 100%;
+      color: $primary-accent;
+    }
+    font-size: 1.5rem;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+:local .placeholder {
+  @import "../../utilities/css/abstracts";
+  min-width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+:local .layout {
+  @import "../../utilities/css/abstracts";
+
+  > * {
+    margin-top: $base-vertical-spacing;
+  }
+}

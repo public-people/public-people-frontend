@@ -1,0 +1,31 @@
+query {
+person(id: 13838) {
+id
+name
+memberships {
+organization {
+name
+}
+role
+  
+ }
+}
+}
+
+fragment userFields on PersonType {  
+ id
+name
+memberships {
+organization {
+name
+}
+role
+  
+ }
+}
+
+query {
+person_13837: person(id: 13837) { ...userFields }
+person_13838: person(id: 13838) { ...userFields }
+person_13839: person(id: 13839) { ...userFields }
+}

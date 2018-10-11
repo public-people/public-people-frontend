@@ -1,0 +1,74 @@
+:local .root {
+  width: 100%;
+  padding: 0 0.75rem;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.43, 1.53);
+}
+
+:local .year {
+  @import "../../../../utilities/css/abstracts.scss";
+  color: $dark-accent;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+:local .subtitle {
+  @import "../../../../utilities/css/abstracts.scss";
+  color: $dark-accent;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+:local .component {
+  @import "../../../../utilities/css/abstracts.scss";
+  max-width: 40rem;
+  margin: auto;
+
+  h1 {
+    color: $dark-accent;
+  }
+
+  /* stylelint-disable */
+  li {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    position: relative;
+  }
+  /* stylelint-enable */
+}
+/* stylelint-disable */
+:local .item {
+  @import "../../../../utilities/css/abstracts.scss";
+  padding-left: 1rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+    background: $dark-accent;
+    top: 0.3rem;
+    left: 0;
+    display: flex;
+  }
+}
+/* stylelint-enable */
+:local h1.component {
+  @import "../../../../utilities/css/abstracts.scss";
+  color: $primary-accent;
+  margin-bottom: 1rem;
+}

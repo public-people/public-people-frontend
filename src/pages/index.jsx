@@ -1,52 +1,39 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import Header from './../components/Header';
-import Grid from './../components/Grid';
-import GridItem from './../components/GridItem';
-import Card from './../components/Card';
-import Button from './../components/Button';
-import BounceWrap from './../components/BounceWrap';
+import React, { Fragment, Component } from "react";
+import Header from "./../components/Header";
+import Main from "./../components/Main/index";
+import Nav from "./../components/Nav/index";
+import { NavConfig } from "./../components/Nav/config";
+import Results from "./../components/Results/index";
+import ResultsContext from "./../components/ResultsContext/index";
 
+export default function IndexPage({ data }) {
+  const ql = data;
 
-export default function IndexPage() {
   return (
-    <div>
-      <Helmet title="Homepage | Public People" />
-      <Header />
-      <div className="mt-30 mr-20 ml-20">
-        <Grid start={800} columns={2} utils="max-w-4 ml-auto mr-auto">
-
-          <GridItem span={2}>
-            <BounceWrap delay={0}>
-              <Card title="Hello" highlighted>
-                <p>afdgsfadsdhsgfdh</p>
-                <p>adfgafdgh</p>
-              </Card>
-            </BounceWrap>
-          </GridItem>
-
-          <GridItem span={1}>
-            <BounceWrap delay={0.2}>
-              <Card title="Hello">
-                <p>afdgsfadsdhsgfdh</p>
-                <p>adfgafdgh</p>
-                <Button link="http://techforgood.org.za/politician-data-project/">Contribute to this project</Button>
-              </Card>
-            </BounceWrap>
-          </GridItem>
-
-          <GridItem span={1}>
-            <BounceWrap delay={0.4}>
-              <Card title="Hello">
-                <p>afdgsfadsdhsgfdh</p>
-                <p>adfgafdgh</p>
-              </Card>
-            </BounceWrap>
-          </GridItem>
-
-        </Grid>
-      </div>
-
-    </div>
+    <Fragment>
+      <Header
+        ql={ql}
+        title="Homepage | Public People"
+        navigation={<Nav links={NavConfig.standard} />}
+      />
+      <Main utils="results">
+        <ResultsContext
+          layoutCss="dist-size1-1dist-size400-2 dist-size500-3 dist-size800-4"
+          list={<Results page="frontpage" />}
+        />
+      </Main>
+    </Fragment>
   );
 }
+
+/* eslint-disable */
+
+export const query = graphql`
+  query siteMetadata_2 {
+    site {
+      ...aboutQueryFragment
+    }
+  }
+`;
+
+/* eslint-enable */

@@ -1,17 +1,40 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import Header from './../components/Header/index';
-import Results from './../components/Results/index';
+import React, { Fragment } from "react";
+import Header from "./../components/Header/index";
+import Main from "./../components/Main/index";
+import Results from "./../components/Results/index";
+import ResultsContext from "./../components/ResultsContext/index";
+import { NavConfig } from "./../components/Nav/config";
+import Nav from "./../components/Nav/index";
+import Pagination from "./../components/Pagination/index";
 
-
-export default function ResultsPage() {
+export default function ResultsPage({ data }) {
+  const ql = data;
   return (
-    <div>
-      <Helmet title="Search Results | Public People" />
-      <Header targetSelf />
-      <div className="mt-30 mr-20 ml-20">
-        <Results />
-      </div>
-    </div>
+    <Fragment>
+      <Header
+        ql={ql}
+        title="Search Results | Public People"
+        navigation={<Nav links={NavConfig.standard} />}
+      />
+      <Main utils="results">
+        <ResultsContext
+          list={<Results />}
+          layoutCss="dist-size1-1dist-size400-2 dist-size500-3 dist-size800-4"
+        />
+        <Pagination />
+      </Main>
+    </Fragment>
   );
 }
+
+/* eslint-disable */
+
+export const SiteMetaQuery = graphql`
+  query Results {
+    site {
+      ...aboutQueryFragment
+    }
+  }
+`;
+
+/* eslint-enable */
