@@ -14,8 +14,12 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  transition: color 0.1s linear, background-color 0.1s linear,
+    border 0.1s linear;
 
   &:hover {
+    transition: color 0.1s linear, background-color 0.1s linear,
+      border 0.1s linear;
     background-color: darken(#e0e1e2, 10%);
     border: 0.0625rem solid darken(#e0e1e2, 10%);
   }
@@ -29,8 +33,12 @@
     color: $white;
     fill: $white;
     border: 0.0625rem solid$primary-accent;
+    transition: color 0.1s linear, background-color 0.1s linear,
+      border 0.1s linear;
 
     &:hover {
+      transition: color 0.1s linear, background-color 0.1s linear,
+        border 0.1s linear;
       background-color: darken($primary-accent, 10%);
       border: 0.0625rem solid darken($primary-accent, 10%);
     }

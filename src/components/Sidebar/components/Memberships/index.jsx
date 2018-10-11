@@ -37,25 +37,27 @@ export default function MembershipsList(props) {
       <h1 className={component}>{person.name}</h1>
       {siftedMemberships.current.length > 0 && (
         <ul className={component}>
-          Current position
+          <div className={styles.subtitle}>Current position</div>
           {siftedMemberships.current.map(item => (
-            <li key={item.entry.id}>{`${item.entry.role}, ${
-              item.entry.organization.name
-            }`}</li>
+            <li key={item.entry.id} className={styles.item}>{`${
+              item.entry.role
+            }, ${item.entry.organization.name}`}</li>
           ))}
         </ul>
+      )}
+      {siftedMemberships.current.length === 0 && (
+        <div className={component}>
+          <div className={styles.subtitle}>Latest positions</div>
+        </div>
       )}
       {siftedMemberships.remainder.length > 0 &&
         sortedYears.map(year => (
           <ul className={component} key={year}>
-            {siftedMemberships.current.length === 0 && (
-              <div> Latest positions</div>
-            )}
-            {year}
+            <li className={styles.year}>{year}</li>
             {siftedMemberships.byYear[year].map(item => (
-              <li key={item.entry.id}>{`${item.entry.role}, ${
-                item.entry.organization.name
-              }`}</li>
+              <li key={item.entry.id} className={styles.item}>{`${
+                item.entry.role
+              }, ${item.entry.organization.name}`}</li>
             ))}
           </ul>
         ))}
